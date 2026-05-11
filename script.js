@@ -74,9 +74,13 @@ const DATA = {
   experience: [
     {
       employer: "Cognizant",
+      employerLogo: "logo-cognizant.svg",
       client: "Capital One",
+      clientLogo: "logo-capitalone.svg",
       role: "DevOps & Automation Engineer",
       period: "Apr 2024 – Present",
+      startDate: "2024-04",
+      endDate: null,
       current: true,
       bullets: [
         "Engineered scalable data validation and reconciliation frameworks to process high-volume transactional datasets, improving data integrity across financial systems.",
@@ -97,9 +101,13 @@ const DATA = {
     },
     {
       employer: "Cognizant",
+      employerLogo: "logo-cognizant.svg",
       client: "Ford Motor Company",
+      clientLogo: "logo-ford.svg",
       role: "Full Stack Developer",
       period: "Aug 2021 – Mar 2024",
+      startDate: "2021-08",
+      endDate: "2024-03",
       current: false,
       bullets: [
         "Developed scalable microservices and backend systems using Java and Spring Boot for complex enterprise vehicle configuration and business logic.",
@@ -383,6 +391,26 @@ function initContactForm() {
   });
 }
 
+// ── DURATION HELPER ────────────────────────────────────
+function calcDuration(startStr, endStr) {
+  const [sy, sm] = startStr.split("-").map(Number);
+  let ey, em;
+  if (endStr) {
+    [ey, em] = endStr.split("-").map(Number);
+  } else {
+    const now = new Date();
+    ey = now.getFullYear();
+    em = now.getMonth() + 1;
+  }
+  let months = (ey - sy) * 12 + (em - sm) + 1;
+  const years = Math.floor(months / 12);
+  const rem   = months % 12;
+  let out = "";
+  if (years > 0) out += `${years} yr${years > 1 ? "s" : ""}`;
+  if (rem  > 0) out += `${out ? " " : ""}${rem} mo${rem > 1 ? "s" : ""}`;
+  return out || "< 1 mo";
+}
+
 // ── RENDER SKILLS ──────────────────────────────────────
 function renderSkills() {
   const grid = document.getElementById("skills-grid");
@@ -427,9 +455,10 @@ function renderExperience() {
       <div class="timeline-content ${i % 2 === 0 ? "reveal-right" : "reveal-left"}">
         <div class="timeline-role">${job.role}</div>
         <div class="employer-client-badge">
-          <span class="employer-name">🏢 ${job.employer}</span>
+          <img src="${job.employerLogo}" alt="${job.employer}" class="badge-logo badge-logo--employer" />
           <span class="client-arrow">›</span>
-          <span class="client-name">Client: ${job.client}</span>
+          <span class="client-label">Client:</span>
+          <img src="${job.clientLogo}" alt="${job.client}" class="badge-logo badge-logo--client" />
           ${job.current ? '<span class="current-badge">● NOW</span>' : ""}
         </div>
         <ul class="timeline-bullets">
@@ -442,11 +471,15 @@ function renderExperience() {
       </div>
     `;
 
+    const duration = calcDuration(job.startDate, job.endDate);
     const metaHTML = `
       <div class="timeline-meta ${i % 2 === 0 ? "reveal-left" : "reveal-right"}">
         <div class="timeline-period">${job.period}</div>
-        <div class="timeline-company">${job.employer}</div>
-        <div class="timeline-client">Client: ${job.client}</div>
+        <div class="timeline-duration">${duration}</div>
+        <div class="timeline-meta-logos">
+          <img src="${job.employerLogo}" alt="${job.employer}" class="meta-logo meta-logo--employer" />
+          <img src="${job.clientLogo}" alt="${job.client}" class="meta-logo meta-logo--client" />
+        </div>
       </div>
     `;
 
@@ -543,4 +576,10 @@ document.addEventListener("DOMContentLoaded", () => {
   initCounters();
   initContactForm();
   initBackTop();
+
+  // Set Cognizant total tenure dynamically
+  const tenureEl = document.getElementById("cognizant-tenure");
+  if (tenureEl) {
+    tenureEl.textContent = `Aug 2021 – Present · ${calcDuration("2021-08", null)}`;
+  }
 });
