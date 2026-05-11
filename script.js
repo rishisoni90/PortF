@@ -375,19 +375,36 @@ function initContactForm() {
   const form = document.getElementById("contact-form");
   const toast = document.getElementById("toast");
 
-  form.addEventListener("submit", e => {
+  form.addEventListener("submit", async e => {
     e.preventDefault();
     const btn = form.querySelector(".form-submit");
     btn.textContent = "Sending…";
     btn.disabled = true;
 
-    setTimeout(() => {
-      btn.textContent = "Send Message";
-      btn.disabled = false;
-      form.reset();
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 3500);
-    }, 1200);
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" }
+      });
+
+      if (res.ok) {
+        form.reset();
+        toast.textContent = "✅ Message sent! I'll get back to you soon.";
+        toast.style.borderColor = "var(--accent-3)";
+      } else {
+        toast.textContent = "❌ Something went wrong. Please email me directly.";
+        toast.style.borderColor = "var(--accent-2)";
+      }
+    } catch {
+      toast.textContent = "❌ Network error. Please try again.";
+      toast.style.borderColor = "var(--accent-2)";
+    }
+
+    btn.textContent = "Send Message";
+    btn.disabled = false;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 4000);
   });
 }
 
