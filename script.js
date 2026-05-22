@@ -393,7 +393,10 @@ function initContactForm() {
         toast.textContent = "✅ Message sent! I'll get back to you soon.";
         toast.style.borderColor = "var(--accent-3)";
       } else {
-        toast.textContent = "❌ Something went wrong. Please email me directly.";
+        const data = await res.json().catch(() => ({}));
+        const reason = data?.error || `HTTP ${res.status}`;
+        console.error("Formspree error:", reason, data);
+        toast.textContent = `❌ ${reason === "INACTIVE" ? "Confirm your Formspree email first." : "Something went wrong — " + reason}`;
         toast.style.borderColor = "var(--accent-2)";
       }
     } catch {
@@ -585,6 +588,25 @@ document.addEventListener("DOMContentLoaded", () => {
   renderSkills();
   renderExperience();
   renderProjects();
+
+  // ── Dynamic year / experience ──────────────────────────
+  const careerStart = new Date("2021-08-01");
+  const expYears = Math.floor(
+    (Date.now() - careerStart.getTime()) / (1000 * 60 * 60 * 24 * 365.25)
+  );
+
+  // Footer copyright year
+  const footerYear = document.getElementById("footer-year");
+  if (footerYear) footerYear.textContent = new Date().getFullYear();
+
+  // "X+ years of experience" spans
+  document.querySelectorAll(".exp-years").forEach(el => {
+    el.textContent = expYears;
+  });
+
+  // Years Experience stat counter — set data-target so initCounters picks it up
+  const statYears = document.getElementById("stat-years");
+  if (statYears) statYears.dataset.target = expYears;
 
   initTheme();
   initScrollSpy();
