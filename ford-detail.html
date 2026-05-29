@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ford Motor Company — PDO/PDL Platform | Rishi Kumar Soni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:      #f4f1eb;
+  --bg2:     #edeae2;
+  --bg3:     #e4e0d6;
+  --white:   #fdfcf9;
+  --ink:     #1a1814;
+  --ink2:    #3d3a34;
+  --ink3:    #6b6760;
+  --ink4:    #9c9890;
+  --ford:    #003476;
+  --ford-md: #1a5dad;
+  --ford-lt: #d6e4f7;
+  --gold:    #b07d2a;
+  --gold-lt: #f5ecd6;
+  --green:   #2d6a4f;
+  --grn-lt:  #d8ede5;
+  --red:     #a83232;
+  --red-lt:  #f5dada;
+  --b:       rgba(26,24,20,0.12);
+  --b2:      rgba(26,24,20,0.2);
+  --fh: 'Playfair Display', serif;
+  --fb: 'Space Grotesk', sans-serif;
+  --fm: 'Fira Code', monospace;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--fb); font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(244,241,235,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--b2);
+  height: 56px; padding: 0 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-back {
+  display: flex; align-items: center; gap: .6rem;
+  font-size: 13px; font-weight: 600; color: var(--ford);
+  text-decoration: none; transition: gap .2s;
+}
+.nav-back:hover { gap: .9rem; }
+.nav-title { font-size: 13px; color: var(--ink3); font-weight: 500; }
+.nav-logo-pill {
+  background: var(--white); border: 1px solid var(--b2);
+  border-radius: 8px; padding: 5px 12px;
+  display: flex; align-items: center;
+}
+.nav-logo-pill img { height: 20px; width: auto; }
+
+/* HERO */
+.hero {
+  min-height: 88vh;
+  display: grid; grid-template-columns: 1fr 380px;
+  gap: 0; align-items: center;
+  padding: 5rem 4rem 3.5rem;
+  background: var(--bg);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(0,52,118,0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0,52,118,0.04) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.hero-left { padding-right: 3rem; position: relative; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: .5rem;
+  background: var(--ford); color: #fff;
+  font-family: var(--fm); font-size: 10px;
+  padding: .28rem .75rem; border-radius: 3px;
+  letter-spacing: .12em; text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-family: var(--fh);
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  line-height: 1.08; letter-spacing: -.01em;
+  margin-bottom: 1.1rem; color: var(--ink);
+}
+.hero h1 em { color: var(--ford); font-style: italic; }
+.hero-desc { font-size: 15.5px; color: var(--ink3); max-width: 500px; line-height: 1.8; margin-bottom: 2rem; }
+.impact-quote {
+  font-family: var(--fh); font-size: 1.05rem; font-style: italic;
+  color: var(--ink2); border-left: 3px solid var(--ford);
+  padding-left: 1.1rem; max-width: 460px; line-height: 1.65;
+}
+.hero-card {
+  background: var(--white); border: 1px solid var(--b2);
+  border-radius: 16px; padding: 1.75rem;
+  box-shadow: 0 4px 28px rgba(0,52,118,0.09);
+}
+.card-lbl { font-family: var(--fm); font-size: 10px; color: var(--ink4); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1rem; }
+.pill-row { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .6rem; }
+.pill { font-family: var(--fm); font-size: 10.5px; padding: .25rem .65rem; border-radius: 4px; font-weight: 500; }
+.pf  { background: var(--ford-lt); color: var(--ford); }
+.pg  { background: var(--gold-lt); color: var(--gold); }
+.pgr { background: var(--grn-lt);  color: var(--green); }
+.pr  { background: var(--red-lt);  color: var(--red); }
+.cdiv { border: none; border-top: 1px solid var(--b); margin: 1.1rem 0; }
+
+/* SECTIONS */
+section.s { padding: 5rem 4rem; max-width: 1140px; margin: 0 auto; }
+hr.div { border: none; height: 1px; background: var(--b2); max-width: 1140px; margin: 0 auto; }
+.slbl { font-family: var(--fm); font-size: 10px; color: var(--ford); letter-spacing: .15em; text-transform: uppercase; margin-bottom: .8rem; display: flex; align-items: center; gap: .6rem; }
+.slbl::after { content: ''; flex: 1; height: 1px; background: var(--b2); max-width: 60px; }
+.sh2 { font-family: var(--fh); font-size: clamp(1.7rem, 2.8vw, 2.6rem); font-weight: 700; letter-spacing: -.015em; color: var(--ink); margin-bottom: 1rem; line-height: 1.15; }
+.sp  { color: var(--ink3); margin-bottom: 1rem; max-width: 660px; }
+
+/* HI BOX */
+.hi-box { background: var(--ford-lt); border: 1px solid rgba(0,52,118,.18); border-left: 4px solid var(--ford); border-radius: 0 8px 8px 0; padding: 1rem 1.4rem; margin: 1.5rem 0; }
+.hi-box p { color: var(--ink2); margin: 0; font-size: 13.5px; max-width: none; }
+
+/* CS GRID */
+.csgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+.csbox { background: var(--white); border: 1px solid var(--b2); border-radius: 12px; padding: 1.75rem; }
+.csblbl { font-family: var(--fm); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: .9rem; font-weight: 500; }
+.csbox.chal .csblbl { color: var(--red); }
+.csbox.sol  .csblbl { color: var(--green); }
+.cslist { list-style: none; display: flex; flex-direction: column; gap: .65rem; }
+.cslist li { font-size: 13.5px; color: var(--ink2); display: flex; align-items: flex-start; gap: .6rem; line-height: 1.5; }
+.cslist li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; margin-top: .56rem; flex-shrink: 0; }
+.csbox.chal .cslist li::before { background: var(--red); }
+.csbox.sol  .cslist li::before { background: var(--green); }
+
+/* ARCH CARDS */
+.agrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.1rem; margin-top: 2.25rem; }
+.acard { background: var(--white); border: 1px solid var(--b2); border-radius: 12px; padding: 1.6rem; position: relative; overflow: hidden; transition: box-shadow .2s; }
+.acard:hover { box-shadow: 0 4px 18px rgba(0,52,118,.07); }
+.acard::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.acard.java::before   { background: var(--ford); }
+.acard.ang::before    { background: var(--gold); }
+.acard.spring::before { background: var(--green); }
+.acard.sql::before    { background: var(--red); }
+.acard.qual::before   { background: #2a6b6b; }
+.acard .aic { font-size: 1.6rem; margin-bottom: .85rem; }
+.acard h3 { font-size: .9rem; margin-bottom: .4rem; color: var(--ink); font-weight: 600; }
+.acard p  { font-size: 12.5px; color: var(--ink3); margin: 0; }
+.atag { display: inline-block; margin-top: .8rem; font-family: var(--fm); font-size: 9.5px; padding: .2rem .5rem; border-radius: 3px; background: var(--bg2); color: var(--ink3); letter-spacing: .05em; }
+
+/* TECH TABLE */
+.tt { width: 100%; border-collapse: collapse; margin-top: 1.75rem; }
+.tt th { text-align: left; padding: .65rem .9rem; font-family: var(--fm); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink4); border-bottom: 1px solid var(--b2); background: var(--bg2); }
+.tt td { padding: .8rem .9rem; border-bottom: 1px solid var(--b); font-size: 13.5px; }
+.tt tr:hover td { background: var(--white); }
+.tt td:first-child { font-weight: 600; color: var(--ink); }
+.tt td:nth-child(2) { color: var(--ink3); }
+
+/* TIMELINE */
+.tl { position: relative; margin-top: 2.5rem; padding-left: 2.25rem; }
+.tl::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--ford), var(--b)); }
+.tli { position: relative; margin-bottom: 2.25rem; }
+.tldot { position: absolute; left: -2.25rem; top: 5px; width: 13px; height: 13px; border-radius: 50%; background: var(--bg); border: 2px solid var(--ford); transition: background .2s; }
+.tli:hover .tldot { background: var(--ford); }
+.tllyr { font-family: var(--fm); font-size: 10px; color: var(--ford); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .3rem; }
+.tlt { font-size: .98rem; font-weight: 600; margin-bottom: .35rem; color: var(--ink); }
+.tld { font-size: 13.5px; color: var(--ink3); max-width: 580px; margin: 0; line-height: 1.6; }
+
+/* PROCESS */
+.pgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: .9rem; margin-top: 1.75rem; }
+.pcard { background: var(--white); border: 1px solid var(--b); border-radius: 10px; padding: 1.2rem; text-align: center; }
+.pnum { font-family: var(--fh); font-size: 1.5rem; color: var(--ford); font-weight: 700; line-height: 1; margin-bottom: .4rem; }
+.pcard h4 { font-size: .88rem; font-weight: 600; margin-bottom: .3rem; color: var(--ink); }
+.pcard p  { font-size: 12px; color: var(--ink3); margin: 0; }
+
+/* SUMMARY QUOTE */
+.sq { background: var(--ink); border-radius: 16px; padding: 2.75rem 3rem; margin-top: 2.5rem; position: relative; overflow: hidden; }
+.sq::before { content: '"'; font-family: var(--fh); font-size: 9rem; color: rgba(255,255,255,0.04); position: absolute; top: -2rem; left: 2rem; line-height: 1; pointer-events: none; }
+.sq p { font-family: var(--fh); font-size: clamp(.95rem, 1.8vw, 1.35rem); font-style: italic; color: var(--bg); line-height: 1.65; max-width: 760px; margin: 0; position: relative; }
+.sq span { color: #90b8e8; }
+
+footer { text-align: center; padding: 2.5rem 2rem; border-top: 1px solid var(--b2); color: var(--ink4); font-size: 11.5px; font-family: var(--fm); background: var(--bg2); }
+footer a { color: var(--ford); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding: 4rem 1.5rem 3rem; }
+  .hero-left { padding-right: 0; margin-bottom: 1.5rem; }
+  .hero-card { display: none; }
+  section.s { padding: 3.5rem 1.5rem; }
+  .agrid { grid-template-columns: 1fr 1fr; }
+  .csgrid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back">← Back to Portfolio</a>
+  <span class="nav-title">Ford Motor Company · Case Study</span>
+  <div class="nav-logo-pill"><img src="logo-ford.svg" alt="Ford"></div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="eyebrow">Ford Motor Company · Aug 2021 – Mar 2024</div>
+    <h1>Rule-Driven<br><em>Feature Management</em><br>Platform (PDO/PDL)</h1>
+    <p class="hero-desc">Designed and developed a centralized, rule-driven platform at Ford enabling dynamic definition, validation, and deployment of vehicle features across multiple environments in support of large-scale, safety-critical automotive systems.</p>
+    <div class="impact-quote">"Built a full-stack platform at Ford where business teams define vehicle feature rules through a UI and the Java engine enforces them in safety-critical systems — replacing weeks of manual coordination with one reliable, automated platform."</div>
+  </div>
+  <div class="hero-card">
+    <div class="card-lbl">// at a glance</div>
+    <div style="font-family:var(--fh);font-size:2.2rem;color:var(--ford);font-weight:700;line-height:1;margin-bottom:.2rem;">PDO/PDL</div>
+    <div style="font-size:12px;color:var(--ink3);">Product Definition Object / Layer — core vehicle feature configuration system</div>
+    <hr class="cdiv">
+    <div style="display:flex;gap:1.1rem;margin-bottom:1.1rem;">
+      <div><div style="font-family:var(--fh);font-size:1.6rem;color:var(--ford);font-weight:700;line-height:1;">Full</div><div style="font-size:11px;color:var(--ink3);">Stack delivery</div></div>
+      <div style="width:1px;background:var(--b);"></div>
+      <div><div style="font-family:var(--fh);font-size:1.6rem;color:var(--gold);font-weight:700;line-height:1;">Multi</div><div style="font-size:11px;color:var(--ink3);">Env. deploy</div></div>
+      <div style="width:1px;background:var(--b);"></div>
+      <div><div style="font-family:var(--fh);font-size:1.6rem;color:var(--green);font-weight:700;line-height:1;">Agile</div><div style="font-size:11px;color:var(--ink3);">Delivery</div></div>
+    </div>
+    <hr class="cdiv">
+    <div class="card-lbl" style="margin-bottom:.6rem;">// technologies used</div>
+    <div class="pill-row">
+      <span class="pill pf">Java</span><span class="pill pf">Spring Boot</span>
+      <span class="pill pg">Angular</span><span class="pill pg">JavaScript</span>
+      <span class="pill pgr">SQL Server</span><span class="pill pgr">REST APIs</span>
+      <span class="pill pr">SonarQube</span><span class="pill pr">Checkmarx</span>
+      <span class="pill pr">Postman</span>
+    </div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- OVERVIEW -->
+<section class="s">
+  <div class="slbl">01 — Overview</div>
+  <h2 class="sh2">What Is the PDO/PDL Platform?</h2>
+  <p class="sp">Ford vehicles are defined by thousands of features — options, configurations, rules, and constraints that vary across programs, markets, and trims. The PDO/PDL platform is the system that manages all of it: a rule-driven engine where business stakeholders define feature combinations, the backend enforces rule logic, and teams deploy configurations consistently across environments.</p>
+  <div class="hi-box"><p>In two lines: <strong>Built a platform at Ford where teams define and validate vehicle feature rules through a UI, the Java backend enforces those rules for safety-critical systems, and everything integrates seamlessly to downstream applications — eliminating manual coordination across large-scale automotive programs.</strong></p></div>
+  <div class="csgrid">
+    <div class="csbox chal">
+      <div class="csblbl">The Challenge</div>
+      <ul class="cslist">
+        <li>Vehicle features span thousands of rules across programs, markets, and environments</li>
+        <li>No centralized platform — rules scattered across teams and systems</li>
+        <li>Manual validation of feature combinations, error-prone in safety-critical context</li>
+        <li>Stakeholders with no coding background needed to author and manage rules</li>
+        <li>Inconsistent integration between rule authoring and downstream vehicle programs</li>
+      </ul>
+    </div>
+    <div class="csbox sol">
+      <div class="csblbl">The Solution</div>
+      <ul class="cslist">
+        <li>Single rule-driven platform for dynamic feature definition, validation, and deployment</li>
+        <li>Java-based business logic engine handling rule conditions accurately at scale</li>
+        <li>Angular UI enabling non-technical stakeholders to author and manage rules directly</li>
+        <li>Spring Boot REST APIs connecting rule authoring to downstream applications</li>
+        <li>SQL Server data modeling ensuring high-performance retrieval and data integrity</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- ARCHITECTURE -->
+<section class="s">
+  <div class="slbl">02 — System Architecture</div>
+  <h2 class="sh2">How the Platform Is Built</h2>
+  <p class="sp">Full-stack system with clear separation between the rule authoring UI, business logic core, the data layer, and quality/security gates.</p>
+
+  <div class="agrid">
+    <div class="acard java"><div class="aic">☕</div><h3>Java — Business Logic Engine</h3><p>Core rule evaluation and execution engine. Handles feature conditions, validations, and rule chaining for safety-critical automotive systems at scale.</p><span class="atag">backend core</span></div>
+    <div class="acard ang"><div class="aic">🅰️</div><h3>Angular — Rule Authoring UI</h3><p>Stakeholder-facing interface for defining and managing vehicle feature rules. Designed for business users — no code required.</p><span class="atag">frontend</span></div>
+    <div class="acard spring"><div class="aic">🌱</div><h3>Spring Boot — REST APIs</h3><p>RESTful API layer connecting the rule authoring UI to the Java engine and downstream vehicle program applications.</p><span class="atag">api layer</span></div>
+    <div class="acard sql"><div class="aic">🗃️</div><h3>SQL Server — Data Layer</h3><p>Relational data modeling for feature configurations and rules. Optimized for high-performance retrieval and strong data integrity.</p><span class="atag">persistence</span></div>
+    <div class="acard qual" style="grid-column:span 2;"><div class="aic">🔍</div><h3>Code Quality &amp; Security</h3><p>SonarQube for code quality analysis and Checkmarx for SAST security scanning, integrated into the development workflow. Smoke, regression, and API testing via Postman. ALM tooling for traceable test artifact management across the lifecycle.</p><span class="atag">quality &amp; security</span></div>
+  </div>
+
+  <!-- FLOW DIAGRAM -->
+  <div style="background:var(--white);border:1px solid var(--b2);border-radius:16px;padding:2rem;margin-top:2.5rem;overflow-x:auto;">
+    <div style="font-family:var(--fm);font-size:10px;color:var(--ink4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.5rem;">// platform data &amp; request flow</div>
+    <svg viewBox="0 0 860 260" width="100%" xmlns="http://www.w3.org/2000/svg" style="min-width:660px;">
+      <defs>
+        <marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#003476" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+        <marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#b07d2a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+        <marker id="a3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#2d6a4f" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+      </defs>
+      <rect x="10" y="88" width="110" height="64" rx="8" fill="#d6e4f7" stroke="#003476" stroke-width="0.8"/>
+      <text x="65" y="115" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="12" font-weight="600" fill="#003476">Stakeholder</text>
+      <text x="65" y="132" text-anchor="middle" font-family="'Fira Code',monospace" font-size="9" fill="#1a5dad">authors rules</text>
+      <line x1="122" y1="120" x2="155" y2="120" stroke="#003476" stroke-width="1.5" marker-end="url(#a1)"/>
+      <rect x="157" y="83" width="128" height="74" rx="8" fill="#f5ecd6" stroke="#b07d2a" stroke-width="0.8"/>
+      <text x="221" y="114" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="12" font-weight="600" fill="#b07d2a">Angular UI</text>
+      <text x="221" y="130" text-anchor="middle" font-family="'Fira Code',monospace" font-size="9" fill="#b07d2a">Rule authoring &amp;</text>
+      <text x="221" y="143" text-anchor="middle" font-family="'Fira Code',monospace" font-size="9" fill="#b07d2a">management</text>
+      <line x1="287" y1="120" x2="320" y2="120" stroke="#b07d2a" stroke-width="1.5" marker-end="url(#a2)"/>
+      <text x="303" y="112" text-anchor="middle" font-family="'Fira Code',monospace" font-size="8" fill="#9c9890">REST</text>
+      <rect x="322" y="83" width="130" height="74" rx="8" fill="#d8ede5" stroke="#2d6a4f" stroke-width="0.8"/>
+      <text x="387" y="114" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="12" font-weight="600" fill="#2d6a4f">Spring Boot</text>
+      <text x="387" y="130" text-anchor="middle" font-family="'Fira Code',monospace" font-size="9" fill="#2d6a4f">REST API layer</text>
+      <text x="387" y="143" text-anchor="middle" font-family="'Fira Code',monospace" font-size="9" fill="#2d6a4f">data exchange</text>
+      <line x1="454" y1="120" x2="487" y2="120" stroke="#2d6a4f" stroke-width="1.5" marker-end="url(#a3)"/>
+      <rect x="489" y="73" width="132" height="90" rx="8" fill="#d6e4f7" stroke="#003476" stroke-width="1.2"/>
+      <text x="555" y="105" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="12" font-weight="600" fill="#003476">Java Engine</text>
+      <text x="555" y="121" text-anchor="middle" font-family="'Fira Code',monospace" font-size="9" fill="#1a5dad">rule evaluation</text>
+      <text x="555" y="136" text-anchor="middle" font-family="'Fira Code',monospace" font-size="9" fill="#1a5dad">validation logic</text>
+      <text x="555" y="150" text-anchor="middle" font-family="'Fira Code',monospace" font-size="9" fill="#1a5dad">safety-critical</text>
+      <path d="M555 165 L555 200" fill="none" stroke="#003476" stroke-width="1.5" marker-end="url(#a1)"/>
+      <rect x="489" y="202" width="132" height="52" rx="8" fill="#f5dada" stroke="#a83232" stroke-width="0.8"/>
+      <text x="555" y="225" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="12" font-weight="600" fill="#a83232">SQL Server</text>
+      <text x="555" y="242" text-anchor="middle" font-family="'Fira Code',monospace" font-size="9" fill="#a83232">feature configs &amp; rules</text>
+      <line x1="623" y1="118" x2="660" y2="118" stroke="#003476" stroke-width="1.5" marker-end="url(#a1)"/>
+      <rect x="662" y="86" width="128" height="68" rx="8" fill="#f4f1eb" stroke="#6b6760" stroke-width="0.8" stroke-dasharray="4 3"/>
+      <text x="726" y="115" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="11" font-weight="600" fill="#3d3a34">Downstream</text>
+      <text x="726" y="131" text-anchor="middle" font-family="'Fira Code',monospace" font-size="9" fill="#6b6760">vehicle program apps</text>
+      <rect x="157" y="222" width="295" height="32" rx="7" fill="#f4f1eb" stroke="#2a6b6b" stroke-width="0.8" stroke-dasharray="4 3"/>
+      <text x="304" y="236" text-anchor="middle" font-family="'Space Grotesk',sans-serif" font-size="11" font-weight="600" fill="#2a6b6b">Quality &amp; Security</text>
+      <text x="304" y="249" text-anchor="middle" font-family="'Fira Code',monospace" font-size="8.5" fill="#2a6b6b">SonarQube · Checkmarx · Postman · ALM</text>
+      <path d="M387 159 L387 220" fill="none" stroke="#2a6b6b" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#a3)"/>
+    </svg>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- TECH STACK -->
+<section class="s">
+  <div class="slbl">03 — Technology Stack</div>
+  <h2 class="sh2">Tools &amp; Technologies</h2>
+  <table class="tt">
+    <thead><tr><th>Technology</th><th>Role</th><th>Layer</th></tr></thead>
+    <tbody>
+      <tr><td>Java</td><td>Core business logic — rule evaluation, conditions, feature validations for safety-critical automotive systems</td><td><span class="pill pf" style="font-size:10px;">Backend Core</span></td></tr>
+      <tr><td>Spring Boot</td><td>RESTful APIs enabling data exchange between rule authoring UI and downstream vehicle applications</td><td><span class="pill pf" style="font-size:10px;">API Layer</span></td></tr>
+      <tr><td>Angular + JavaScript</td><td>Stakeholder-facing rule authoring interface — dynamic, responsive UI for non-technical business users</td><td><span class="pill pg" style="font-size:10px;">Frontend</span></td></tr>
+      <tr><td>SQL Server</td><td>Data modeling, storage, and retrieval of feature configurations and rule sets with high data integrity</td><td><span class="pill pgr" style="font-size:10px;">Database</span></td></tr>
+      <tr><td>SonarQube</td><td>Static code analysis for quality metrics, technical debt, and code smell detection</td><td><span class="pill pr" style="font-size:10px;">Quality</span></td></tr>
+      <tr><td>Checkmarx</td><td>SAST security scanning — identifying vulnerabilities before code reaches downstream environments</td><td><span class="pill pr" style="font-size:10px;">Security</span></td></tr>
+      <tr><td>Postman</td><td>Smoke, regression, and API testing of Spring Boot REST endpoints across environments</td><td><span class="pill pg" style="font-size:10px;">Testing</span></td></tr>
+      <tr><td>ALM</td><td>Test artifact management — traceable, secure documentation across the full software lifecycle</td><td><span class="pill pgr" style="font-size:10px;">Governance</span></td></tr>
+      <tr><td>Agile / Scrum</td><td>Iterative delivery, sprint planning, continuous improvement with cross-functional stakeholders</td><td><span class="pill" style="background:var(--bg2);color:var(--ink3);font-size:10px;">Methodology</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="div">
+
+<!-- PROCESS -->
+<section class="s">
+  <div class="slbl">04 — Engineering Process</div>
+  <h2 class="sh2">How We Worked</h2>
+  <p class="sp">Delivered using Agile methodologies with close collaboration between business and technical stakeholders throughout every sprint cycle.</p>
+  <div class="pgrid">
+    <div class="pcard"><div class="pnum">01</div><h4>Requirements</h4><p>Collaborated directly with business and technical stakeholders to capture vehicle program needs.</p></div>
+    <div class="pcard"><div class="pnum">02</div><h4>Agile Sprints</h4><p>Iterative development with regular reviews — incremental delivery across UI, API, and logic layers.</p></div>
+    <div class="pcard"><div class="pnum">03</div><h4>Testing</h4><p>Smoke, regression, and API testing via Postman. Quality gates via SonarQube and Checkmarx.</p></div>
+    <div class="pcard"><div class="pnum">04</div><h4>Documentation</h4><p>ALM tooling for test artifacts and traceable, secure documentation across the software lifecycle.</p></div>
+  </div>
+
+  <div class="sq">
+    <p>"Built a <span>full-stack, rule-driven platform</span> at Ford that lets business teams define vehicle feature rules through a UI, enforces those rules in Java for safety-critical systems — <span>replacing manual coordination with one unified, reliable platform.</span>"</p>
+  </div>
+</section>
+
+<footer>
+  <div>Ford Motor Company — PDO/PDL Feature Management Platform &nbsp;·&nbsp; <a href="index.html">← Back to Portfolio</a></div>
+  <div style="margin-top:.35rem;opacity:.6;">Java · Spring Boot · Angular · SQL Server · SonarQube · Checkmarx · Postman · ALM · Agile</div>
+</footer>
+</body>
+</html>

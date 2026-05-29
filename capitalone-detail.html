@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capital One — Wire Payment Automation | Rishi Kumar Soni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:    #0c1220;
+  --bg2:   #131d30;
+  --bg3:   #1a2640;
+  --bgc:   #1e2e48;
+  --text:  #e2e8f0;
+  --muted: #94a3b8;
+  --dim:   #64748b;
+  --c1:    #d4171e;
+  --c1m:   #e8464b;
+  --c1lt:  #fde8e9;
+  --c1dk:  #8b0f13;
+  --navy:  #1b2a4a;
+  --nvlt:  #dde4f0;
+  --bc:    rgba(212,23,30,0.15);
+  --bc2:   rgba(212,23,30,0.28);
+  --green: #68d391;
+  --amber: #f6ad55;
+  --teal:  #4fd1c5;
+  --purp:  #b794f4;
+  --fh: 'Playfair Display', serif;
+  --fb: 'Space Grotesk', sans-serif;
+  --fm: 'Fira Code', monospace;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--fb); font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(12,18,32,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--bc2);
+  height: 56px; padding: 0 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-back { display: flex; align-items: center; gap: .6rem; font-size: 13px; font-weight: 600; color: var(--c1); text-decoration: none; transition: gap .2s; }
+.nav-back:hover { gap: .9rem; }
+.nav-title { font-size: 13px; color: var(--muted); font-weight: 500; }
+.nav-logo-pill { background: var(--bg2); border: 1px solid var(--bc2); border-radius: 8px; padding: 5px 12px; display: flex; align-items: center; }
+.nav-logo-pill img { height: 20px; width: auto; }
+
+/* HERO */
+.hero {
+  min-height: 88vh;
+  display: grid; grid-template-columns: 1fr 380px;
+  gap: 0; align-items: center;
+  padding: 5rem 4rem 3.5rem;
+  position: relative; overflow: hidden;
+}
+.hero-gbg {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(212,23,30,0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(212,23,30,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.hero-glow { position: absolute; top: 15%; right: 5%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(212,23,30,0.05) 0%, transparent 70%); pointer-events: none; }
+.hero-left { padding-right: 3rem; position: relative; z-index: 1; }
+.eyebrow { display: inline-flex; align-items: center; gap: .5rem; background: var(--c1); color: #fff; font-family: var(--fm); font-size: 10px; padding: .28rem .75rem; border-radius: 3px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1.5rem; }
+.hero h1 { font-family: var(--fh); font-size: clamp(2rem, 4vw, 3.6rem); line-height: 1.08; letter-spacing: -.01em; margin-bottom: 1.1rem; color: var(--text); }
+.hero h1 em { color: var(--c1); font-style: italic; }
+.hero-desc { font-size: 15.5px; color: var(--muted); max-width: 500px; line-height: 1.8; margin-bottom: 2rem; }
+.impact-quote { font-family: var(--fh); font-size: 1.05rem; font-style: italic; color: var(--text); border-left: 3px solid var(--c1); padding-left: 1.1rem; max-width: 460px; line-height: 1.65; }
+.hero-card { background: var(--bgc); border: 1px solid var(--bc2); border-radius: 16px; padding: 1.75rem; box-shadow: 0 4px 28px rgba(212,23,30,0.08); position: relative; z-index: 1; }
+.card-lbl { font-family: var(--fm); font-size: 10px; color: var(--dim); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1rem; }
+.cdiv { border: none; border-top: 1px solid var(--bc); margin: 1.1rem 0; }
+.pill-row { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .6rem; }
+.pill { font-family: var(--fm); font-size: 10.5px; padding: .25rem .65rem; border-radius: 4px; font-weight: 500; }
+.pc1   { background: rgba(212,23,30,.12); color: #e8464b; }
+.pnavy { background: rgba(27,42,74,.3);   color: #90a8d4; }
+.pamb  { background: rgba(246,173,85,.12); color: var(--amber); }
+.pteal { background: rgba(79,209,197,.12); color: var(--teal); }
+
+/* SECTIONS */
+section.s { padding: 5rem 4rem; max-width: 1140px; margin: 0 auto; }
+hr.div { border: none; height: 1px; background: var(--bc2); max-width: 1140px; margin: 0 auto; }
+.slbl { font-family: var(--fm); font-size: 10px; color: var(--c1); letter-spacing: .15em; text-transform: uppercase; margin-bottom: .8rem; display: flex; align-items: center; gap: .6rem; }
+.slbl::after { content: ''; flex: 1; height: 1px; background: var(--bc2); max-width: 60px; }
+.sh2 { font-family: var(--fh); font-size: clamp(1.7rem, 2.8vw, 2.6rem); font-weight: 700; letter-spacing: -.015em; color: var(--text); margin-bottom: 1rem; line-height: 1.15; }
+.sp { color: var(--muted); margin-bottom: 1rem; max-width: 660px; }
+.hibox { background: rgba(212,23,30,.07); border: 1px solid rgba(212,23,30,.2); border-left: 4px solid var(--c1); border-radius: 0 8px 8px 0; padding: 1rem 1.4rem; margin: 1.5rem 0; }
+.hibox p { color: var(--text); margin: 0; font-size: 13.5px; max-width: none; }
+
+/* OVERVIEW CARDS */
+.ocgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.1rem; margin-top: 2rem; }
+.ocard { background: var(--bgc); border: 1px solid var(--bc); border-radius: 12px; padding: 1.5rem; transition: border-color .25s, transform .2s; }
+.ocard:hover { border-color: var(--bc2); transform: translateY(-2px); }
+.ocicon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; margin-bottom: .85rem; }
+.ic1    { background: rgba(212,23,30,.1); color: var(--c1); }
+.inavy  { background: rgba(27,42,74,.25); color: #90a8d4; }
+.iteal  { background: rgba(79,209,197,.1); color: var(--teal); }
+.iamb   { background: rgba(246,173,85,.1); color: var(--amber); }
+.igreen { background: rgba(104,211,145,.1); color: var(--green); }
+.ipur   { background: rgba(183,148,244,.1); color: var(--purp); }
+.ocard h3 { font-size: .9rem; margin-bottom: .4rem; color: var(--text); font-weight: 600; }
+.ocard p  { font-size: 12.5px; color: var(--muted); margin: 0; }
+
+/* PIPELINE WRAP */
+.pline-wrap { background: var(--bgc); border: 1px solid var(--bc); border-radius: 16px; padding: 2.25rem 2rem; margin-top: 2rem; overflow-x: auto; }
+.phase-lbl { font-family: var(--fm); font-size: 9.5px; color: var(--dim); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1rem; }
+.pipeline { display: flex; align-items: flex-start; gap: 0; min-width: 500px; margin-bottom: 2rem; }
+.ps { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; }
+.ps:not(:last-child)::after { content: ''; position: absolute; top: 29px; left: calc(50% + 36px); width: calc(100% - 72px); height: 2px; background: linear-gradient(90deg, var(--c1), var(--bc2)); z-index: 0; }
+.pn { width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 19px; position: relative; z-index: 1; border: 2px solid; transition: transform .2s; }
+.pn:hover { transform: scale(1.08); }
+.pnr  { background: rgba(212,23,30,.12);  border-color: rgba(212,23,30,.5);  color: var(--c1); }
+.pnn  { background: rgba(27,42,74,.25);   border-color: rgba(90,120,180,.5); color: #90a8d4; }
+.pnt  { background: rgba(79,209,197,.12); border-color: rgba(79,209,197,.5); color: var(--teal); }
+.pna  { background: rgba(246,173,85,.12); border-color: rgba(246,173,85,.5); color: var(--amber); }
+.png  { background: rgba(104,211,145,.12);border-color: rgba(104,211,145,.5);color: var(--green); }
+.pnp  { background: rgba(183,148,244,.12);border-color: rgba(183,148,244,.5);color: var(--purp); }
+.pl { margin-top: .6rem; text-align: center; font-family: var(--fh); font-size: 11px; font-weight: 600; color: var(--text); line-height: 1.3; max-width: 80px; }
+.ps2{ font-family: var(--fm); font-size: 9.5px; color: var(--dim); margin-top: .2rem; text-align: center; max-width: 80px; line-height: 1.3; }
+
+/* CHANNEL BRANCH */
+.chlbranch { background: var(--bg3); border: 1px solid var(--bc); border-radius: 12px; padding: 1.4rem 1.6rem; margin-bottom: 2rem; }
+.bhdesc { font-family: var(--fm); font-size: 11px; color: var(--muted); margin-bottom: 1rem; }
+.bhgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.bhcard { border: 1px solid; border-radius: 10px; padding: 1rem 1.2rem; }
+.bhcard.sel { border-color: rgba(104,211,145,.3); background: rgba(104,211,145,.04); }
+.bhcard.api { border-color: rgba(212,23,30,.3);  background: rgba(212,23,30,.04); }
+.bhlbl { font-family: var(--fm); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .6rem; font-weight: 500; }
+.bhcard.sel .bhlbl { color: var(--green); }
+.bhcard.api .bhlbl { color: var(--c1); }
+.chtag { display: flex; align-items: center; gap: .5rem; margin-bottom: .35rem; }
+.ctdot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; background: var(--amber); }
+.chn  { font-family: var(--fm); font-size: 11px; color: var(--amber); }
+.chnote { font-family: var(--fm); font-size: 9.5px; color: var(--dim); }
+.bhnote { font-family: var(--fm); font-size: 10px; color: var(--dim); padding: .4rem .6rem; background: rgba(0,0,0,.2); border-radius: 5px; margin-top: .55rem; }
+
+/* TIMELINE */
+.tl { position: relative; margin-top: 2.5rem; padding-left: 2.25rem; }
+.tl::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--c1), var(--bc)); }
+.tli { position: relative; margin-bottom: 2.25rem; }
+.tldot { position: absolute; left: -2.25rem; top: 5px; width: 13px; height: 13px; border-radius: 50%; background: var(--bg); border: 2px solid var(--c1); transition: background .2s; }
+.tli:hover .tldot { background: var(--c1); }
+.tlph { font-family: var(--fm); font-size: 10px; color: var(--c1); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .3rem; }
+.tlt  { font-size: .98rem; font-weight: 600; margin-bottom: .35rem; color: var(--text); }
+.tld  { font-size: 13.5px; color: var(--muted); max-width: 580px; margin: 0; line-height: 1.6; }
+
+/* INFRA */
+.igrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .9rem; margin-top: 2rem; }
+.icard { background: var(--bgc); border: 1px solid var(--bc); border-radius: 12px; padding: 1.4rem; text-align: center; }
+.iicon { font-size: 2rem; margin-bottom: .65rem; }
+.icard h4 { font-family: var(--fh); font-size: .9rem; margin-bottom: .4rem; color: var(--text); }
+.icard p  { font-size: 12px; color: var(--muted); margin: 0; }
+.itag { display: inline-block; margin-top: .65rem; font-family: var(--fm); font-size: 9.5px; padding: .18rem .5rem; border-radius: 3px; background: rgba(212,23,30,.1); color: var(--c1); border: 1px solid rgba(212,23,30,.2); }
+.sbadge { display: inline-flex; align-items: center; gap: .5rem; background: rgba(246,173,85,.08); border: 1px solid rgba(246,173,85,.3); color: var(--amber); padding: .5rem 1.1rem; border-radius: 8px; font-family: var(--fm); font-size: 12.5px; margin-top: .9rem; }
+
+/* S3 FLOW */
+.s3flow { display: flex; flex-direction: column; gap: .85rem; }
+.s3row  { display: flex; align-items: center; gap: 1rem; }
+.s3icon { width: 32px; height: 32px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+.s3path { font-family: var(--fm); font-size: 11.5px; }
+.s3note { font-size: 12px; color: var(--muted); margin-top: .15rem; }
+.s3con  { width: 2px; height: 16px; background: var(--bc); margin-left: 15px; }
+
+/* VALIDATION BARS */
+.vrow { display: flex; align-items: center; gap: .9rem; margin: .65rem 0; flex-wrap: wrap; }
+.vlbl { font-size: 12.5px; color: var(--muted); min-width: 170px; font-family: var(--fm); }
+.vw   { flex: 1; min-width: 100px; height: 5px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+.vb   { height: 100%; border-radius: 3px; }
+.vv   { font-family: var(--fm); font-size: 11px; color: var(--text); min-width: 36px; text-align: right; }
+
+/* EMAIL */
+.emailp { background: var(--bgc); border: 1px solid var(--bc); border-radius: 12px; overflow: hidden; margin-top: 1.75rem; max-width: 580px; }
+.ehdr   { background: var(--bg3); padding: .9rem 1.4rem; border-bottom: 1px solid var(--bc); }
+.efd    { font-size: 12px; color: var(--muted); padding: .18rem 0; }
+.efd span { color: var(--text); font-weight: 500; }
+.ebdy   { padding: 1.4rem; }
+.ebdy h4 { font-family: var(--fh); color: var(--text); margin-bottom: .9rem; }
+.errow  { display: flex; gap: .65rem; align-items: center; padding: .55rem 0; border-bottom: 1px solid rgba(99,179,237,.05); font-size: 13px; }
+.sd     { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.pass   { background: var(--green); }
+.fail   { background: #fc8181; }
+.erk    { color: var(--muted); flex: 1; }
+.erv    { font-family: var(--fm); font-size: 10.5px; }
+
+/* TECH TABLE */
+.tt { width: 100%; border-collapse: collapse; margin-top: 1.75rem; }
+.tt th { text-align: left; padding: .65rem .9rem; font-family: var(--fm); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); border-bottom: 1px solid var(--bc2); background: var(--bg2); }
+.tt td { padding: .8rem .9rem; border-bottom: 1px solid rgba(212,23,30,.06); font-size: 13.5px; }
+.tt tr:hover td { background: var(--bgc); }
+.tt td:first-child { font-weight: 600; color: var(--text); }
+.tt td:nth-child(2) { color: var(--muted); }
+
+/* MIGRATION */
+.mgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.75rem; }
+.mcard { background: var(--bgc); border: 1px solid var(--bc); border-radius: 12px; padding: 1.5rem; }
+.mcard.after { border-color: rgba(104,211,145,.3); }
+.mlbl { font-family: var(--fm); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .9rem; font-weight: 500; }
+.mcard.before .mlbl { color: var(--dim); }
+.mcard.after  .mlbl { color: var(--green); }
+.mlist { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+.mlist li { font-size: 13px; color: var(--muted); }
+
+/* SUMMARY QUOTE */
+.csq { background: var(--c1); border-radius: 16px; padding: 2.75rem 3rem; margin-top: 2.5rem; position: relative; overflow: hidden; }
+.csq::before { content: '"'; font-family: var(--fh); font-size: 9rem; color: rgba(255,255,255,0.07); position: absolute; top: -2rem; left: 2rem; line-height: 1; pointer-events: none; }
+.csq p { font-family: var(--fh); font-size: clamp(.95rem, 1.8vw, 1.35rem); font-style: italic; color: #fff; line-height: 1.65; max-width: 760px; margin: 0; position: relative; }
+.csq span { color: #fde8e9; }
+
+footer { text-align: center; padding: 2.5rem 2rem; border-top: 1px solid var(--bc2); color: var(--dim); font-size: 11.5px; font-family: var(--fm); background: var(--bg2); }
+footer a { color: var(--c1); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding: 4rem 1.5rem 3rem; }
+  .hero-left { padding-right: 0; margin-bottom: 1.5rem; }
+  .hero-card { display: none; }
+  section.s { padding: 3.5rem 1.5rem; }
+  .bhgrid, .mgrid { grid-template-columns: 1fr; }
+  .pipeline { min-width: 480px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back">← Back to Portfolio</a>
+  <span class="nav-title">Capital One · Case Study</span>
+  <div class="nav-logo-pill"><img src="logo-capitalone.svg" alt="Capital One"></div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-gbg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-left">
+    <div class="eyebrow">Capital One · Apr 2024 – Present</div>
+    <h1>Wire Payment<br><em>Test Automation</em><br>Framework</h1>
+    <p class="hero-desc">Built an end-to-end automated testing pipeline at Capital One — wire initiation, database validation, and team notifications — cutting 2 weeks of manual testing to a fully automated overnight run via Jenkins and AWS.</p>
+    <div class="impact-quote">"What used to take 2 weeks of manual testing now runs automatically overnight — full wire initiation, database validation, and results delivered to the team by morning."</div>
+  </div>
+  <div class="hero-card">
+    <div class="card-lbl">// at a glance</div>
+    <div style="font-family:var(--fh);font-size:2.2rem;color:var(--c1);font-weight:700;line-height:1;margin-bottom:.2rem;">2 Weeks</div>
+    <div style="font-size:12px;color:var(--muted);">of manual testing → fully automated overnight</div>
+    <hr class="cdiv">
+    <div style="display:flex;gap:1.1rem;margin-bottom:1.1rem;">
+      <div><div style="font-family:var(--fh);font-size:1.6rem;color:var(--c1);font-weight:700;line-height:1;">AWS</div><div style="font-size:11px;color:var(--muted);">Cloud-native</div></div>
+      <div style="width:1px;background:var(--bc);"></div>
+      <div><div style="font-family:var(--fh);font-size:1.6rem;color:var(--amber);font-weight:700;line-height:1;">7PM</div><div style="font-size:11px;color:var(--muted);">Nightly Jenkins</div></div>
+      <div style="width:1px;background:var(--bc);"></div>
+      <div><div style="font-family:var(--fh);font-size:1.6rem;color:var(--green);font-weight:700;line-height:1;">0</div><div style="font-size:11px;color:var(--muted);">Manual steps</div></div>
+    </div>
+    <hr class="cdiv">
+    <div class="card-lbl" style="margin-bottom:.6rem;">// core technologies</div>
+    <div class="pill-row">
+      <span class="pill pc1">Selenium</span><span class="pill pc1">PRAPI</span>
+      <span class="pill pamb">Jenkins</span>
+      <span class="pill pnavy">AWS S3</span><span class="pill pnavy">SNS</span><span class="pill pnavy">Secrets Mgr</span>
+      <span class="pill pteal">Extent Reports</span>
+    </div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- OVERVIEW -->
+<section class="s">
+  <div class="slbl">01 — Overview</div>
+  <h2 class="sh2">What This System Does</h2>
+  <p class="sp">The automation framework validates the complete wire payment lifecycle — from wire initiation using Selenium or PRAPI, through database verification, to final validation reporting. Jenkins triggers the full run every night at 7 PM with all data and secrets managed in AWS.</p>
+  <div class="hibox"><p>In two lines: <strong style="color:var(--text);">Built an end-to-end wire payment test automation at Capital One that eliminated 2 weeks of manual testing — Jenkins runs the full cycle every night at 7 PM, validates DB results against the original data sheet, and emails the team results by morning.</strong></p></div>
+  <div class="ocgrid">
+    <div class="ocard"><div class="ocicon ic1">🔌</div><h3>Wire Initiation</h3><p>Creates wire payments via Selenium (UI) or PRAPI (API). Channel type is read from the Excel sheet and determines the execution path.</p></div>
+    <div class="ocard"><div class="ocicon inavy">🗄️</div><h3>DB Fetch</h3><p>After wire completes, queries the database for payment messages, audit trails, wire status, and all associated transaction metadata.</p></div>
+    <div class="ocard"><div class="ocicon iteal">✅</div><h3>Validation</h3><p>Compares every fetched DB value against the original initiation Excel sheet. Each field generates a PASS or FAIL result.</p></div>
+    <div class="ocard"><div class="ocicon iamb">📧</div><h3>SNS Notifications</h3><p>AWS SNS sends automated email alerts with pass/fail summaries to all configured recipients after every run.</p></div>
+    <div class="ocard"><div class="ocicon igreen">📊</div><h3>Extent Reports</h3><p>Rich HTML test reports with step-level detail, screenshots on failure, and run history — stored permanently in S3.</p></div>
+    <div class="ocard"><div class="ocicon ipur">🔒</div><h3>Secrets Management</h3><p>PRAPI credentials stored in AWS Secrets Manager — fetched after wire initiation only for API channels. Selenium runs need no secrets.</p></div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- WORKFLOW -->
+<section class="s">
+  <div class="slbl">02 — Test Pipeline</div>
+  <h2 class="sh2">End-to-End Workflow</h2>
+  <p class="sp">3-phase pipeline: Initiate → Channel-aware secrets decision → Fetch &amp; Validate. Jenkins triggers at 7 PM nightly.</p>
+
+  <div class="pline-wrap">
+    <div class="phase-lbl">// phase 1 — setup</div>
+    <div class="pipeline" style="min-width:300px;margin-bottom:2rem;">
+      <div class="ps"><div class="pn pnr">📥</div><div class="pl">Load Data Sheet</div><div class="ps2">S3 Excel input</div></div>
+      <div class="ps"><div class="pn pna">🚀</div><div class="pl">Wire Initiation</div><div class="ps2">Selenium or PRAPI</div></div>
+    </div>
+
+    <div class="phase-lbl">// phase 2 — channel-aware secrets (API only)</div>
+    <div class="chlbranch">
+      <div class="bhdesc">After wire is initiated → <strong style="color:var(--text);">read channel type from Excel sheet</strong></div>
+      <div class="bhgrid">
+        <div class="bhcard sel">
+          <div class="bhlbl">Selenium Channel</div>
+          <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.4rem;">
+            <span style="width:28px;height:28px;border-radius:50%;background:rgba(104,211,145,.12);border:1px solid rgba(104,211,145,.4);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;">🌐</span>
+            <div style="font-size:13px;font-weight:600;color:var(--text);">UI-based automation</div>
+          </div>
+          <div class="bhnote">→ no secrets needed → proceed to wire complete</div>
+        </div>
+        <div class="bhcard api">
+          <div class="bhlbl">API Channels</div>
+          <div class="chtag"><span class="ctdot"></span><span class="chn">SBBMM</span><span class="chnote">→ fetch SBBMM secret</span></div>
+          <div class="chtag"><span class="ctdot"></span><span class="chn">TMOBS</span><span class="chnote">→ fetch TMOBS secret</span></div>
+          <div class="chtag"><span class="ctdot"></span><span class="chn">WSSAPI</span><span class="chnote">→ fetch WSSAPI secret</span></div>
+          <div class="bhnote">AWS Secrets Manager — client ID + secret per channel</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-lbl">// phase 3 — fetch, validate &amp; report</div>
+    <div class="pipeline">
+      <div class="ps"><div class="pn pnn">⏳</div><div class="pl">Wire Completes</div><div class="ps2">Await settlement</div></div>
+      <div class="ps"><div class="pn pnt">🗄️</div><div class="pl">DB Fetch</div><div class="ps2">Payment + Audit</div></div>
+      <div class="ps"><div class="pn png">✅</div><div class="pl">Validate</div><div class="ps2">DB vs Excel</div></div>
+      <div class="ps"><div class="pn pnp">📧</div><div class="pl">SNS Alert</div><div class="ps2">Email report</div></div>
+    </div>
+  </div>
+
+  <!-- DETAILED TIMELINE -->
+  <div class="tl">
+    <div class="tli">
+      <div class="tldot"></div>
+      <div class="tlph">Step 1 — Initiation</div>
+      <div class="tlt">Wire Creation via Selenium or PRAPI</div>
+      <p class="tld">Test loads wire parameters from an Excel sheet in S3, then initiates the wire via Selenium (browser UI) or PRAPI (programmatic API). The channel type specified in the sheet determines what happens next.</p>
+    </div>
+    <div class="tli">
+      <div class="tldot" style="border-color:var(--c1);"></div>
+      <div class="tlph" style="color:var(--c1);">Step 1b — API Channels Only</div>
+      <div class="tlt">Channel-Based Secrets Fetch</div>
+      <p class="tld">After initiation, if the channel is API-based (SBBMM, TMOBS, or WSSAPI), the matching credentials are fetched from AWS Secrets Manager. Each channel has its own client ID and secret. Selenium runs skip this entirely.</p>
+    </div>
+    <div class="tli">
+      <div class="tldot"></div>
+      <div class="tlph">Step 2 — Data Passing</div>
+      <div class="tlt">Excel-Driven Test Data</div>
+      <p class="tld">Wire parameters (amount, beneficiary, account numbers, reference codes) are passed from the input Excel sheet loaded from S3. After wire creation, the data file is preserved in S3 for later comparison.</p>
+    </div>
+    <div class="tli">
+      <div class="tldot"></div>
+      <div class="tlph">Step 3 — DB Fetch</div>
+      <div class="tlt">Fetching Wire Details from Database</div>
+      <p class="tld">Once the wire is complete, the automation queries the database for payment messages, audit trail entries, wire status records, and all associated transaction metadata. The output is written to an Excel sheet saved to S3.</p>
+    </div>
+    <div class="tli">
+      <div class="tldot"></div>
+      <div class="tlph">Step 4 — Validation</div>
+      <div class="tlt">DB Values vs. Initiation Sheet</div>
+      <p class="tld">Every field from the database is compared against the original initiation sheet. Each comparison generates PASS or FAIL. A validation summary sheet is written and stored in S3 as a permanent audit trail of the run.</p>
+    </div>
+    <div class="tli">
+      <div class="tldot"></div>
+      <div class="tlph">Step 5 — Reporting</div>
+      <div class="tlt">SNS Email + Extent HTML Reports</div>
+      <p class="tld">After validation, AWS SNS fires an email to all stakeholders with pass/fail summaries. Extent Reports generates a rich HTML report with step-by-step results and screenshots — stored permanently in S3.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- INFRASTRUCTURE -->
+<section class="s">
+  <div class="slbl">03 — Infrastructure</div>
+  <h2 class="sh2">Cloud Architecture</h2>
+  <p class="sp">The entire system runs on AWS, with Jenkins as the execution engine. All state — test data, results, secrets — lives in managed AWS services.</p>
+  <div class="igrid">
+    <div class="icard"><div class="iicon">🔒</div><h4>Secrets Manager</h4><p>Per-channel credentials (SBBMM, TMOBS, WSSAPI). Fetched after initiation — API channels only.</p><span class="itag">aws secretsmanager</span></div>
+    <div class="icard"><div class="iicon">🪣</div><h4>S3 Bucket</h4><p>Input data sheet, DB output sheet, validation results, and Extent HTML reports — all stored here.</p><span class="itag">aws s3</span></div>
+    <div class="icard"><div class="iicon">📬</div><h4>SNS</h4><p>Automated email notifications to stakeholders after every validation run completes.</p><span class="itag">aws sns</span></div>
+    <div class="icard"><div class="iicon">⚙️</div><h4>Jenkins</h4><p>Schedules and executes the full pipeline every night at 7 PM. Moved from local workspace to CI.</p><span class="itag">jenkins ci</span></div>
+  </div>
+  <div class="sbadge">⏰ &nbsp; Cron: <strong style="margin-left:.4rem;">0 19 * * *</strong> &nbsp;— every day at 7:00 PM</div>
+
+  <h3 style="margin-top:2.25rem;font-size:1rem;color:var(--text);font-weight:600;">S3 File Flow</h3>
+  <div style="background:var(--bgc);border:1px solid var(--bc);border-radius:12px;padding:1.75rem;margin-top:1rem;">
+    <div class="s3flow">
+      <div class="s3row"><div class="s3icon" style="background:rgba(212,23,30,.1);color:var(--c1);">📥</div><div><div class="s3path" style="color:var(--c1);">s3://bucket/input/wire-data-sheet.xlsx</div><div class="s3note">Input — wire initiation parameters, loaded at test start</div></div></div>
+      <div class="s3con"></div>
+      <div class="s3row"><div class="s3icon" style="background:rgba(183,148,244,.1);color:var(--purp);">🗄️</div><div><div class="s3path" style="color:var(--purp);">s3://bucket/output/db-fetch-results.xlsx</div><div class="s3note">DB Output — payment messages, audit trail, wire details from DB</div></div></div>
+      <div class="s3con"></div>
+      <div class="s3row"><div class="s3icon" style="background:rgba(104,211,145,.1);color:var(--green);">✅</div><div><div class="s3path" style="color:var(--green);">s3://bucket/validation/validation-results.xlsx</div><div class="s3note">Validation — field-by-field PASS / FAIL comparison output</div></div></div>
+      <div class="s3con"></div>
+      <div class="s3row"><div class="s3icon" style="background:rgba(246,173,85,.1);color:var(--amber);">📊</div><div><div class="s3path" style="color:var(--amber);">s3://bucket/reports/extent-report-YYYY-MM-DD.html</div><div class="s3note">Extent Report — full HTML test report with screenshots and logs</div></div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- VALIDATION -->
+<section class="s">
+  <div class="slbl">04 — Validation</div>
+  <h2 class="sh2">How Validation Works</h2>
+  <p class="sp">Every field fetched from the database is compared against the corresponding cell in the wire initiation Excel sheet. Any mismatch results in a FAIL recorded in the output sheet and included in the SNS email.</p>
+  <div style="margin-top:1.75rem;">
+    <div class="vrow"><span class="vlbl">Payment Message</span><div class="vw"><div class="vb" style="width:95%;background:var(--green);"></div></div><span class="vv" style="color:var(--green);">DB vs Sheet</span></div>
+    <div class="vrow"><span class="vlbl">Wire Amount</span><div class="vw"><div class="vb" style="width:100%;background:var(--green);"></div></div><span class="vv" style="color:var(--green);">DB vs Sheet</span></div>
+    <div class="vrow"><span class="vlbl">Beneficiary Info</span><div class="vw"><div class="vb" style="width:90%;background:var(--green);"></div></div><span class="vv" style="color:var(--green);">DB vs Sheet</span></div>
+    <div class="vrow"><span class="vlbl">Audit Trail</span><div class="vw"><div class="vb" style="width:85%;background:var(--amber);"></div></div><span class="vv" style="color:var(--amber);">DB vs Sheet</span></div>
+    <div class="vrow"><span class="vlbl">Wire Status</span><div class="vw"><div class="vb" style="width:100%;background:var(--green);"></div></div><span class="vv" style="color:var(--green);">DB vs Sheet</span></div>
+    <div class="vrow"><span class="vlbl">Reference Codes</span><div class="vw"><div class="vb" style="width:95%;background:var(--green);"></div></div><span class="vv" style="color:var(--green);">DB vs Sheet</span></div>
+    <div class="vrow"><span class="vlbl">Transaction Date</span><div class="vw"><div class="vb" style="width:88%;background:var(--green);"></div></div><span class="vv" style="color:var(--green);">DB vs Sheet</span></div>
+  </div>
+
+  <h3 style="margin-top:2.25rem;font-size:1rem;color:var(--text);font-weight:600;">SNS Email — Sample Notification</h3>
+  <div class="emailp">
+    <div class="ehdr">
+      <div class="efd">From: <span>wire-automation@sns.amazonaws.com</span></div>
+      <div class="efd">To: <span>qa-team@capitalone.com, leads@capitalone.com</span></div>
+      <div class="efd">Subject: <span>✅ Wire Automation Results — 2024-01-15 19:07 UTC</span></div>
+    </div>
+    <div class="ebdy">
+      <h4>Wire Payment Test Run Summary</h4>
+      <div class="errow"><div class="sd pass"></div><div class="erk">Wire Initiation</div><div class="erv" style="color:var(--green);">PASS</div></div>
+      <div class="errow"><div class="sd pass"></div><div class="erk">DB Connection</div><div class="erv" style="color:var(--green);">PASS</div></div>
+      <div class="errow"><div class="sd pass"></div><div class="erk">Payment Message Validation</div><div class="erv" style="color:var(--green);">PASS</div></div>
+      <div class="errow"><div class="sd pass"></div><div class="erk">Audit Trail Validation</div><div class="erv" style="color:var(--green);">PASS</div></div>
+      <div class="errow"><div class="sd fail"></div><div class="erk">Wire Amount Field Match</div><div class="erv" style="color:#fc8181;">FAIL</div></div>
+      <div class="errow"><div class="sd pass"></div><div class="erk">Beneficiary Info</div><div class="erv" style="color:var(--green);">PASS</div></div>
+      <div style="margin-top:.9rem;padding:.65rem;background:var(--bg3);border-radius:7px;font-family:var(--fm);font-size:11px;color:var(--muted);">📊 Report: <span style="color:var(--c1);">s3://bucket/reports/extent-2024-01-15.html</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- TECH STACK -->
+<section class="s">
+  <div class="slbl">05 — Technology Stack</div>
+  <h2 class="sh2">Tools &amp; Technologies</h2>
+  <table class="tt">
+    <thead><tr><th>Tool / Service</th><th>Role in Automation</th><th>Layer</th></tr></thead>
+    <tbody>
+      <tr><td>Selenium WebDriver</td><td>Browser-based wire initiation through the UI</td><td><span class="pill pc1" style="font-size:10px;">Test Execution</span></td></tr>
+      <tr><td>PRAPI</td><td>Programmatic API-level wire creation for API channels (SBBMM, TMOBS, WSSAPI)</td><td><span class="pill pc1" style="font-size:10px;">Test Execution</span></td></tr>
+      <tr><td>Excel / Apache POI</td><td>Reading wire input data and writing DB output and validation results sheets</td><td><span class="pill pamb" style="font-size:10px;">Data Layer</span></td></tr>
+      <tr><td>Database / JDBC</td><td>Connecting to DB, fetching payment messages, audit trails, and wire details after completion</td><td><span class="pill pnavy" style="font-size:10px;">Data Layer</span></td></tr>
+      <tr><td>AWS S3</td><td>Central storage for all Excel sheets and Extent HTML reports across every run</td><td><span class="pill pnavy" style="font-size:10px;">Infrastructure</span></td></tr>
+      <tr><td>AWS Secrets Manager</td><td>Per-channel API credentials (SBBMM, TMOBS, WSSAPI) — fetched after initiation for API runs only</td><td><span class="pill pnavy" style="font-size:10px;">Infrastructure</span></td></tr>
+      <tr><td>AWS SNS</td><td>Automated email notification to stakeholders after validation completes</td><td><span class="pill pnavy" style="font-size:10px;">Infrastructure</span></td></tr>
+      <tr><td>Jenkins</td><td>Schedules and triggers the full pipeline at 7 PM nightly — moved from local workspace to CI</td><td><span class="pill pamb" style="font-size:10px;">Orchestration</span></td></tr>
+      <tr><td>Extent Reports</td><td>Rich HTML test reports — step-level detail, screenshots on failure, stored in S3</td><td><span class="pill pteal" style="font-size:10px;">Reporting</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="div">
+
+<!-- EVOLUTION -->
+<section class="s">
+  <div class="slbl">06 — Evolution</div>
+  <h2 class="sh2">Local → Cloud Migration</h2>
+  <p class="sp">The framework was originally built and run locally. Moving to Jenkins and AWS made it zero-touch, team-visible, and reliably scheduled.</p>
+  <div class="mgrid">
+    <div class="mcard before">
+      <div class="mlbl">Before — Local</div>
+      <ul class="mlist">
+        <li>🔴 &nbsp; Run manually — 2 weeks of testing per cycle</li>
+        <li>🔴 &nbsp; Test data files stored locally</li>
+        <li>🔴 &nbsp; Credentials in config files</li>
+        <li>🔴 &nbsp; No scheduled execution</li>
+        <li>🔴 &nbsp; Results not shared automatically</li>
+      </ul>
+    </div>
+    <div class="mcard after">
+      <div class="mlbl">After — Jenkins + AWS</div>
+      <ul class="mlist">
+        <li>🟢 &nbsp; Automated nightly at 7 PM — zero manual effort</li>
+        <li>🟢 &nbsp; Data sheets centralized in S3</li>
+        <li>🟢 &nbsp; Secrets in AWS Secrets Manager</li>
+        <li>🟢 &nbsp; Reliable scheduled execution via Jenkins</li>
+        <li>🟢 &nbsp; SNS email + S3 reports visible to whole team</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="csq">
+    <p>"What used to take <span>2 weeks of manual testing</span> now runs automatically overnight — full wire initiation across Selenium and API channels, database validation, and <span>results delivered to the entire team by morning.</span>"</p>
+  </div>
+</section>
+
+<footer>
+  <div>Capital One — Wire Payment Test Automation Framework &nbsp;·&nbsp; <a href="index.html">← Back to Portfolio</a></div>
+  <div style="margin-top:.35rem;opacity:.6;">Jenkins · AWS S3 · Secrets Manager · SNS · Selenium · PRAPI · SBBMM · TMOBS · WSSAPI · Extent Reports</div>
+</footer>
+</body>
+</html>
