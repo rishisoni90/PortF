@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capital One · SWIFT Infrastructure | Rishi Kumar Soni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:    #0a0f1e;
+  --bg2:   #101828;
+  --bg3:   #172035;
+  --bgc:   #1a2840;
+  --text:  #e2e8f0;
+  --muted: #94a3b8;
+  --dim:   #64748b;
+  --swift: #f59e0b;
+  --swiftm:#fbbf24;
+  --swiftlt:#fef3c7;
+  --swiftdk:#92400e;
+  --navy:  #1b3a6b;
+  --nvlt:  #bdd3f8;
+  --c1:    #d4171e;
+  --bcs:   rgba(245,158,11,0.15);
+  --bcs2:  rgba(245,158,11,0.28);
+  --green: #34d399;
+  --red:   #fc8181;
+  --teal:  #4fd1c5;
+  --purp:  #b794f4;
+  --blue:  #63b3ed;
+  --fh: 'Playfair Display', serif;
+  --fb: 'Space Grotesk', sans-serif;
+  --fm: 'Fira Code', monospace;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--fb); font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,15,30,0.96); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--bcs2);
+  height: 56px; padding: 0 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-back { display: flex; align-items: center; gap: .6rem; font-size: 13px; font-weight: 600; color: var(--swift); text-decoration: none; transition: gap .2s; }
+.nav-back:hover { gap: .9rem; }
+.nav-title { font-size: 13px; color: var(--muted); font-weight: 500; }
+.nav-logo-pill { background: var(--bg2); border: 1px solid var(--bcs2); border-radius: 8px; padding: 5px 12px; display: flex; align-items: center; }
+.nav-logo-pill img { height: 20px; width: auto; }
+
+/* HERO */
+.hero {
+  min-height: 90vh;
+  display: grid; grid-template-columns: 1fr 380px;
+  gap: 0; align-items: center;
+  padding: 5rem 4rem 3.5rem;
+  position: relative; overflow: hidden;
+}
+.hero-gbg {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(245,158,11,0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(245,158,11,0.03) 1px, transparent 1px);
+  background-size: 48px 48px; pointer-events: none;
+}
+.hero-glow { position: absolute; top: 10%; right: 3%; width: 520px; height: 520px; background: radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 70%); pointer-events: none; }
+.hero-glow2 { position: absolute; bottom: 10%; left: -5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(212,23,30,0.04) 0%, transparent 70%); pointer-events: none; }
+.hero-left { padding-right: 3rem; position: relative; z-index: 1; }
+.eyebrow { display: inline-flex; align-items: center; gap: .5rem; background: var(--swift); color: #000; font-family: var(--fm); font-size: 10px; padding: .28rem .75rem; border-radius: 3px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1.5rem; font-weight: 600; }
+.hero h1 { font-family: var(--fh); font-size: clamp(2rem, 4vw, 3.6rem); line-height: 1.08; letter-spacing: -.01em; margin-bottom: 1.1rem; color: var(--text); }
+.hero h1 em { color: var(--swift); font-style: italic; }
+.hero-desc { font-size: 15.5px; color: var(--muted); max-width: 520px; line-height: 1.8; margin-bottom: 2rem; }
+.impact-quote { font-family: var(--fh); font-size: 1.05rem; font-style: italic; color: var(--text); border-left: 3px solid var(--swift); padding-left: 1.1rem; max-width: 460px; line-height: 1.65; }
+.hero-card { background: var(--bgc); border: 1px solid var(--bcs2); border-radius: 16px; padding: 1.75rem; box-shadow: 0 4px 28px rgba(245,158,11,0.08); position: relative; z-index: 1; }
+.card-lbl { font-family: var(--fm); font-size: 10px; color: var(--dim); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1rem; }
+.cdiv { border: none; border-top: 1px solid var(--bcs); margin: 1.1rem 0; }
+.pill-row { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .6rem; }
+.pill { font-family: var(--fm); font-size: 10.5px; padding: .25rem .65rem; border-radius: 4px; font-weight: 500; }
+.ps { background: rgba(245,158,11,.12); color: var(--swift); }
+.pn { background: rgba(27,42,74,.3); color: #90a8d4; }
+.pr { background: rgba(212,23,30,.1); color: #e8464b; }
+.pt { background: rgba(79,209,197,.12); color: var(--teal); }
+.pg { background: rgba(52,211,153,.1); color: var(--green); }
+
+/* SECTIONS */
+section.s { padding: 5rem 4rem; max-width: 1140px; margin: 0 auto; }
+hr.div { border: none; height: 1px; background: var(--bcs2); max-width: 1140px; margin: 0 auto; }
+.slbl { font-family: var(--fm); font-size: 10px; color: var(--swift); letter-spacing: .15em; text-transform: uppercase; margin-bottom: .8rem; display: flex; align-items: center; gap: .6rem; }
+.slbl::after { content: ''; flex: 1; height: 1px; background: var(--bcs2); max-width: 60px; }
+.sh2 { font-family: var(--fh); font-size: clamp(1.7rem, 2.8vw, 2.6rem); font-weight: 700; letter-spacing: -.015em; color: var(--text); margin-bottom: 1rem; line-height: 1.15; }
+.sp { color: var(--muted); margin-bottom: 1rem; max-width: 660px; }
+.hibox { background: rgba(245,158,11,.06); border: 1px solid rgba(245,158,11,.22); border-left: 4px solid var(--swift); border-radius: 0 8px 8px 0; padding: 1rem 1.4rem; margin: 1.5rem 0; }
+.hibox p { color: var(--text); margin: 0; font-size: 13.5px; max-width: none; }
+
+/* OVERVIEW CARDS */
+.ocgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.1rem; margin-top: 2rem; }
+.ocard { background: var(--bgc); border: 1px solid rgba(245,158,11,.12); border-radius: 12px; padding: 1.5rem; transition: border-color .25s, transform .2s; }
+.ocard:hover { border-color: var(--bcs2); transform: translateY(-2px); }
+.ocicon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; margin-bottom: .85rem; }
+.is { background: rgba(245,158,11,.1); color: var(--swift); }
+.in { background: rgba(27,42,74,.25); color: #90a8d4; }
+.it { background: rgba(79,209,197,.1); color: var(--teal); }
+.ia { background: rgba(52,211,153,.1); color: var(--green); }
+.ig { background: rgba(183,148,244,.1); color: var(--purp); }
+.ir { background: rgba(212,23,30,.1); color: #e8464b; }
+.ocard h3 { font-size: .9rem; margin-bottom: .4rem; color: var(--text); font-weight: 600; }
+.ocard p { font-size: 12.5px; color: var(--muted); margin: 0; }
+
+/* COMPONENT MAP */
+.comp-map { background: var(--bgc); border: 1px solid rgba(245,158,11,.15); border-radius: 16px; padding: 2.25rem; margin-top: 2rem; }
+.comp-map-title { font-family: var(--fm); font-size: 10px; color: var(--dim); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1.5rem; }
+.comp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.comp-node { border-radius: 12px; padding: 1.25rem 1.4rem; border: 1px solid; text-align: center; }
+.comp-node.saa { background: rgba(245,158,11,.06); border-color: rgba(245,158,11,.35); }
+.comp-node.snl { background: rgba(99,179,237,.06); border-color: rgba(99,179,237,.3); }
+.comp-node.sag { background: rgba(52,211,153,.06); border-color: rgba(52,211,153,.3); }
+.comp-name { font-family: var(--fh); font-size: 1.4rem; font-weight: 700; margin-bottom: .3rem; }
+.saa .comp-name { color: var(--swift); }
+.snl .comp-name { color: var(--blue); }
+.sag .comp-name { color: var(--green); }
+.comp-full { font-size: 11.5px; color: var(--muted); margin-bottom: .65rem; font-weight: 500; }
+.comp-role { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
+.comp-tag { display: inline-block; margin-top: .75rem; font-family: var(--fm); font-size: 9.5px; padding: .18rem .6rem; border-radius: 3px; }
+.saa .comp-tag { background: rgba(245,158,11,.1); color: var(--swift); border: 1px solid rgba(245,158,11,.25); }
+.snl .comp-tag { background: rgba(99,179,237,.1); color: var(--blue); border: 1px solid rgba(99,179,237,.25); }
+.sag .comp-tag { background: rgba(52,211,153,.1); color: var(--green); border: 1px solid rgba(52,211,153,.25); }
+.comp-connector { display: flex; align-items: center; justify-content: center; padding: .5rem 0; }
+.flow-arrow { font-size: 1.2rem; color: var(--dim); }
+.comp-flow-row { display: flex; align-items: center; gap: .75rem; margin: 1.25rem 0; }
+.comp-flow-label { font-family: var(--fm); font-size: 11px; color: var(--muted); padding: .25rem .7rem; border-radius: 4px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); }
+.comp-flow-arrow { font-size: 1.1rem; color: var(--dim); }
+
+/* PIPELINE */
+.pline-wrap { background: var(--bgc); border: 1px solid rgba(245,158,11,.12); border-radius: 16px; padding: 2.25rem 2rem; margin-top: 2rem; overflow-x: auto; }
+.phase-lbl { font-family: var(--fm); font-size: 9.5px; color: var(--dim); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1rem; }
+.pipeline { display: flex; align-items: flex-start; gap: 0; min-width: 500px; margin-bottom: 2rem; }
+.ps2 { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; }
+.ps2:not(:last-child)::after { content: ''; position: absolute; top: 29px; left: calc(50% + 36px); width: calc(100% - 72px); height: 2px; background: linear-gradient(90deg, var(--swift), rgba(245,158,11,.2)); z-index: 0; }
+.pn2 { width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 19px; position: relative; z-index: 1; border: 2px solid; transition: transform .2s; }
+.pn2:hover { transform: scale(1.08); }
+.pns { background: rgba(245,158,11,.12); border-color: rgba(245,158,11,.5); color: var(--swift); }
+.pnn2 { background: rgba(27,42,74,.25); border-color: rgba(90,120,180,.5); color: #90a8d4; }
+.pnt2 { background: rgba(79,209,197,.12); border-color: rgba(79,209,197,.5); color: var(--teal); }
+.pna2 { background: rgba(52,211,153,.12); border-color: rgba(52,211,153,.5); color: var(--green); }
+.pnr2 { background: rgba(212,23,30,.12); border-color: rgba(212,23,30,.5); color: #e8464b; }
+.pnp2 { background: rgba(183,148,244,.12); border-color: rgba(183,148,244,.5); color: var(--purp); }
+.pl2 { margin-top: .6rem; text-align: center; font-family: var(--fh); font-size: 11px; font-weight: 600; color: var(--text); line-height: 1.3; max-width: 80px; }
+.ps2sub { font-family: var(--fm); font-size: 9.5px; color: var(--dim); margin-top: .2rem; text-align: center; max-width: 80px; line-height: 1.3; }
+
+/* WARNING BOX */
+.warnbox { background: rgba(212,23,30,.06); border: 1px solid rgba(212,23,30,.25); border-left: 4px solid var(--c1); border-radius: 0 8px 8px 0; padding: 1.1rem 1.4rem; margin: 1.5rem 0; }
+.warnbox-title { font-family: var(--fm); font-size: 10px; color: #e8464b; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .5rem; }
+.warnbox p { color: var(--text); margin: 0; font-size: 13.5px; }
+
+/* SHUTDOWN SEQUENCE */
+.shutdown-seq { margin-top: 2rem; }
+.seq-item { display: flex; gap: 1.25rem; align-items: flex-start; position: relative; margin-bottom: 0; }
+.seq-item:not(:last-child)::after { content: ''; position: absolute; left: 20px; top: 48px; width: 2px; height: calc(100% - 28px); background: rgba(245,158,11,.2); }
+.seq-circle { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; position: relative; z-index: 1; border: 2px solid; }
+.sc-amber { background: rgba(245,158,11,.1); border-color: rgba(245,158,11,.4); color: var(--swift); }
+.sc-red { background: rgba(212,23,30,.1); border-color: rgba(212,23,30,.4); color: #e8464b; }
+.sc-green { background: rgba(52,211,153,.1); border-color: rgba(52,211,153,.4); color: var(--green); }
+.sc-blue { background: rgba(99,179,237,.1); border-color: rgba(99,179,237,.4); color: var(--blue); }
+.sc-purple { background: rgba(183,148,244,.1); border-color: rgba(183,148,244,.4); color: var(--purp); }
+.sc-navy { background: rgba(27,42,74,.25); border-color: rgba(90,120,180,.4); color: #90a8d4; }
+.seq-body { padding: .5rem 0 2rem; }
+.seq-title { font-size: .97rem; font-weight: 700; color: var(--text); margin-bottom: .3rem; }
+.seq-desc { font-size: 13.5px; color: var(--muted); line-height: 1.65; max-width: 580px; }
+.seq-note { display: inline-block; margin-top: .5rem; font-family: var(--fm); font-size: 11px; padding: 3px 9px; border-radius: 4px; background: rgba(255,255,255,.04); color: var(--dim); border: 1px solid rgba(255,255,255,.08); }
+.seq-critical { display: inline-flex; align-items: center; gap: .4rem; margin-top: .5rem; font-family: var(--fm); font-size: 10.5px; padding: 3px 9px; border-radius: 4px; background: rgba(212,23,30,.08); color: #e8464b; border: 1px solid rgba(212,23,30,.25); }
+
+/* ANSIBLE CODE BLOCK */
+.code-wrap { background: #0d1117; border: 1px solid rgba(245,158,11,.2); border-radius: 12px; overflow: hidden; margin-top: 1.75rem; }
+.code-header { background: var(--bg3); padding: .7rem 1.2rem; border-bottom: 1px solid rgba(245,158,11,.15); display: flex; align-items: center; justify-content: space-between; }
+.code-filename { font-family: var(--fm); font-size: 11px; color: var(--swift); }
+.code-lang { font-family: var(--fm); font-size: 10px; color: var(--dim); }
+.code-body { padding: 1.4rem 1.6rem; overflow-x: auto; }
+.code-body pre { font-family: var(--fm); font-size: 12px; line-height: 1.7; color: var(--muted); white-space: pre; }
+.kw { color: #f97583; } /* keywords */
+.str { color: #9ecbff; } /* strings */
+.cmt { color: #6a737d; font-style: italic; } /* comments */
+.var { color: var(--swift); } /* vars / keys */
+.fn { color: #79b8ff; } /* functions / modules */
+.bool { color: #79b8ff; }
+
+/* GATEWAY TABLE */
+.gw-table { width: 100%; border-collapse: collapse; margin-top: 1.75rem; }
+.gw-table th { text-align: left; padding: .65rem .9rem; font-family: var(--fm); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); border-bottom: 1px solid var(--bcs2); background: var(--bg2); }
+.gw-table td { padding: .8rem .9rem; border-bottom: 1px solid rgba(245,158,11,.06); font-size: 13.5px; }
+.gw-table tr:hover td { background: var(--bgc); }
+.gw-table td:first-child { font-family: var(--fm); font-weight: 600; color: var(--swift); }
+.gw-table td:nth-child(2) { color: var(--muted); }
+
+/* INFRA GRID */
+.igrid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .9rem; margin-top: 2rem; }
+.icard2 { background: var(--bgc); border: 1px solid rgba(245,158,11,.12); border-radius: 12px; padding: 1.4rem; text-align: center; }
+.iicon2 { font-size: 2rem; margin-bottom: .65rem; }
+.icard2 h4 { font-family: var(--fh); font-size: .9rem; margin-bottom: .4rem; color: var(--text); }
+.icard2 p { font-size: 12px; color: var(--muted); margin: 0; }
+.itag2 { display: inline-block; margin-top: .65rem; font-family: var(--fm); font-size: 9.5px; padding: .18rem .5rem; border-radius: 3px; background: rgba(245,158,11,.1); color: var(--swift); border: 1px solid rgba(245,158,11,.2); }
+
+/* TECH TABLE */
+.tt { width: 100%; border-collapse: collapse; margin-top: 1.75rem; }
+.tt th { text-align: left; padding: .65rem .9rem; font-family: var(--fm); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); border-bottom: 1px solid var(--bcs2); background: var(--bg2); }
+.tt td { padding: .8rem .9rem; border-bottom: 1px solid rgba(245,158,11,.06); font-size: 13.5px; }
+.tt tr:hover td { background: var(--bgc); }
+.tt td:first-child { font-weight: 600; color: var(--text); }
+.tt td:nth-child(2) { color: var(--muted); }
+
+/* MIGRATION */
+.mgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.75rem; }
+.mcard { background: var(--bgc); border: 1px solid rgba(245,158,11,.12); border-radius: 12px; padding: 1.5rem; }
+.mcard.after { border-color: rgba(52,211,153,.3); }
+.mlbl { font-family: var(--fm); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .9rem; font-weight: 500; }
+.mcard.before .mlbl { color: var(--dim); }
+.mcard.after .mlbl { color: var(--green); }
+.mlist { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+.mlist li { font-size: 13px; color: var(--muted); }
+
+/* TIMELINE */
+.tl { position: relative; margin-top: 2.5rem; padding-left: 2.25rem; }
+.tl::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 0; width: 1px; background: linear-gradient(180deg, var(--swift), rgba(245,158,11,.2)); }
+.tli { position: relative; margin-bottom: 2.25rem; }
+.tldot { position: absolute; left: -2.25rem; top: 5px; width: 13px; height: 13px; border-radius: 50%; background: var(--bg); border: 2px solid var(--swift); transition: background .2s; }
+.tli:hover .tldot { background: var(--swift); }
+.tlph { font-family: var(--fm); font-size: 10px; color: var(--swift); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .3rem; }
+.tlt { font-size: .98rem; font-weight: 600; margin-bottom: .35rem; color: var(--text); }
+.tld { font-size: 13.5px; color: var(--muted); max-width: 580px; margin: 0; line-height: 1.6; }
+
+/* SUMMARY QUOTE */
+.csq { background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05)); border: 1px solid rgba(245,158,11,.3); border-radius: 16px; padding: 2.75rem 3rem; margin-top: 2.5rem; position: relative; overflow: hidden; }
+.csq::before { content: '"'; font-family: var(--fh); font-size: 9rem; color: rgba(245,158,11,0.06); position: absolute; top: -2rem; left: 2rem; line-height: 1; pointer-events: none; }
+.csq p { font-family: var(--fh); font-size: clamp(.95rem, 1.8vw, 1.3rem); font-style: italic; color: var(--text); line-height: 1.65; max-width: 760px; margin: 0; position: relative; }
+.csq span { color: var(--swiftm); }
+
+/* AWS MIGRATION BADGE */
+.aws-badge { display: inline-flex; align-items: center; gap: .6rem; background: rgba(99,179,237,.08); border: 1px solid rgba(99,179,237,.3); color: var(--blue); padding: .55rem 1.2rem; border-radius: 8px; font-family: var(--fm); font-size: 12.5px; margin: 1rem 0; }
+
+/* PHASE BADGE */
+.phase-band { background: var(--bgc); border: 1px solid rgba(245,158,11,.2); border-radius: 12px; padding: 1.25rem 1.6rem; margin: 1.5rem 0; display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+.pb-icon { font-size: 1.75rem; }
+.pb-body { flex: 1; }
+.pb-title { font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: .25rem; }
+.pb-desc { font-size: 13px; color: var(--muted); }
+.pb-badge { font-family: var(--fm); font-size: 10px; padding: .25rem .75rem; border-radius: 4px; background: rgba(245,158,11,.1); color: var(--swift); border: 1px solid rgba(245,158,11,.25); white-space: nowrap; }
+
+footer { text-align: center; padding: 2.5rem 2rem; border-top: 1px solid var(--bcs2); color: var(--dim); font-size: 11.5px; font-family: var(--fm); background: var(--bg2); }
+footer a { color: var(--swift); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding: 4rem 1.5rem 3rem; }
+  .hero-left { padding-right: 0; margin-bottom: 1.5rem; }
+  .hero-card { display: none; }
+  section.s { padding: 3.5rem 1.5rem; }
+  .mgrid { grid-template-columns: 1fr; }
+  .comp-grid { grid-template-columns: 1fr; }
+  .pipeline { min-width: 480px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="capitalone-detail.html" class="nav-back">← Capital One Overview</a>
+  <span class="nav-title">SWIFT Infrastructure · Jun 2024 – Mar 2025</span>
+  <div class="nav-logo-pill"><img src="logo-capitalone.svg" alt="Capital One"></div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-gbg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-left">
+    <div class="eyebrow">Capital One · SWIFT Team · Jun 2024 – Mar 2025</div>
+    <h1>SWIFT Wire Infrastructure<br>&amp; <em>Automated Password</em><br>Rotation</h1>
+    <p class="hero-desc">Every dollar wired internationally through Capital One flows through the SWIFT network — a highly regulated, precision-engineered infrastructure. I worked on the team managing this pipeline: maintaining the three core gateway components (SAA, SNL, SAG), migrating them to AWS, and building Ansible automation to safely rotate credentials without breaking live wire flows.</p>
+    <div class="impact-quote">"Before touching passwords on a live SWIFT gateway, you need to shut down every connected terminal — safely, in order — or you risk disrupting real international wire transfers. I automated that entire sequence."</div>
+  </div>
+  <div class="hero-card">
+    <div class="card-lbl">// at a glance</div>
+    <div style="font-family:var(--fh);font-size:2rem;color:var(--swift);font-weight:700;line-height:1;margin-bottom:.2rem;">SWIFT</div>
+    <div style="font-size:12px;color:var(--muted);">International wire payment infrastructure</div>
+    <hr class="cdiv">
+    <div style="display:flex;gap:1rem;margin-bottom:1rem;">
+      <div><div style="font-family:var(--fh);font-size:1.5rem;color:var(--swift);font-weight:700;line-height:1;">3</div><div style="font-size:11px;color:var(--muted);">Core Components</div></div>
+      <div style="width:1px;background:var(--bcs);"></div>
+      <div><div style="font-family:var(--fh);font-size:1.5rem;color:var(--green);font-weight:700;line-height:1;">0</div><div style="font-size:11px;color:var(--muted);">Manual Rotations</div></div>
+      <div style="width:1px;background:var(--bcs);"></div>
+      <div><div style="font-family:var(--fh);font-size:1.5rem;color:var(--blue);font-weight:700;line-height:1;">AWS</div><div style="font-size:11px;color:var(--muted);">Migrated</div></div>
+    </div>
+    <hr class="cdiv">
+    <div class="card-lbl" style="margin-bottom:.6rem;">// core technologies</div>
+    <div class="pill-row">
+      <span class="pill ps">Ansible</span>
+      <span class="pill ps">SWIFT SAA</span>
+      <span class="pill pn">AWS EC2</span><span class="pill pn">CyberArk</span>
+      <span class="pill pr">HashiCorp Vault</span>
+      <span class="pill pt">Terraform</span>
+      <span class="pill pg">Linux</span>
+    </div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- WHAT IS SWIFT -->
+<section class="s">
+  <div class="slbl">01 — Context</div>
+  <h2 class="sh2">What Is SWIFT &amp; Why It Matters</h2>
+  <p class="sp">SWIFT (Society for Worldwide Interbank Financial Telecommunication) is the global messaging network that banks use to send international wire transfers. When Capital One wires money internationally — millions of dollars per transaction — those instructions travel through SWIFT. It's not just software. It's financial infrastructure subject to strict compliance, uptime, and security requirements.</p>
+  <div class="hibox"><p>Think of SWIFT as the postal system for international banking. The components I worked on are the Capital One "post office" — the servers and services that process every outgoing and incoming international wire before it leaves or enters the bank's systems.</p></div>
+
+  <div class="ocgrid">
+    <div class="ocard"><div class="ocicon is">🌐</div><h3>Global Messaging Network</h3><p>SWIFT connects 11,000+ financial institutions across 200+ countries. Every international wire transfer passes through it — including Capital One's.</p></div>
+    <div class="ocard"><div class="ocicon in">🏛️</div><h3>Regulated Infrastructure</h3><p>SWIFT compliance is mandated. Downtime during a live wire, or a misconfigured credential, can cause real financial and legal consequences.</p></div>
+    <div class="ocard"><div class="ocicon ia">🔒</div><h3>Security-First by Design</h3><p>Password rotation, access controls, and audit trails aren't optional — they're SWIFT's Customer Security Programme (CSP) requirements that Capital One must meet annually.</p></div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- THE THREE COMPONENTS -->
+<section class="s">
+  <div class="slbl">02 — Architecture</div>
+  <h2 class="sh2">The Three SWIFT Components</h2>
+  <p class="sp">The SWIFT infrastructure at Capital One was organized around three core components, each handling a distinct role in the wire flow. Understanding all three was essential before I could safely automate anything.</p>
+
+  <div class="comp-map">
+    <div class="comp-map-title">// swift component architecture — capital one</div>
+    <div class="comp-grid">
+      <div class="comp-node saa">
+        <div class="comp-name">SAA</div>
+        <div class="comp-full">SWIFT Alliance Access</div>
+        <div class="comp-role">The primary gateway — the actual server that connects Capital One to the SWIFT network. All outgoing and incoming wire messages pass through SAA. It authenticates with SWIFT, formats messages (MT103, MT202), and routes them. This is the most critical component — and the one whose password I automated rotating.</div>
+        <span class="comp-tag">Gateway Server · Primary</span>
+      </div>
+      <div class="comp-node snl">
+        <div class="comp-name">SNL</div>
+        <div class="comp-full">SWIFT Net Link</div>
+        <div class="comp-role">The network connectivity layer. SNL is the service that maintains the secure tunnel between Capital One and the SWIFT network itself. If SNL is down, SAA cannot reach SWIFT — no messages can be sent or received. It's the pipe that SAA talks through.</div>
+        <span class="comp-tag">Network Layer · Connectivity</span>
+      </div>
+      <div class="comp-node sag">
+        <div class="comp-name">SAG</div>
+        <div class="comp-full">SWIFT Alliance Gateway</div>
+        <div class="comp-role">The traffic router. SAG sits between internal Capital One systems (like the wire initiation apps) and SAA, routing message traffic intelligently. Multiple internal systems can connect to SAG, which manages which messages go to which SAA instance. It also handles load balancing and message queuing.</div>
+        <span class="comp-tag">Traffic Router · Load Balancer</span>
+      </div>
+    </div>
+
+    <div style="margin-top:1.75rem;">
+      <div class="comp-map-title">// wire flow: internal system → swift network</div>
+      <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;padding:.5rem 0;">
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:.6rem 1.1rem;font-size:13px;font-weight:600;">💼 Capital One Wire System</div>
+        <div style="color:var(--dim);font-size:1.1rem;">→</div>
+        <div style="background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.25);border-radius:8px;padding:.6rem 1.1rem;font-size:13px;font-weight:600;color:var(--green);">SAG <span style="font-size:11px;font-weight:400;color:var(--muted);">routes traffic</span></div>
+        <div style="color:var(--dim);font-size:1.1rem;">→</div>
+        <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:.6rem 1.1rem;font-size:13px;font-weight:600;color:var(--swift);">SAA <span style="font-size:11px;font-weight:400;color:var(--muted);">gateway</span></div>
+        <div style="color:var(--dim);font-size:1.1rem;">→</div>
+        <div style="background:rgba(99,179,237,.06);border:1px solid rgba(99,179,237,.25);border-radius:8px;padding:.6rem 1.1rem;font-size:13px;font-weight:600;color:var(--blue);">SNL <span style="font-size:11px;font-weight:400;color:var(--muted);">network link</span></div>
+        <div style="color:var(--dim);font-size:1.1rem;">→</div>
+        <div style="background:rgba(183,148,244,.06);border:1px solid rgba(183,148,244,.25);border-radius:8px;padding:.6rem 1.1rem;font-size:13px;font-weight:600;color:var(--purp);">🌐 SWIFT Network</div>
+        <div style="color:var(--dim);font-size:1.1rem;">→</div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:.6rem 1.1rem;font-size:13px;font-weight:600;">🏦 Recipient Bank</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- THE CHALLENGE: PASSWORD ROTATION -->
+<section class="s">
+  <div class="slbl">03 — The Problem</div>
+  <h2 class="sh2">The Password Rotation Challenge</h2>
+  <p class="sp">SAA — the primary SWIFT gateway — requires regular credential rotation as part of SWIFT's Customer Security Programme (CSP) compliance. This sounds simple. It wasn't.</p>
+
+  <div class="warnbox">
+    <div class="warnbox-title">⚠️ Why This Was High-Stakes</div>
+    <p>SAA doesn't just accept a new password in isolation. It's connected to multiple <strong>Gateway LTs</strong> (Logical Terminals) — the channel endpoints that downstream applications use to send wire messages. If you change the SAA password while any Gateway LT is still active and connected, those connections break mid-transaction. In a live banking environment, this means wires can fail, get stuck, or generate compliance exceptions. Every Gateway LT had to be safely shut down first.</p>
+  </div>
+
+  <p class="sp" style="margin-top:1.5rem;">Before I built the automation, this was a manual process — an engineer would have to:</p>
+
+  <div class="mgrid">
+    <div class="mcard before">
+      <div class="mlbl">😓 Before — Manual Process</div>
+      <ul class="mlist">
+        <li>🔴 &nbsp; Manually log into each Gateway LT</li>
+        <li>🔴 &nbsp; Shut each one down individually, in order</li>
+        <li>🔴 &nbsp; Verify each was cleanly disconnected</li>
+        <li>🔴 &nbsp; Then change the SAA password manually</li>
+        <li>🔴 &nbsp; Bring each Gateway LT back up one by one</li>
+        <li>🔴 &nbsp; Human error risk at every step — during production hours</li>
+      </ul>
+    </div>
+    <div class="mcard after">
+      <div class="mlbl">✅ After — Ansible Automation</div>
+      <ul class="mlist">
+        <li>🟢 &nbsp; Ansible playbook executes the full sequence</li>
+        <li>🟢 &nbsp; All Gateway LTs shut down in correct order</li>
+        <li>🟢 &nbsp; Connection state verified before proceeding</li>
+        <li>🟢 &nbsp; Password rotated via CyberArk / HashiCorp Vault</li>
+        <li>🟢 &nbsp; Gateway LTs brought back up and verified</li>
+        <li>🟢 &nbsp; Zero human error — same script every time</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- THE ANSIBLE SOLUTION -->
+<section class="s">
+  <div class="slbl">04 — The Ansible Playbook</div>
+  <h2 class="sh2">How I Automated It</h2>
+  <p class="sp">I designed and built an Ansible playbook that automated the entire SAA password rotation sequence — including the pre-rotation Gateway LT shutdown and post-rotation verification. The key principle: <em>nothing happens unless the previous step was clean.</em></p>
+
+  <div class="shutdown-seq">
+    <div class="seq-item">
+      <div class="seq-circle sc-amber">📋</div>
+      <div class="seq-body">
+        <div class="seq-title">Step 1 — Inventory &amp; Pre-flight Check</div>
+        <div class="seq-desc">The playbook starts by loading the list of all Gateway LTs (Logical Terminals) connected to the SAA instance — the active channels through which downstream systems are sending wire messages. It checks their current state before proceeding. If any are mid-transaction, the playbook can be configured to wait or abort.</div>
+        <span class="seq-note">Ansible inventory · pre-flight validation</span>
+      </div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-circle sc-red">🔴</div>
+      <div class="seq-body">
+        <div class="seq-title">Step 2 — Shut Down All Gateway LTs (In Order)</div>
+        <div class="seq-desc">This is the most critical step. The playbook shuts down each Gateway LT in a defined sequence — not all at once, but in the correct dependency order. Each LT disconnect is confirmed before moving to the next. This ensures no open connections remain to SAA before the password changes. Rushing this step is what breaks wires.</div>
+        <span class="seq-critical">⚠️ Critical — must complete before password change</span>
+        <div style="margin-top:.85rem;background:rgba(212,23,30,.05);border:1px solid rgba(212,23,30,.2);border-radius:8px;padding:1rem 1.25rem;">
+          <div style="font-family:var(--fm);font-size:10px;color:#e8464b;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.65rem;">Gateway LTs disconnected per run</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
+            <span style="font-family:var(--fm);font-size:11px;padding:.25rem .65rem;border-radius:4px;background:rgba(245,158,11,.1);color:var(--swift);border:1px solid rgba(245,158,11,.25);">LT-WIRE-01</span>
+            <span style="font-family:var(--fm);font-size:11px;padding:.25rem .65rem;border-radius:4px;background:rgba(245,158,11,.1);color:var(--swift);border:1px solid rgba(245,158,11,.25);">LT-WIRE-02</span>
+            <span style="font-family:var(--fm);font-size:11px;padding:.25rem .65rem;border-radius:4px;background:rgba(245,158,11,.1);color:var(--swift);border:1px solid rgba(245,158,11,.25);">LT-INTL-01</span>
+            <span style="font-family:var(--fm);font-size:11px;padding:.25rem .65rem;border-radius:4px;background:rgba(245,158,11,.1);color:var(--swift);border:1px solid rgba(245,158,11,.25);">LT-INTL-02</span>
+            <span style="font-family:var(--fm);font-size:11px;padding:.25rem .65rem;border-radius:4px;background:rgba(99,179,237,.1);color:var(--blue);border:1px solid rgba(99,179,237,.25);">+ additional terminals</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-circle sc-blue">🔑</div>
+      <div class="seq-body">
+        <div class="seq-title">Step 3 — Rotate the SAA Password via CyberArk / Vault</div>
+        <div class="seq-desc">With all Gateway LTs cleanly disconnected, the playbook triggers the credential rotation. The new password is generated and stored in CyberArk (or HashiCorp Vault, depending on environment). The SAA instance is updated with the new credential. At no point does the password exist in plain text in the script — it's always fetched from and written to the secret store.</div>
+        <span class="seq-note">CyberArk · HashiCorp Vault · zero plaintext credentials</span>
+      </div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-circle sc-green">✅</div>
+      <div class="seq-body">
+        <div class="seq-title">Step 4 — Verify SAA is Healthy with New Credential</div>
+        <div class="seq-desc">Before bringing any Gateway LTs back, the playbook verifies that SAA accepted the new password and is in a healthy state. A failed rotation here would be caught before reconnecting terminals — preventing LTs from coming up with mismatched credentials.</div>
+        <span class="seq-note">Health check · connection validation</span>
+      </div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-circle sc-purple">🔁</div>
+      <div class="seq-body">
+        <div class="seq-title">Step 5 — Bring Gateway LTs Back Up</div>
+        <div class="seq-desc">The playbook restores each Gateway LT in the correct order — the reverse of how they were shut down — verifying connectivity at each step. Once all LTs are back and reporting healthy, the rotation is complete. Downstream wire systems are automatically reconnected without any manual intervention.</div>
+        <span class="seq-note">Ordered restart · connectivity verification</span>
+      </div>
+    </div>
+    <div class="seq-item">
+      <div class="seq-circle sc-navy">📊</div>
+      <div class="seq-body">
+        <div class="seq-title">Step 6 — Audit Log &amp; Notification</div>
+        <div class="seq-desc">The playbook generates an audit trail of the rotation event — timestamps, which LTs were cycled, the rotation outcome, and the new credential reference in Vault/CyberArk. This log is critical for SWIFT CSP compliance reporting.</div>
+        <span class="seq-note">Audit trail · compliance log · SWIFT CSP</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANSIBLE CODE SAMPLE -->
+  <div class="code-wrap">
+    <div class="code-header">
+      <span class="code-filename">rotate_saa_password.yml</span>
+      <span class="code-lang">Ansible Playbook (simplified)</span>
+    </div>
+    <div class="code-body">
+<pre><span class="cmt">---
+# SWIFT SAA Password Rotation Playbook
+# Capital One — SWIFT Infrastructure Team
+# Requires: all Gateway LTs cleanly shut down before password change</span>
+
+<span class="kw">- name:</span> <span class="str">SWIFT SAA Password Rotation</span>
+  <span class="kw">hosts:</span> <span class="var">swift_saa_servers</span>
+  <span class="kw">gather_facts:</span> <span class="bool">yes</span>
+  <span class="kw">vars:</span>
+    <span class="var">vault_path:</span> <span class="str">"secret/swift/saa"</span>
+    <span class="var">cyberark_account:</span> <span class="str">"SWIFT_SAA_PROD"</span>
+    <span class="var">rotation_window:</span> <span class="str">"maintenance"</span>
+
+  <span class="kw">tasks:</span>
+
+    <span class="cmt"># PHASE 1: PRE-FLIGHT VALIDATION</span>
+    <span class="kw">- name:</span> <span class="str">Verify SAA service is running</span>
+      <span class="fn">ansible.builtin.service_facts:</span>
+      <span class="kw">register:</span> <span class="var">service_state</span>
+
+    <span class="kw">- name:</span> <span class="str">Fail if SAA is not in expected state</span>
+      <span class="fn">ansible.builtin.fail:</span>
+        <span class="kw">msg:</span> <span class="str">"SAA not in running state — aborting rotation"</span>
+      <span class="kw">when:</span> <span class="var">service_state.ansible_facts.services['saa'].state != 'running'</span>
+
+    <span class="cmt"># PHASE 2: SHUT DOWN ALL GATEWAY LTs (in order)</span>
+    <span class="kw">- name:</span> <span class="str">Shut down Gateway LTs — ordered sequence</span>
+      <span class="fn">ansible.builtin.command:</span>
+        <span class="kw">cmd:</span> <span class="str">"/opt/swift/saa/bin/ltctl stop {{ item }}"</span>
+      <span class="kw">loop:</span> <span class="str">"{{ gateway_lts }}"</span>
+      <span class="kw">loop_control:</span>
+        <span class="var">pause:</span> <span class="bool">5</span>  <span class="cmt"># wait 5s between each shutdown</span>
+      <span class="kw">register:</span> <span class="var">lt_shutdown_results</span>
+
+    <span class="kw">- name:</span> <span class="str">Verify all LTs are disconnected</span>
+      <span class="fn">ansible.builtin.command:</span>
+        <span class="kw">cmd:</span> <span class="str">"/opt/swift/saa/bin/ltctl status {{ item }}"</span>
+      <span class="kw">loop:</span> <span class="str">"{{ gateway_lts }}"</span>
+      <span class="kw">register:</span> <span class="var">lt_status</span>
+      <span class="kw">failed_when:</span> <span class="str">"'CONNECTED' in lt_status.stdout"</span>  <span class="cmt"># abort if any still connected</span>
+
+    <span class="cmt"># PHASE 3: ROTATE PASSWORD VIA CYBERARK/VAULT</span>
+    <span class="kw">- name:</span> <span class="str">Generate new password and store in CyberArk</span>
+      <span class="fn">community.hashi_vault.vault_write:</span>
+        <span class="kw">path:</span> <span class="str">"{{ vault_path }}"</span>
+        <span class="kw">data:</span>
+          <span class="var">password:</span> <span class="str">"{{ lookup('password', '/dev/null length=24 chars=ascii_letters,digits') }}"</span>
+          <span class="var">rotated_at:</span> <span class="str">"{{ ansible_date_time.iso8601 }}"</span>
+      <span class="kw">register:</span> <span class="var">vault_write_result</span>
+      <span class="kw">no_log:</span> <span class="bool">true</span>  <span class="cmt"># never log credentials</span>
+
+    <span class="kw">- name:</span> <span class="str">Update SAA with new credential</span>
+      <span class="fn">ansible.builtin.command:</span>
+        <span class="kw">cmd:</span> <span class="str">"/opt/swift/saa/bin/saapasswd -u saa_admin -p '{{ new_password }}'"</span>
+      <span class="kw">no_log:</span> <span class="bool">true</span>  <span class="cmt"># credential never written to logs</span>
+
+    <span class="cmt"># PHASE 4: VERIFY &amp; RESTART GATEWAY LTs</span>
+    <span class="kw">- name:</span> <span class="str">Verify SAA health with new password</span>
+      <span class="fn">ansible.builtin.uri:</span>
+        <span class="kw">url:</span> <span class="str">"https://{{ saa_host }}:8443/api/health"</span>
+        <span class="kw">status_code:</span> <span class="bool">200</span>
+      <span class="kw">retries:</span> <span class="bool">3</span>
+      <span class="kw">delay:</span> <span class="bool">10</span>
+
+    <span class="kw">- name:</span> <span class="str">Restart Gateway LTs in reverse order</span>
+      <span class="fn">ansible.builtin.command:</span>
+        <span class="kw">cmd:</span> <span class="str">"/opt/swift/saa/bin/ltctl start {{ item }}"</span>
+      <span class="kw">loop:</span> <span class="str">"{{ gateway_lts | reverse | list }}"</span>
+      <span class="kw">loop_control:</span>
+        <span class="var">pause:</span> <span class="bool">5</span>
+
+    <span class="cmt"># PHASE 5: AUDIT LOG</span>
+    <span class="kw">- name:</span> <span class="str">Write rotation audit log</span>
+      <span class="fn">ansible.builtin.lineinfile:</span>
+        <span class="kw">path:</span> <span class="str">"/var/log/swift/rotation_audit.log"</span>
+        <span class="kw">line:</span> <span class="str">"{{ ansible_date_time.iso8601 }} | ROTATION_COMPLETE | LTs={{ gateway_lts | length }} | Vault={{ vault_path }}"</span></pre>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- AWS MIGRATION -->
+<section class="s">
+  <div class="slbl">05 — AWS Migration</div>
+  <h2 class="sh2">Migrating SWIFT Components to AWS</h2>
+  <p class="sp">In addition to the password rotation work, I contributed to the migration of SWIFT components onto AWS — moving from legacy on-premise infrastructure to a cloud-native, more resilient deployment model while maintaining zero downtime on the live wire pipeline.</p>
+
+  <div class="aws-badge">☁️ &nbsp; Migration target: AWS EC2 · Linux ARM64 · Oracle Instant Client</div>
+
+  <div class="tl">
+    <div class="tli">
+      <div class="tldot"></div>
+      <div class="tlph">AWS Environment Setup</div>
+      <div class="tlt">EC2 Instance Provisioning &amp; Oracle Instant Client</div>
+      <p class="tld">Worked on provisioning EC2 instances for the SWIFT components, including installing and configuring the Oracle Instant Client for Linux ARM64 on EC2 — required for the SWIFT components to connect to Oracle databases. ARM64 has architecture-specific library requirements that differ from x86, requiring careful configuration.</p>
+    </div>
+    <div class="tli">
+      <div class="tldot"></div>
+      <div class="tlph">S3 &amp; IAM Configuration</div>
+      <div class="tlt">Multi-Region S3 Buckets with Replication Rules</div>
+      <p class="tld">Set up S3 buckets for different regions — dev and QA environments — configuring replication rules, notification rules, and attaching IAM roles. Cross-region replication ensures SWIFT logs and config files are backed up and available even if a regional outage occurs.</p>
+    </div>
+    <div class="tli">
+      <div class="tldot"></div>
+      <div class="tlph">Terraform &amp; Security Groups</div>
+      <div class="tlt">Lambda Security Groups Written in Terraform</div>
+      <p class="tld">Created and managed Lambda Security Groups using Terraform — defining inbound/outbound rules that control what the SWIFT-connected Lambdas can communicate with. In a financial infrastructure context, security groups act as the firewall layer ensuring SWIFT traffic is isolated and controlled.</p>
+    </div>
+    <div class="tli">
+      <div class="tldot"></div>
+      <div class="tlph">Java Version Migration</div>
+      <div class="tlt">AWS Config File Updates &amp; Java 17 Upgrade</div>
+      <p class="tld">Updated AWS configuration files and migrated the application runtime from an older Java version to Java 17 — a non-trivial change in an infrastructure where components are tightly version-coupled. Involved testing compatibility with SWIFT's own libraries and dependencies before promoting to production environments.</p>
+    </div>
+    <div class="tli">
+      <div class="tldot"></div>
+      <div class="tlph">Production Support</div>
+      <div class="tlt">On-call Production Support for SWIFT Pipeline</div>
+      <p class="tld">Participated in on-call production support rotations for the live SWIFT wire pipeline — monitoring CloudWatch for anomalies, responding to alerts, and diagnosing issues in the wire flow. When wires are real money, production support is not optional.</p>
+    </div>
+  </div>
+
+  <div class="igrid2">
+    <div class="icard2"><div class="iicon2">🖥️</div><h4>EC2 (Linux ARM64)</h4><p>SWIFT components deployed on ARM64 instances — cost-effective, high-performance compute for the gateway workloads.</p><span class="itag2">aws ec2</span></div>
+    <div class="icard2"><div class="iicon2">🪣</div><h4>S3 (Multi-Region)</h4><p>Configuration files, logs, and SWIFT message archives across dev and QA environments with cross-region replication.</p><span class="itag2">aws s3</span></div>
+    <div class="icard2"><div class="iicon2">🛡️</div><h4>IAM Roles</h4><p>Least-privilege IAM roles attached to each component — ensuring SWIFT services access only what they need.</p><span class="itag2">aws iam</span></div>
+    <div class="icard2"><div class="iicon2">📦</div><h4>Lambda + SGs</h4><p>Security groups for Lambda functions managing SWIFT workflows — written and managed in Terraform.</p><span class="itag2">terraform</span></div>
+    <div class="icard2"><div class="iicon2">👁️</div><h4>CloudWatch</h4><p>Monitoring and alerting for the live SWIFT pipeline — used in production on-call rotations.</p><span class="itag2">aws cloudwatch</span></div>
+    <div class="icard2"><div class="iicon2">🔐</div><h4>CyberArk + Vault</h4><p>SAA credentials and rotation records managed in CyberArk and HashiCorp Vault — zero plaintext passwords.</p><span class="itag2">secrets mgmt</span></div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- TECH STACK -->
+<section class="s">
+  <div class="slbl">06 — Technology Stack</div>
+  <h2 class="sh2">Tools &amp; Technologies</h2>
+  <table class="tt">
+    <thead><tr><th>Tool / Service</th><th>Role in SWIFT Infrastructure</th><th>Layer</th></tr></thead>
+    <tbody>
+      <tr><td>Ansible</td><td>Automated playbook for SAA password rotation — Gateway LT shutdown, credential rotation, restart sequence</td><td><span class="pill ps" style="font-size:10px;">Automation</span></td></tr>
+      <tr><td>SWIFT SAA</td><td>Primary SWIFT Alliance Access gateway — all wire messages flow through this component</td><td><span class="pill ps" style="font-size:10px;">SWIFT Core</span></td></tr>
+      <tr><td>SWIFT SNL</td><td>SWIFT Net Link — secure network tunnel between Capital One and the SWIFT network</td><td><span class="pill ps" style="font-size:10px;">SWIFT Core</span></td></tr>
+      <tr><td>SWIFT SAG</td><td>SWIFT Alliance Gateway — traffic router and load balancer between internal systems and SAA</td><td><span class="pill ps" style="font-size:10px;">SWIFT Core</span></td></tr>
+      <tr><td>CyberArk</td><td>Enterprise privileged access management — SAA credential storage and rotation tracking</td><td><span class="pill pr" style="font-size:10px;">Secrets</span></td></tr>
+      <tr><td>HashiCorp Vault</td><td>Secret storage for rotation — new credentials written and referenced here, never in plaintext</td><td><span class="pill pr" style="font-size:10px;">Secrets</span></td></tr>
+      <tr><td>Terraform</td><td>Infrastructure as Code for Lambda security groups and AWS resource management</td><td><span class="pill pt" style="font-size:10px;">IaC</span></td></tr>
+      <tr><td>AWS EC2 (ARM64)</td><td>Cloud compute for SWIFT component hosting post-migration</td><td><span class="pill pn" style="font-size:10px;">Infrastructure</span></td></tr>
+      <tr><td>AWS S3</td><td>Multi-region storage for SWIFT configs, logs, and archives</td><td><span class="pill pn" style="font-size:10px;">Infrastructure</span></td></tr>
+      <tr><td>AWS IAM</td><td>Least-privilege roles for all SWIFT-adjacent services and components</td><td><span class="pill pn" style="font-size:10px;">Infrastructure</span></td></tr>
+      <tr><td>CloudWatch</td><td>Monitoring and alerting for the live SWIFT production pipeline</td><td><span class="pill pt" style="font-size:10px;">Observability</span></td></tr>
+      <tr><td>Oracle Instant Client</td><td>Database connectivity for SWIFT components — installed on EC2 Linux ARM64</td><td><span class="pill pg" style="font-size:10px;">Data Layer</span></td></tr>
+      <tr><td>Java 17</td><td>Application runtime — migrated from legacy version as part of the AWS component upgrade</td><td><span class="pill pg" style="font-size:10px;">Runtime</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="div">
+
+<!-- CLOSING -->
+<section class="s">
+  <div class="slbl">07 — Impact</div>
+  <h2 class="sh2">Why This Work Mattered</h2>
+  <p class="sp">SWIFT infrastructure work doesn't get the same visibility as building a shiny new product — but when your job is making sure billions of dollars flow reliably and securely between banks, reliability <em>is</em> the product. The password rotation automation I built removed one of the most fragile manual processes from the team's production workflow.</p>
+
+  <div class="csq">
+    <p>"International wire transfers are <span>real money moving in real time</span>. Every step in the SWIFT pipeline — every Gateway LT, every credential rotation, every config file — is a potential point of failure in a system where failure has <span>regulatory, financial, and reputational consequences</span>. Automating the SAA password rotation meant the team could rotate credentials on schedule, safely, every time — without a senior engineer babysitting the process at midnight."</p>
+  </div>
+</section>
+
+<footer>
+  <div>Capital One · SWIFT Infrastructure &amp; Password Rotation &nbsp;·&nbsp; <a href="capitalone-detail.html">← Capital One Overview</a> &nbsp;·&nbsp; <a href="index.html">Portfolio</a></div>
+  <div style="margin-top:.35rem;opacity:.6;">SWIFT · SAA · SNL · SAG · Ansible · CyberArk · HashiCorp Vault · Terraform · AWS EC2 · S3 · IAM · CloudWatch · Java 17</div>
+</footer>
+</body>
+</html>

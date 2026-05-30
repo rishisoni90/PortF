@@ -100,9 +100,13 @@ body { background: var(--bg); color: var(--text); font-family: var(--fb); font-s
 .proj-tab.c1-tab { color: var(--c12); border-color: rgba(239,68,68,0.4); }
 .proj-tab.c1-tab.active,
 .proj-tab.c1-tab:hover { background: rgba(239,68,68,0.1); border-color: var(--c1); color: var(--c12); }
+.proj-tab.swift-tab { color: #fbbf24; border-color: rgba(245,158,11,0.4); }
+.proj-tab.swift-tab.active,
+.proj-tab.swift-tab:hover { background: rgba(245,158,11,0.1); border-color: #f59e0b; color: #fbbf24; }
 .proj-tab .tab-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
 .ford-tab .tab-dot { background: var(--ford); }
 .c1-tab  .tab-dot  { background: var(--c1); }
+.swift-tab .tab-dot { background: #f59e0b; }
 
 /* ── PANELS ── */
 .panel { display: none; padding: 2.5rem 2rem 4rem; max-width: 1060px; margin: 0 auto; }
@@ -327,7 +331,10 @@ footer a { color: var(--ford); text-decoration: none; }
     <span class="tab-dot"></span> Ford Motor Company
   </button>
   <button class="proj-tab c1-tab" onclick="showPanel('c1',this)">
-    <span class="tab-dot"></span> Capital One
+    <span class="tab-dot"></span> Capital One — Wire Automation
+  </button>
+  <button class="proj-tab swift-tab" onclick="showPanel('swift',this)">
+    <span class="tab-dot"></span> Capital One — SWIFT
   </button>
 </div>
 
@@ -653,6 +660,193 @@ footer a { color: var(--ford); text-decoration: none; }
 
 </div><!-- /c1 panel -->
 
+
+
+<!-- ════════════════════════════════
+     SWIFT PANEL
+════════════════════════════════ -->
+<div id="panel-swift" class="panel">
+
+  <!-- ONE-LINER -->
+  <div class="expl-section">
+    <div class="expl-label" style="color:#f59e0b;">The one-liner</div>
+    <div class="oneliner" style="background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.25);">
+      <div class="ol-label" style="color:#fbbf24;">// how to explain it in 2 lines</div>
+      <div class="ol-text">"Every international wire leaving Capital One travels through a SWIFT gateway — a server called SAA. Rotating SAA's password sounds simple, but first you have to safely shut down every terminal connected to it, or you break live wire flows. I automated that entire sequence with Ansible."</div>
+    </div>
+  </div>
+
+  <hr class="sec-div">
+
+  <!-- THE ANALOGY -->
+  <div class="expl-section">
+    <div class="expl-label" style="color:#f59e0b;">The analogy</div>
+    <h2 class="expl-h2">Think of it like a Power Grid Maintenance Window</h2>
+    <p class="expl-p">Imagine a city power grid. Before an electrician can replace the main transformer (SAA), they have to call every factory, hospital, and office connected to it and have them shut down their equipment — in the right order — so nothing blows up when the power is cut. Then they swap the transformer, restore power, and everything reconnects.</p>
+
+    <div class="analogy-card" style="background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.25);">
+      <div class="analogy-top">
+        <span class="analogy-icon">⚡</span>
+        <span class="analogy-badge" style="background:rgba(245,158,11,.15);color:#fbbf24;">The Analogy</span>
+      </div>
+      <div class="analogy-text">"SAA is the transformer. The Gateway LTs are the factories plugged into it. Before I change the password (replace the transformer), every Gateway LT has to be safely shut down. I built the Ansible playbook that calls every factory, shuts them down in order, swaps the credentials, then brings everything back online."</div>
+      <div class="analogy-explain">
+        The "factories" are the Gateway LTs — terminals like LT-WIRE-01, LT-INTL-01 — through which Capital One's downstream systems send wire messages. If you change SAA's password while they're still running, their connections break mid-transaction. Real wires fail. My playbook eliminates that risk entirely.
+      </div>
+    </div>
+  </div>
+
+  <hr class="sec-div">
+
+  <!-- THE THREE COMPONENTS -->
+  <div class="expl-section">
+    <div class="expl-label" style="color:#f59e0b;">The infrastructure</div>
+    <h2 class="expl-h2">Three Components I Worked On</h2>
+    <p class="expl-p">The SWIFT setup at Capital One has three main components — each playing a distinct role in how a wire gets from Capital One's system out to a bank across the world.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.5rem;">
+      <div class="impact-item" style="text-align:left;padding:1.4rem;">
+        <div class="impact-num" style="color:#f59e0b;font-size:1.5rem;margin-bottom:.5rem;">SAA</div>
+        <div style="font-size:12.5px;color:var(--muted);"><strong style="color:var(--text);">SWIFT Alliance Access</strong> — the main gateway server. All wire messages go through here. This is the one whose password gets rotated.</div>
+      </div>
+      <div class="impact-item" style="text-align:left;padding:1.4rem;">
+        <div class="impact-num" style="color:#63b3ed;font-size:1.5rem;margin-bottom:.5rem;">SNL</div>
+        <div style="font-size:12.5px;color:var(--muted);"><strong style="color:var(--text);">SWIFT Net Link</strong> — the secure tunnel to the SWIFT network. Think of it as the internet connection for SAA. Without SNL, no messages can leave.</div>
+      </div>
+      <div class="impact-item" style="text-align:left;padding:1.4rem;">
+        <div class="impact-num" style="color:#34d399;font-size:1.5rem;margin-bottom:.5rem;">SAG</div>
+        <div style="font-size:12.5px;color:var(--muted);"><strong style="color:var(--text);">SWIFT Alliance Gateway</strong> — the traffic router. Multiple internal systems connect to SAG, which routes their messages to the right SAA instance.</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="sec-div">
+
+  <!-- BEFORE / AFTER -->
+  <div class="expl-section">
+    <div class="expl-label" style="color:#f59e0b;">Before vs After</div>
+    <h2 class="expl-h2">What Changed</h2>
+
+    <div class="ba-strip">
+      <div class="ba-box before">
+        <div class="ba-label">😓 Before — Manual &amp; Risky</div>
+        <ul class="ba-list">
+          <li>🔴 Engineer manually logs into each Gateway LT</li>
+          <li>🔴 Shuts each one down individually</li>
+          <li>🔴 Manually verifies each is cleanly disconnected</li>
+          <li>🔴 Changes SAA password by hand</li>
+          <li>🔴 Brings each LT back up one by one</li>
+          <li>🔴 Human error during production hours = broken wires</li>
+        </ul>
+      </div>
+      <div class="ba-arrow-col">
+        <div class="ba-arrow">→</div>
+        <div class="ba-arrow-lbl">Ansible</div>
+      </div>
+      <div class="ba-box after">
+        <div class="ba-label">✅ After — Automated &amp; Safe</div>
+        <ul class="ba-list">
+          <li>🟢 Ansible playbook runs the entire sequence</li>
+          <li>🟢 All Gateway LTs shut down in correct order</li>
+          <li>🟢 Each disconnect verified before proceeding</li>
+          <li>🟢 Password rotated via CyberArk / HashiCorp Vault</li>
+          <li>🟢 SAA health verified before LTs reconnect</li>
+          <li>🟢 Audit log written — SWIFT CSP compliance covered</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="sec-div">
+
+  <!-- HOW IT WORKS -->
+  <div class="expl-section">
+    <div class="expl-label" style="color:#f59e0b;">How it works — step by step</div>
+    <h2 class="expl-h2">Walk Someone Through It</h2>
+
+    <div class="step-flow">
+      <div class="step-item">
+        <div class="step-circle" style="background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.4);color:#f59e0b;">📋</div>
+        <div class="step-body">
+          <div class="step-title">Pre-flight: Check All Gateway LTs are in a Safe State</div>
+          <div class="step-desc">The Ansible playbook starts by inventorying all Gateway LTs connected to this SAA instance. It checks their current connection state. If any are mid-transaction or in an unexpected state, the playbook can pause or abort. Nothing proceeds until this check is clean.</div>
+          <span class="step-note">Ansible inventory · connection state check</span>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle" style="background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.4);color:#fc8181;">🔴</div>
+        <div class="step-body">
+          <div class="step-title">Shut Down Every Gateway LT — In the Right Order</div>
+          <div class="step-desc">The playbook issues a graceful shutdown to each LT in a defined sequence — not randomly, but in dependency order. It waits between each to confirm the disconnect was clean. This is the most critical phase: if any LT is still connected when the password changes, that terminal's connection breaks permanently until someone manually reconnects it.</div>
+          <span class="step-note" style="color:#fc8181;background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.25);">⚠️ Most critical step — must be verified before rotation</span>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle amber-step">🔑</div>
+        <div class="step-body">
+          <div class="step-title">Rotate the Password via CyberArk / HashiCorp Vault</div>
+          <div class="step-desc">With all terminals cleanly down, the playbook triggers credential rotation. A new password is generated and stored in CyberArk or HashiCorp Vault — the secret is never in the script as plaintext. SAA is updated with the new credential. The entire exchange happens in memory, with no credentials written to logs.</div>
+          <span class="step-note">CyberArk · HashiCorp Vault · zero plaintext credentials</span>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle green-step">✅</div>
+        <div class="step-body">
+          <div class="step-title">Verify SAA Is Healthy Before Reconnecting Anything</div>
+          <div class="step-desc">Before bringing any LT back online, the playbook sends a health check to SAA using the new credential. It must respond with a 200 OK. If SAA fails to respond, the playbook halts and alerts — catching a failed rotation before any LT tries to reconnect with mismatched credentials.</div>
+          <span class="step-note">Health check · retry logic</span>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle" style="background:rgba(139,92,246,.1);border-color:rgba(139,92,246,.4);color:#b794f4;">🔁</div>
+        <div class="step-body">
+          <div class="step-title">Bring Gateway LTs Back Up — In Reverse Order</div>
+          <div class="step-desc">The playbook restores each Gateway LT in reverse shutdown order, verifying each connection before moving to the next. Once all LTs report connected and healthy, the rotation is complete. Downstream wire systems never noticed anything happened — they just reconnected automatically.</div>
+          <span class="step-note">Ordered restart · connectivity verification</span>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-circle" style="background:rgba(27,42,74,.25);border-color:rgba(90,120,180,.4);color:#90a8d4;">📊</div>
+        <div class="step-body">
+          <div class="step-title">Audit Log Written — SWIFT CSP Compliance</div>
+          <div class="step-desc">The playbook writes a timestamped audit log: which LTs were cycled, the rotation outcome, and the Vault reference for the new credential. SWIFT's Customer Security Programme (CSP) requires banks to document credential rotation events. This log is that documentation — auto-generated, every time.</div>
+          <span class="step-note">SWIFT CSP compliance · audit trail</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="sec-div">
+
+  <!-- IMPACT -->
+  <div class="expl-section">
+    <div class="expl-label" style="color:#f59e0b;">The impact</div>
+    <h2 class="expl-h2">Why It Mattered</h2>
+    <div class="impact-row">
+      <div class="impact-item"><div class="impact-num" style="color:#fbbf24;">0</div><div class="impact-lbl">Manual credential rotation steps — fully automated</div></div>
+      <div class="impact-item"><div class="impact-num" style="color:#fbbf24;">SAA</div><div class="impact-lbl">Most critical SWIFT component — safely automated</div></div>
+      <div class="impact-item"><div class="impact-num" style="color:#fbbf24;">CSP</div><div class="impact-lbl">SWIFT compliance audit trail generated automatically</div></div>
+    </div>
+    <p class="expl-p" style="margin-top:1.25rem;">SWIFT infrastructure work is invisible when it works and catastrophic when it doesn't. Password rotation is a required compliance event — it has to happen on schedule, and it has to be correct. Before this automation, it was a manual process that depended on an engineer executing a multi-step sequence under pressure. After it, it's a script that runs the same way every time.</p>
+    <div style="margin-top:1rem;">
+      <a href="swift-detail.html" style="display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fm);font-size:12px;color:#f59e0b;text-decoration:none;border:1px solid rgba(245,158,11,.3);padding:.5rem 1.1rem;border-radius:6px;transition:background .2s;" onmouseover="this.style.background='rgba(245,158,11,.08)'" onmouseout="this.style.background='transparent'">View Full SWIFT Case Study →</a>
+    </div>
+  </div>
+
+  <div class="tech-row">
+    <span class="tpill" style="background:rgba(245,158,11,.1);color:#fbbf24;border:1px solid rgba(245,158,11,.2);">Ansible</span>
+    <span class="tpill" style="background:rgba(245,158,11,.1);color:#fbbf24;border:1px solid rgba(245,158,11,.2);">SWIFT SAA</span>
+    <span class="tpill" style="background:rgba(245,158,11,.1);color:#fbbf24;border:1px solid rgba(245,158,11,.2);">SWIFT SNL</span>
+    <span class="tpill" style="background:rgba(245,158,11,.1);color:#fbbf24;border:1px solid rgba(245,158,11,.2);">SWIFT SAG</span>
+    <span class="tpill tp-green">CyberArk</span>
+    <span class="tpill tp-green">HashiCorp Vault</span>
+    <span class="tpill tp-ford">AWS EC2</span>
+    <span class="tpill tp-ford">Terraform</span>
+    <span class="tpill tp-gray">Oracle Instant Client · Java 17 · CloudWatch</span>
+  </div>
+
+</div><!-- /swift panel -->
+
 <footer>
   <div>Project Explainer · Rishi Kumar Soni &nbsp;·&nbsp; <a href="index.html">← Back to Portfolio</a></div>
 </footer>
@@ -665,6 +859,10 @@ function showPanel(id, btn) {
   btn.classList.add('active');
   window.scrollTo({ top: document.querySelector('.proj-tabs').offsetTop - 60, behavior: 'smooth' });
 }
+// Also update tab label
+document.querySelector('.c1-tab').addEventListener('click', function() {
+  // label stays as set in HTML
+});
 </script>
 
 </body>
