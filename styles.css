@@ -1573,6 +1573,12 @@ footer .heart {
   box-shadow: 0 20px 50px rgba(212,23,30,0.18), 0 4px 16px rgba(0,0,0,0.35);
 }
 
+.case-study-card--swift:hover {
+  transform: translateY(-7px);
+  border-color: rgba(245,158,11,0.5);
+  box-shadow: 0 20px 50px rgba(245,158,11,0.12), 0 4px 16px rgba(0,0,0,0.35);
+}
+
 /* ── Top row: logo + badge ── */
 .cs-card-top {
   display: flex;
@@ -1627,6 +1633,12 @@ footer .heart {
   border: 1px solid rgba(212,23,30,0.22);
 }
 
+.cs-badge--swift {
+  background: rgba(245,158,11,0.11);
+  color: #f59e0b;
+  border: 1px solid rgba(245,158,11,0.25);
+}
+
 /* ── Body ── */
 .cs-card-body {
   flex: 1;
@@ -1655,6 +1667,7 @@ footer .heart {
 }
 .case-study-card--ford:hover  .cs-title { color: #6090d8; }
 .case-study-card--c1:hover    .cs-title { color: #e85055; }
+.case-study-card--swift:hover .cs-title { color: #f59e0b; }
 
 .cs-desc {
   font-size: 0.855rem;
@@ -1688,6 +1701,7 @@ footer .heart {
   line-height: 1;
 }
 .cs-impact-num--c1 { color: #e85055; }
+.cs-impact-num--swift { color: #f59e0b; }
 .cs-impact-lbl {
   font-size: 0.67rem;
   color: var(--text-muted);
@@ -1717,8 +1731,9 @@ footer .heart {
   border: 1px solid var(--border);
   transition: border-color 0.2s, color 0.2s;
 }
-.case-study-card--ford:hover .cs-tag { border-color: rgba(0,52,118,0.3); color: #7aaae8; }
+.case-study-card--ford:hover  .cs-tag { border-color: rgba(0,52,118,0.3); color: #7aaae8; }
 .case-study-card--c1:hover   .cs-tag { border-color: rgba(212,23,30,0.3); color: #e87a7d; }
+.case-study-card--swift:hover .cs-tag { border-color: rgba(245,158,11,0.3); color: #fbbf24; }
 
 /* ── CTA footer row ── */
 .cs-cta {
@@ -1733,8 +1748,9 @@ footer .heart {
   font-weight: 700;
   transition: background 0.2s;
 }
-.case-study-card--ford .cs-cta { color: #5588dd; }
+.case-study-card--ford  .cs-cta { color: #5588dd; }
 .case-study-card--c1   .cs-cta { color: #e85055; }
+.case-study-card--swift .cs-cta { color: #f59e0b; }
 .case-study-card:hover .cs-cta { background: rgba(255,255,255,0.025); }
 
 .cs-arrow {
@@ -1746,7 +1762,8 @@ footer .heart {
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .case-studies-grid {
+  .case-studies-grid,
+  .case-studies-grid--three {
     grid-template-columns: 1fr;
   }
   .cs-title { font-size: 1.05rem; }

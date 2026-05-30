@@ -78,8 +78,8 @@ const DATA = {
       client: "Capital One",
       clientLogo: "logo-capitalone.svg",
       role: "DevOps & Automation Engineer",
-      period: "Apr 2024 – Present",
-      startDate: "2024-04",
+      period: "Apr 2025 – Present",
+      startDate: "2025-04",
       endDate: null,
       current: true,
       bullets: [
@@ -87,7 +87,6 @@ const DATA = {
         "Designed and implemented BDD-based automation frameworks using Cucumber/Gherkin — slashed end-to-end test execution from 1 week to 1 day, enabling same-day feedback across dev, QA, and business teams.",
         "Integrated automated testing pipelines into CI/CD workflows via Jenkins, enabling continuous validation and early defect detection — cutting regression turnaround by 85%.",
         "Architected an event-driven notification pipeline using Shell scripting and AWS (S3, SNS) to automatically trigger stakeholder email alerts post-test execution.",
-        "Automated infrastructure provisioning using Terraform and Ansible, improving deployment consistency and eliminating manual configuration steps.",
         "Implemented secure secrets management using HashiCorp Vault and CyberArk — zero hardcoded credentials across all automation pipelines.",
         "Optimized cloud infrastructure across AWS S3, Lambda, SNS, IAM, and VPC for scalability, fault tolerance, and cost-efficiency.",
         "Enabled observability and production monitoring using CloudWatch — performed root cause analysis and incident resolution in high-availability financial systems."
@@ -97,7 +96,31 @@ const DATA = {
         "Leveraged Claude to generate Terraform module templates, compare IaC patterns, and review scripts for security misconfigurations before deployment.",
         "Consulted Claude to evaluate AWS architecture alternatives and generate IAM policy documents with least-privilege access controls."
       ],
-      tech: ["Java", "Cucumber", "Gherkin", "BDD", "Jenkins", "CI/CD", "AWS S3", "Lambda", "SNS", "Terraform", "Ansible", "HashiCorp Vault", "CyberArk", "PostgreSQL", "Oracle", "CloudWatch"]
+      tech: ["Selenium", "PRAPI", "Cucumber", "Gherkin", "BDD", "Jenkins", "CI/CD", "AWS S3", "SNS", "Secrets Manager", "Extent Reports", "PostgreSQL", "Oracle", "CloudWatch"]
+    },
+    {
+      employer: "Cognizant",
+      employerLogo: "logo-cognizant.svg",
+      client: "Capital One",
+      clientLogo: "logo-capitalone.svg",
+      role: "DevOps & Infrastructure Engineer",
+      period: "Jun 2024 – Mar 2025",
+      startDate: "2024-06",
+      endDate: "2025-03",
+      current: false,
+      bullets: [
+        "Managed Capital One's SWIFT international wire infrastructure — operated and maintained SAA (ECS service), SNL, and SAG gateway components handling live cross-border wire flows.",
+        "Built an Ansible playbook to automate SAA's Oracle DB password rotation — safely shutting down all Gateway LTs in sequence before rotation, redeploying the ECS service with new credentials, verifying DB connectivity, then restoring LTs — eliminating a high-risk manual process from the compliance workflow.",
+        "Contributed to the migration of SWIFT components to AWS — provisioned EC2 instances (Linux ARM64), installed and configured Oracle Instant Client for ARM64, and upgraded application runtime to Java 17.",
+        "Configured multi-region S3 buckets with replication rules, notification policies, and IAM roles for dev and QA environments across the SWIFT infrastructure.",
+        "Wrote Lambda Security Groups using Terraform — defining network boundaries that isolate SWIFT traffic from unrelated workloads.",
+        "Managed SAA credentials using CyberArk and HashiCorp Vault — zero plaintext credentials across all SWIFT automation scripts.",
+        "Participated in on-call production support for the live SWIFT wire pipeline — monitored CloudWatch alerts and performed root cause analysis on wire flow anomalies."
+      ],
+      aiNotes: [
+        "Used Claude to architect the Ansible playbook sequence for the SAA DB rotation, evaluate the ECS redeployment approach vs in-place credential update, and review the playbook for security edge cases before production use."
+      ],
+      tech: ["SWIFT SAA", "SWIFT SNL", "SWIFT SAG", "AWS ECS", "Ansible", "Oracle DB", "CyberArk", "HashiCorp Vault", "Terraform", "AWS EC2", "AWS S3", "IAM", "CloudWatch", "Java 17", "Linux ARM64"]
     },
     {
       employer: "Cognizant",

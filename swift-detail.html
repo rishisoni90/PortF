@@ -19,10 +19,6 @@
   --dim:   #64748b;
   --swift: #f59e0b;
   --swiftm:#fbbf24;
-  --swiftlt:#fef3c7;
-  --swiftdk:#92400e;
-  --navy:  #1b3a6b;
-  --nvlt:  #bdd3f8;
   --c1:    #d4171e;
   --bcs:   rgba(245,158,11,0.15);
   --bcs2:  rgba(245,158,11,0.28);
@@ -38,7 +34,6 @@
 html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--text); font-family: var(--fb); font-size: 15px; line-height: 1.7; overflow-x: hidden; }
 
-/* NAV */
 nav {
   position: sticky; top: 0; z-index: 100;
   background: rgba(10,15,30,0.96); backdrop-filter: blur(14px);
@@ -66,7 +61,7 @@ nav {
                     linear-gradient(90deg, rgba(245,158,11,0.03) 1px, transparent 1px);
   background-size: 48px 48px; pointer-events: none;
 }
-.hero-glow { position: absolute; top: 10%; right: 3%; width: 520px; height: 520px; background: radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 70%); pointer-events: none; }
+.hero-glow  { position: absolute; top: 10%; right: 3%; width: 520px; height: 520px; background: radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 70%); pointer-events: none; }
 .hero-glow2 { position: absolute; bottom: 10%; left: -5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(212,23,30,0.04) 0%, transparent 70%); pointer-events: none; }
 .hero-left { padding-right: 3rem; position: relative; z-index: 1; }
 .eyebrow { display: inline-flex; align-items: center; gap: .5rem; background: var(--swift); color: #000; font-family: var(--fm); font-size: 10px; padding: .28rem .75rem; border-radius: 3px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1.5rem; font-weight: 600; }
@@ -79,11 +74,11 @@ nav {
 .cdiv { border: none; border-top: 1px solid var(--bcs); margin: 1.1rem 0; }
 .pill-row { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: .6rem; }
 .pill { font-family: var(--fm); font-size: 10.5px; padding: .25rem .65rem; border-radius: 4px; font-weight: 500; }
-.ps { background: rgba(245,158,11,.12); color: var(--swift); }
-.pn { background: rgba(27,42,74,.3); color: #90a8d4; }
-.pr { background: rgba(212,23,30,.1); color: #e8464b; }
-.pt { background: rgba(79,209,197,.12); color: var(--teal); }
-.pg { background: rgba(52,211,153,.1); color: var(--green); }
+.ps  { background: rgba(245,158,11,.12); color: var(--swift); }
+.pn  { background: rgba(27,42,74,.3);    color: #90a8d4; }
+.pr  { background: rgba(212,23,30,.1);   color: #e8464b; }
+.pt  { background: rgba(79,209,197,.12); color: var(--teal); }
+.pg  { background: rgba(52,211,153,.1);  color: var(--green); }
 
 /* SECTIONS */
 section.s { padding: 5rem 4rem; max-width: 1140px; margin: 0 auto; }
@@ -91,23 +86,26 @@ hr.div { border: none; height: 1px; background: var(--bcs2); max-width: 1140px; 
 .slbl { font-family: var(--fm); font-size: 10px; color: var(--swift); letter-spacing: .15em; text-transform: uppercase; margin-bottom: .8rem; display: flex; align-items: center; gap: .6rem; }
 .slbl::after { content: ''; flex: 1; height: 1px; background: var(--bcs2); max-width: 60px; }
 .sh2 { font-family: var(--fh); font-size: clamp(1.7rem, 2.8vw, 2.6rem); font-weight: 700; letter-spacing: -.015em; color: var(--text); margin-bottom: 1rem; line-height: 1.15; }
-.sp { color: var(--muted); margin-bottom: 1rem; max-width: 660px; }
+.sp  { color: var(--muted); margin-bottom: 1rem; max-width: 680px; }
 .hibox { background: rgba(245,158,11,.06); border: 1px solid rgba(245,158,11,.22); border-left: 4px solid var(--swift); border-radius: 0 8px 8px 0; padding: 1rem 1.4rem; margin: 1.5rem 0; }
 .hibox p { color: var(--text); margin: 0; font-size: 13.5px; max-width: none; }
+.warnbox { background: rgba(212,23,30,.06); border: 1px solid rgba(212,23,30,.25); border-left: 4px solid var(--c1); border-radius: 0 8px 8px 0; padding: 1.1rem 1.4rem; margin: 1.5rem 0; }
+.warnbox-title { font-family: var(--fm); font-size: 10px; color: #e8464b; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .5rem; }
+.warnbox p { color: var(--text); margin: 0; font-size: 13.5px; }
 
 /* OVERVIEW CARDS */
-.ocgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.1rem; margin-top: 2rem; }
+.ocgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.1rem; margin-top: 2rem; }
 .ocard { background: var(--bgc); border: 1px solid rgba(245,158,11,.12); border-radius: 12px; padding: 1.5rem; transition: border-color .25s, transform .2s; }
 .ocard:hover { border-color: var(--bcs2); transform: translateY(-2px); }
 .ocicon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; margin-bottom: .85rem; }
 .is { background: rgba(245,158,11,.1); color: var(--swift); }
-.in { background: rgba(27,42,74,.25); color: #90a8d4; }
-.it { background: rgba(79,209,197,.1); color: var(--teal); }
-.ia { background: rgba(52,211,153,.1); color: var(--green); }
+.in { background: rgba(27,42,74,.25);   color: #90a8d4; }
+.ia { background: rgba(52,211,153,.1);  color: var(--green); }
 .ig { background: rgba(183,148,244,.1); color: var(--purp); }
-.ir { background: rgba(212,23,30,.1); color: #e8464b; }
+.ir { background: rgba(212,23,30,.1);   color: #e8464b; }
+.ib { background: rgba(99,179,237,.1);  color: var(--blue); }
 .ocard h3 { font-size: .9rem; margin-bottom: .4rem; color: var(--text); font-weight: 600; }
-.ocard p { font-size: 12.5px; color: var(--muted); margin: 0; }
+.ocard p  { font-size: 12.5px; color: var(--muted); margin: 0; }
 
 /* COMPONENT MAP */
 .comp-map { background: var(--bgc); border: 1px solid rgba(245,158,11,.15); border-radius: 16px; padding: 2.25rem; margin-top: 2rem; }
@@ -125,98 +123,60 @@ hr.div { border: none; height: 1px; background: var(--bcs2); max-width: 1140px; 
 .comp-role { font-size: 12.5px; color: var(--muted); line-height: 1.6; }
 .comp-tag { display: inline-block; margin-top: .75rem; font-family: var(--fm); font-size: 9.5px; padding: .18rem .6rem; border-radius: 3px; }
 .saa .comp-tag { background: rgba(245,158,11,.1); color: var(--swift); border: 1px solid rgba(245,158,11,.25); }
-.snl .comp-tag { background: rgba(99,179,237,.1); color: var(--blue); border: 1px solid rgba(99,179,237,.25); }
+.snl .comp-tag { background: rgba(99,179,237,.1); color: var(--blue);  border: 1px solid rgba(99,179,237,.25); }
 .sag .comp-tag { background: rgba(52,211,153,.1); color: var(--green); border: 1px solid rgba(52,211,153,.25); }
-.comp-connector { display: flex; align-items: center; justify-content: center; padding: .5rem 0; }
-.flow-arrow { font-size: 1.2rem; color: var(--dim); }
-.comp-flow-row { display: flex; align-items: center; gap: .75rem; margin: 1.25rem 0; }
-.comp-flow-label { font-family: var(--fm); font-size: 11px; color: var(--muted); padding: .25rem .7rem; border-radius: 4px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); }
-.comp-flow-arrow { font-size: 1.1rem; color: var(--dim); }
 
-/* PIPELINE */
-.pline-wrap { background: var(--bgc); border: 1px solid rgba(245,158,11,.12); border-radius: 16px; padding: 2.25rem 2rem; margin-top: 2rem; overflow-x: auto; }
-.phase-lbl { font-family: var(--fm); font-size: 9.5px; color: var(--dim); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1rem; }
-.pipeline { display: flex; align-items: flex-start; gap: 0; min-width: 500px; margin-bottom: 2rem; }
-.ps2 { flex: 1; display: flex; flex-direction: column; align-items: center; position: relative; }
-.ps2:not(:last-child)::after { content: ''; position: absolute; top: 29px; left: calc(50% + 36px); width: calc(100% - 72px); height: 2px; background: linear-gradient(90deg, var(--swift), rgba(245,158,11,.2)); z-index: 0; }
-.pn2 { width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 19px; position: relative; z-index: 1; border: 2px solid; transition: transform .2s; }
-.pn2:hover { transform: scale(1.08); }
-.pns { background: rgba(245,158,11,.12); border-color: rgba(245,158,11,.5); color: var(--swift); }
-.pnn2 { background: rgba(27,42,74,.25); border-color: rgba(90,120,180,.5); color: #90a8d4; }
-.pnt2 { background: rgba(79,209,197,.12); border-color: rgba(79,209,197,.5); color: var(--teal); }
-.pna2 { background: rgba(52,211,153,.12); border-color: rgba(52,211,153,.5); color: var(--green); }
-.pnr2 { background: rgba(212,23,30,.12); border-color: rgba(212,23,30,.5); color: #e8464b; }
-.pnp2 { background: rgba(183,148,244,.12); border-color: rgba(183,148,244,.5); color: var(--purp); }
-.pl2 { margin-top: .6rem; text-align: center; font-family: var(--fh); font-size: 11px; font-weight: 600; color: var(--text); line-height: 1.3; max-width: 80px; }
-.ps2sub { font-family: var(--fm); font-size: 9.5px; color: var(--dim); margin-top: .2rem; text-align: center; max-width: 80px; line-height: 1.3; }
+/* FLOW ROW */
+.flow-row { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; padding: .75rem 0; }
+.flow-node { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: .6rem 1.1rem; font-size: 13px; font-weight: 600; }
+.flow-arrow { color: var(--dim); font-size: 1.1rem; }
 
-/* WARNING BOX */
-.warnbox { background: rgba(212,23,30,.06); border: 1px solid rgba(212,23,30,.25); border-left: 4px solid var(--c1); border-radius: 0 8px 8px 0; padding: 1.1rem 1.4rem; margin: 1.5rem 0; }
-.warnbox-title { font-family: var(--fm); font-size: 10px; color: #e8464b; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .5rem; }
-.warnbox p { color: var(--text); margin: 0; font-size: 13.5px; }
+/* DB FOCUS BOX */
+.db-focus { background: rgba(245,158,11,.05); border: 1px solid rgba(245,158,11,.25); border-radius: 14px; padding: 1.75rem 2rem; margin: 1.75rem 0; }
+.db-focus-title { font-family: var(--fm); font-size: 10px; color: var(--swift); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 1rem; }
+.db-row { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+.db-icon { width: 32px; height: 32px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; background: rgba(245,158,11,.1); color: var(--swift); }
+.db-text strong { color: var(--text); font-size: 13.5px; display: block; margin-bottom: .2rem; }
+.db-text span { color: var(--muted); font-size: 12.5px; line-height: 1.6; }
 
-/* SHUTDOWN SEQUENCE */
+/* SEQUENCE */
 .shutdown-seq { margin-top: 2rem; }
-.seq-item { display: flex; gap: 1.25rem; align-items: flex-start; position: relative; margin-bottom: 0; }
+.seq-item { display: flex; gap: 1.25rem; align-items: flex-start; position: relative; }
 .seq-item:not(:last-child)::after { content: ''; position: absolute; left: 20px; top: 48px; width: 2px; height: calc(100% - 28px); background: rgba(245,158,11,.2); }
 .seq-circle { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; position: relative; z-index: 1; border: 2px solid; }
-.sc-amber { background: rgba(245,158,11,.1); border-color: rgba(245,158,11,.4); color: var(--swift); }
-.sc-red { background: rgba(212,23,30,.1); border-color: rgba(212,23,30,.4); color: #e8464b; }
-.sc-green { background: rgba(52,211,153,.1); border-color: rgba(52,211,153,.4); color: var(--green); }
-.sc-blue { background: rgba(99,179,237,.1); border-color: rgba(99,179,237,.4); color: var(--blue); }
-.sc-purple { background: rgba(183,148,244,.1); border-color: rgba(183,148,244,.4); color: var(--purp); }
-.sc-navy { background: rgba(27,42,74,.25); border-color: rgba(90,120,180,.4); color: #90a8d4; }
-.seq-body { padding: .5rem 0 2rem; }
+.sc-amber  { background: rgba(245,158,11,.1); border-color: rgba(245,158,11,.4); color: var(--swift); }
+.sc-red    { background: rgba(212,23,30,.1);  border-color: rgba(212,23,30,.4);  color: #e8464b; }
+.sc-blue   { background: rgba(99,179,237,.1); border-color: rgba(99,179,237,.4); color: var(--blue); }
+.sc-green  { background: rgba(52,211,153,.1); border-color: rgba(52,211,153,.4); color: var(--green); }
+.sc-purple { background: rgba(183,148,244,.1);border-color: rgba(183,148,244,.4);color: var(--purp); }
+.sc-navy   { background: rgba(27,42,74,.25);  border-color: rgba(90,120,180,.4); color: #90a8d4; }
+.seq-body  { padding: .5rem 0 2rem; }
 .seq-title { font-size: .97rem; font-weight: 700; color: var(--text); margin-bottom: .3rem; }
-.seq-desc { font-size: 13.5px; color: var(--muted); line-height: 1.65; max-width: 580px; }
-.seq-note { display: inline-block; margin-top: .5rem; font-family: var(--fm); font-size: 11px; padding: 3px 9px; border-radius: 4px; background: rgba(255,255,255,.04); color: var(--dim); border: 1px solid rgba(255,255,255,.08); }
+.seq-desc  { font-size: 13.5px; color: var(--muted); line-height: 1.65; max-width: 580px; }
+.seq-note  { display: inline-block; margin-top: .5rem; font-family: var(--fm); font-size: 11px; padding: 3px 9px; border-radius: 4px; background: rgba(255,255,255,.04); color: var(--dim); border: 1px solid rgba(255,255,255,.08); }
 .seq-critical { display: inline-flex; align-items: center; gap: .4rem; margin-top: .5rem; font-family: var(--fm); font-size: 10.5px; padding: 3px 9px; border-radius: 4px; background: rgba(212,23,30,.08); color: #e8464b; border: 1px solid rgba(212,23,30,.25); }
 
-/* ANSIBLE CODE BLOCK */
+/* CODE BLOCK */
 .code-wrap { background: #0d1117; border: 1px solid rgba(245,158,11,.2); border-radius: 12px; overflow: hidden; margin-top: 1.75rem; }
 .code-header { background: var(--bg3); padding: .7rem 1.2rem; border-bottom: 1px solid rgba(245,158,11,.15); display: flex; align-items: center; justify-content: space-between; }
 .code-filename { font-family: var(--fm); font-size: 11px; color: var(--swift); }
 .code-lang { font-family: var(--fm); font-size: 10px; color: var(--dim); }
 .code-body { padding: 1.4rem 1.6rem; overflow-x: auto; }
 .code-body pre { font-family: var(--fm); font-size: 12px; line-height: 1.7; color: var(--muted); white-space: pre; }
-.kw { color: #f97583; } /* keywords */
-.str { color: #9ecbff; } /* strings */
-.cmt { color: #6a737d; font-style: italic; } /* comments */
-.var { color: var(--swift); } /* vars / keys */
-.fn { color: #79b8ff; } /* functions / modules */
-.bool { color: #79b8ff; }
+.kw  { color: #f97583; }
+.str { color: #9ecbff; }
+.cmt { color: #6a737d; font-style: italic; }
+.var { color: var(--swift); }
+.fn  { color: #79b8ff; }
+.bl  { color: #79b8ff; }
 
-/* GATEWAY TABLE */
-.gw-table { width: 100%; border-collapse: collapse; margin-top: 1.75rem; }
-.gw-table th { text-align: left; padding: .65rem .9rem; font-family: var(--fm); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); border-bottom: 1px solid var(--bcs2); background: var(--bg2); }
-.gw-table td { padding: .8rem .9rem; border-bottom: 1px solid rgba(245,158,11,.06); font-size: 13.5px; }
-.gw-table tr:hover td { background: var(--bgc); }
-.gw-table td:first-child { font-family: var(--fm); font-weight: 600; color: var(--swift); }
-.gw-table td:nth-child(2) { color: var(--muted); }
-
-/* INFRA GRID */
-.igrid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .9rem; margin-top: 2rem; }
-.icard2 { background: var(--bgc); border: 1px solid rgba(245,158,11,.12); border-radius: 12px; padding: 1.4rem; text-align: center; }
-.iicon2 { font-size: 2rem; margin-bottom: .65rem; }
-.icard2 h4 { font-family: var(--fh); font-size: .9rem; margin-bottom: .4rem; color: var(--text); }
-.icard2 p { font-size: 12px; color: var(--muted); margin: 0; }
-.itag2 { display: inline-block; margin-top: .65rem; font-family: var(--fm); font-size: 9.5px; padding: .18rem .5rem; border-radius: 3px; background: rgba(245,158,11,.1); color: var(--swift); border: 1px solid rgba(245,158,11,.2); }
-
-/* TECH TABLE */
-.tt { width: 100%; border-collapse: collapse; margin-top: 1.75rem; }
-.tt th { text-align: left; padding: .65rem .9rem; font-family: var(--fm); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); border-bottom: 1px solid var(--bcs2); background: var(--bg2); }
-.tt td { padding: .8rem .9rem; border-bottom: 1px solid rgba(245,158,11,.06); font-size: 13.5px; }
-.tt tr:hover td { background: var(--bgc); }
-.tt td:first-child { font-weight: 600; color: var(--text); }
-.tt td:nth-child(2) { color: var(--muted); }
-
-/* MIGRATION */
+/* BEFORE/AFTER */
 .mgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.75rem; }
 .mcard { background: var(--bgc); border: 1px solid rgba(245,158,11,.12); border-radius: 12px; padding: 1.5rem; }
 .mcard.after { border-color: rgba(52,211,153,.3); }
 .mlbl { font-family: var(--fm); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .9rem; font-weight: 500; }
 .mcard.before .mlbl { color: var(--dim); }
-.mcard.after .mlbl { color: var(--green); }
+.mcard.after  .mlbl { color: var(--green); }
 .mlist { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
 .mlist li { font-size: 13px; color: var(--muted); }
 
@@ -227,25 +187,32 @@ hr.div { border: none; height: 1px; background: var(--bcs2); max-width: 1140px; 
 .tldot { position: absolute; left: -2.25rem; top: 5px; width: 13px; height: 13px; border-radius: 50%; background: var(--bg); border: 2px solid var(--swift); transition: background .2s; }
 .tli:hover .tldot { background: var(--swift); }
 .tlph { font-family: var(--fm); font-size: 10px; color: var(--swift); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .3rem; }
-.tlt { font-size: .98rem; font-weight: 600; margin-bottom: .35rem; color: var(--text); }
-.tld { font-size: 13.5px; color: var(--muted); max-width: 580px; margin: 0; line-height: 1.6; }
+.tlt  { font-size: .98rem; font-weight: 600; margin-bottom: .35rem; color: var(--text); }
+.tld  { font-size: 13.5px; color: var(--muted); max-width: 580px; margin: 0; line-height: 1.6; }
 
-/* SUMMARY QUOTE */
+/* INFRA GRID */
+.igrid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: .9rem; margin-top: 2rem; }
+.icard2 { background: var(--bgc); border: 1px solid rgba(245,158,11,.12); border-radius: 12px; padding: 1.4rem; text-align: center; }
+.iicon2 { font-size: 2rem; margin-bottom: .65rem; }
+.icard2 h4 { font-family: var(--fh); font-size: .9rem; margin-bottom: .4rem; color: var(--text); }
+.icard2 p  { font-size: 12px; color: var(--muted); margin: 0; }
+.itag2 { display: inline-block; margin-top: .65rem; font-family: var(--fm); font-size: 9.5px; padding: .18rem .5rem; border-radius: 3px; background: rgba(245,158,11,.1); color: var(--swift); border: 1px solid rgba(245,158,11,.2); }
+
+/* TECH TABLE */
+.tt { width: 100%; border-collapse: collapse; margin-top: 1.75rem; }
+.tt th { text-align: left; padding: .65rem .9rem; font-family: var(--fm); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); border-bottom: 1px solid var(--bcs2); background: var(--bg2); }
+.tt td { padding: .8rem .9rem; border-bottom: 1px solid rgba(245,158,11,.06); font-size: 13.5px; }
+.tt tr:hover td { background: var(--bgc); }
+.tt td:first-child { font-weight: 600; color: var(--text); }
+.tt td:nth-child(2) { color: var(--muted); }
+
+/* CLOSING QUOTE */
 .csq { background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05)); border: 1px solid rgba(245,158,11,.3); border-radius: 16px; padding: 2.75rem 3rem; margin-top: 2.5rem; position: relative; overflow: hidden; }
 .csq::before { content: '"'; font-family: var(--fh); font-size: 9rem; color: rgba(245,158,11,0.06); position: absolute; top: -2rem; left: 2rem; line-height: 1; pointer-events: none; }
 .csq p { font-family: var(--fh); font-size: clamp(.95rem, 1.8vw, 1.3rem); font-style: italic; color: var(--text); line-height: 1.65; max-width: 760px; margin: 0; position: relative; }
 .csq span { color: var(--swiftm); }
 
-/* AWS MIGRATION BADGE */
 .aws-badge { display: inline-flex; align-items: center; gap: .6rem; background: rgba(99,179,237,.08); border: 1px solid rgba(99,179,237,.3); color: var(--blue); padding: .55rem 1.2rem; border-radius: 8px; font-family: var(--fm); font-size: 12.5px; margin: 1rem 0; }
-
-/* PHASE BADGE */
-.phase-band { background: var(--bgc); border: 1px solid rgba(245,158,11,.2); border-radius: 12px; padding: 1.25rem 1.6rem; margin: 1.5rem 0; display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
-.pb-icon { font-size: 1.75rem; }
-.pb-body { flex: 1; }
-.pb-title { font-size: .95rem; font-weight: 700; color: var(--text); margin-bottom: .25rem; }
-.pb-desc { font-size: 13px; color: var(--muted); }
-.pb-badge { font-family: var(--fm); font-size: 10px; padding: .25rem .75rem; border-radius: 4px; background: rgba(245,158,11,.1); color: var(--swift); border: 1px solid rgba(245,158,11,.25); white-space: nowrap; }
 
 footer { text-align: center; padding: 2.5rem 2rem; border-top: 1px solid var(--bcs2); color: var(--dim); font-size: 11.5px; font-family: var(--fm); background: var(--bg2); }
 footer a { color: var(--swift); text-decoration: none; }
@@ -258,15 +225,14 @@ footer a:hover { text-decoration: underline; }
   section.s { padding: 3.5rem 1.5rem; }
   .mgrid { grid-template-columns: 1fr; }
   .comp-grid { grid-template-columns: 1fr; }
-  .pipeline { min-width: 480px; }
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="capitalone-detail.html" class="nav-back">← Capital One Overview</a>
-  <span class="nav-title">SWIFT Infrastructure · Jun 2024 – Mar 2025</span>
+  <a href="index.html" class="nav-back">← Portfolio</a>
+  <span class="nav-title">Capital One · SWIFT Infrastructure · Jun 2024 – Mar 2025</span>
   <div class="nav-logo-pill"><img src="logo-capitalone.svg" alt="Capital One"></div>
 </nav>
 
@@ -277,58 +243,59 @@ footer a:hover { text-decoration: underline; }
   <div class="hero-glow2"></div>
   <div class="hero-left">
     <div class="eyebrow">Capital One · SWIFT Team · Jun 2024 – Mar 2025</div>
-    <h1>SWIFT Wire Infrastructure<br>&amp; <em>Automated Password</em><br>Rotation</h1>
-    <p class="hero-desc">Every dollar wired internationally through Capital One flows through the SWIFT network — a highly regulated, precision-engineered infrastructure. I worked on the team managing this pipeline: maintaining the three core gateway components (SAA, SNL, SAG), migrating them to AWS, and building Ansible automation to safely rotate credentials without breaking live wire flows.</p>
-    <div class="impact-quote">"Before touching passwords on a live SWIFT gateway, you need to shut down every connected terminal — safely, in order — or you risk disrupting real international wire transfers. I automated that entire sequence."</div>
+    <h1>SWIFT Wire Infrastructure<br>&amp; <em>SAA Database</em><br>Password Rotation</h1>
+    <p class="hero-desc">SAA is an ECS service — Capital One's SWIFT gateway — that connects to an Oracle database to store every wire message, audit trail, and transaction record. That database password requires regular rotation for SWIFT CSP compliance. The problem: SAA is actively writing to that DB via Gateway LTs. Rotate the password mid-flight and live wires break. I built the Ansible automation to do it safely.</p>
+    <div class="impact-quote">"SAA's ECS service is actively writing wire data to its Oracle database through connected Gateway LTs. You can't just swap the DB password — you have to drain every terminal first, rotate, then bring it all back. I automated that entire sequence."</div>
   </div>
   <div class="hero-card">
     <div class="card-lbl">// at a glance</div>
-    <div style="font-family:var(--fh);font-size:2rem;color:var(--swift);font-weight:700;line-height:1;margin-bottom:.2rem;">SWIFT</div>
-    <div style="font-size:12px;color:var(--muted);">International wire payment infrastructure</div>
+    <div style="font-family:var(--fh);font-size:1.85rem;color:var(--swift);font-weight:700;line-height:1;margin-bottom:.2rem;">SAA ECS</div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:.9rem;">SWIFT Alliance Access · Oracle DB · ECS Service</div>
     <hr class="cdiv">
     <div style="display:flex;gap:1rem;margin-bottom:1rem;">
-      <div><div style="font-family:var(--fh);font-size:1.5rem;color:var(--swift);font-weight:700;line-height:1;">3</div><div style="font-size:11px;color:var(--muted);">Core Components</div></div>
+      <div><div style="font-family:var(--fh);font-size:1.4rem;color:var(--swift);font-weight:700;line-height:1;">DB</div><div style="font-size:11px;color:var(--muted);">Password Rotated</div></div>
       <div style="width:1px;background:var(--bcs);"></div>
-      <div><div style="font-family:var(--fh);font-size:1.5rem;color:var(--green);font-weight:700;line-height:1;">0</div><div style="font-size:11px;color:var(--muted);">Manual Rotations</div></div>
+      <div><div style="font-family:var(--fh);font-size:1.4rem;color:var(--green);font-weight:700;line-height:1;">0</div><div style="font-size:11px;color:var(--muted);">Manual Steps</div></div>
       <div style="width:1px;background:var(--bcs);"></div>
-      <div><div style="font-family:var(--fh);font-size:1.5rem;color:var(--blue);font-weight:700;line-height:1;">AWS</div><div style="font-size:11px;color:var(--muted);">Migrated</div></div>
+      <div><div style="font-family:var(--fh);font-size:1.4rem;color:var(--blue);font-weight:700;line-height:1;">AWS</div><div style="font-size:11px;color:var(--muted);">ECS + Migrated</div></div>
     </div>
     <hr class="cdiv">
     <div class="card-lbl" style="margin-bottom:.6rem;">// core technologies</div>
     <div class="pill-row">
       <span class="pill ps">Ansible</span>
       <span class="pill ps">SWIFT SAA</span>
-      <span class="pill pn">AWS EC2</span><span class="pill pn">CyberArk</span>
-      <span class="pill pr">HashiCorp Vault</span>
+      <span class="pill pn">AWS ECS</span>
+      <span class="pill pn">CyberArk</span>
+      <span class="pill pr">Oracle DB</span>
       <span class="pill pt">Terraform</span>
-      <span class="pill pg">Linux</span>
+      <span class="pill pg">HashiCorp Vault</span>
     </div>
   </div>
 </div>
 
 <hr class="div">
 
-<!-- WHAT IS SWIFT -->
+<!-- SECTION 01: SWIFT CONTEXT -->
 <section class="s">
   <div class="slbl">01 — Context</div>
-  <h2 class="sh2">What Is SWIFT &amp; Why It Matters</h2>
-  <p class="sp">SWIFT (Society for Worldwide Interbank Financial Telecommunication) is the global messaging network that banks use to send international wire transfers. When Capital One wires money internationally — millions of dollars per transaction — those instructions travel through SWIFT. It's not just software. It's financial infrastructure subject to strict compliance, uptime, and security requirements.</p>
-  <div class="hibox"><p>Think of SWIFT as the postal system for international banking. The components I worked on are the Capital One "post office" — the servers and services that process every outgoing and incoming international wire before it leaves or enters the bank's systems.</p></div>
+  <h2 class="sh2">What Is SWIFT &amp; Why It Matters at Capital One</h2>
+  <p class="sp">SWIFT (Society for Worldwide Interbank Financial Telecommunication) is the global messaging network that banks use to send international wire transfers. When Capital One wires money internationally — millions of dollars per transaction — those payment instructions travel through the SWIFT network. Capital One must maintain certified infrastructure to stay connected to it.</p>
+  <div class="hibox"><p>Think of SWIFT as the postal backbone for international banking. The components I worked on are Capital One's "post office" — the ECS services and infrastructure that process every outgoing and incoming international wire before it reaches or leaves the bank.</p></div>
 
   <div class="ocgrid">
-    <div class="ocard"><div class="ocicon is">🌐</div><h3>Global Messaging Network</h3><p>SWIFT connects 11,000+ financial institutions across 200+ countries. Every international wire transfer passes through it — including Capital One's.</p></div>
-    <div class="ocard"><div class="ocicon in">🏛️</div><h3>Regulated Infrastructure</h3><p>SWIFT compliance is mandated. Downtime during a live wire, or a misconfigured credential, can cause real financial and legal consequences.</p></div>
-    <div class="ocard"><div class="ocicon ia">🔒</div><h3>Security-First by Design</h3><p>Password rotation, access controls, and audit trails aren't optional — they're SWIFT's Customer Security Programme (CSP) requirements that Capital One must meet annually.</p></div>
+    <div class="ocard"><div class="ocicon is">🌐</div><h3>Global Wire Network</h3><p>SWIFT connects 11,000+ financial institutions across 200+ countries. Every international wire Capital One sends passes through this infrastructure.</p></div>
+    <div class="ocard"><div class="ocicon ir">🏛️</div><h3>SWIFT CSP Compliance</h3><p>SWIFT's Customer Security Programme mandates annual controls — including regular credential rotation on gateway systems. Non-compliance risks losing network access entirely.</p></div>
+    <div class="ocard"><div class="ocicon ia">☁️</div><h3>ECS-Based Architecture</h3><p>SAA runs as an ECS service on AWS — containerized, cloud-native. It connects to an Oracle database that stores all wire messages, audit logs, and transaction state.</p></div>
   </div>
 </section>
 
 <hr class="div">
 
-<!-- THE THREE COMPONENTS -->
+<!-- SECTION 02: THREE COMPONENTS -->
 <section class="s">
   <div class="slbl">02 — Architecture</div>
   <h2 class="sh2">The Three SWIFT Components</h2>
-  <p class="sp">The SWIFT infrastructure at Capital One was organized around three core components, each handling a distinct role in the wire flow. Understanding all three was essential before I could safely automate anything.</p>
+  <p class="sp">Capital One's SWIFT infrastructure has three components working in a chain. Each plays a distinct role. I worked across all three — but the core engineering challenge was on SAA.</p>
 
   <div class="comp-map">
     <div class="comp-map-title">// swift component architecture — capital one</div>
@@ -336,37 +303,39 @@ footer a:hover { text-decoration: underline; }
       <div class="comp-node saa">
         <div class="comp-name">SAA</div>
         <div class="comp-full">SWIFT Alliance Access</div>
-        <div class="comp-role">The primary gateway — the actual server that connects Capital One to the SWIFT network. All outgoing and incoming wire messages pass through SAA. It authenticates with SWIFT, formats messages (MT103, MT202), and routes them. This is the most critical component — and the one whose password I automated rotating.</div>
-        <span class="comp-tag">Gateway Server · Primary</span>
+        <div class="comp-role">The primary SWIFT gateway — runs as an <strong style="color:var(--swift);">AWS ECS service</strong>. Connects Capital One to the SWIFT network, formats wire messages (MT103, MT202), and writes every transaction to an <strong style="color:var(--swift);">Oracle database</strong>. This DB connection is what requires regular password rotation.</div>
+        <span class="comp-tag">ECS Service · Oracle DB · Primary Gateway</span>
       </div>
       <div class="comp-node snl">
         <div class="comp-name">SNL</div>
         <div class="comp-full">SWIFT Net Link</div>
-        <div class="comp-role">The network connectivity layer. SNL is the service that maintains the secure tunnel between Capital One and the SWIFT network itself. If SNL is down, SAA cannot reach SWIFT — no messages can be sent or received. It's the pipe that SAA talks through.</div>
-        <span class="comp-tag">Network Layer · Connectivity</span>
+        <div class="comp-role">The network connectivity layer. Maintains the secure tunnel between Capital One and the SWIFT network. SAA communicates out through SNL — if SNL goes down, SAA can't reach SWIFT and no wire messages leave or enter.</div>
+        <span class="comp-tag">Network Tunnel · Connectivity</span>
       </div>
       <div class="comp-node sag">
         <div class="comp-name">SAG</div>
         <div class="comp-full">SWIFT Alliance Gateway</div>
-        <div class="comp-role">The traffic router. SAG sits between internal Capital One systems (like the wire initiation apps) and SAA, routing message traffic intelligently. Multiple internal systems can connect to SAG, which manages which messages go to which SAA instance. It also handles load balancing and message queuing.</div>
+        <div class="comp-role">The traffic router. Internal Capital One systems connect to SAG, which routes wire messages to the correct SAA instance. SAG manages load balancing and message queuing — it's the front door that downstream apps talk to before reaching SAA.</div>
         <span class="comp-tag">Traffic Router · Load Balancer</span>
       </div>
     </div>
 
     <div style="margin-top:1.75rem;">
-      <div class="comp-map-title">// wire flow: internal system → swift network</div>
-      <div style="display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;padding:.5rem 0;">
-        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:.6rem 1.1rem;font-size:13px;font-weight:600;">💼 Capital One Wire System</div>
-        <div style="color:var(--dim);font-size:1.1rem;">→</div>
-        <div style="background:rgba(52,211,153,.06);border:1px solid rgba(52,211,153,.25);border-radius:8px;padding:.6rem 1.1rem;font-size:13px;font-weight:600;color:var(--green);">SAG <span style="font-size:11px;font-weight:400;color:var(--muted);">routes traffic</span></div>
-        <div style="color:var(--dim);font-size:1.1rem;">→</div>
-        <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.3);border-radius:8px;padding:.6rem 1.1rem;font-size:13px;font-weight:600;color:var(--swift);">SAA <span style="font-size:11px;font-weight:400;color:var(--muted);">gateway</span></div>
-        <div style="color:var(--dim);font-size:1.1rem;">→</div>
-        <div style="background:rgba(99,179,237,.06);border:1px solid rgba(99,179,237,.25);border-radius:8px;padding:.6rem 1.1rem;font-size:13px;font-weight:600;color:var(--blue);">SNL <span style="font-size:11px;font-weight:400;color:var(--muted);">network link</span></div>
-        <div style="color:var(--dim);font-size:1.1rem;">→</div>
-        <div style="background:rgba(183,148,244,.06);border:1px solid rgba(183,148,244,.25);border-radius:8px;padding:.6rem 1.1rem;font-size:13px;font-weight:600;color:var(--purp);">🌐 SWIFT Network</div>
-        <div style="color:var(--dim);font-size:1.1rem;">→</div>
-        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:.6rem 1.1rem;font-size:13px;font-weight:600;">🏦 Recipient Bank</div>
+      <div class="comp-map-title">// end-to-end wire flow</div>
+      <div class="flow-row">
+        <div class="flow-node">💼 Capital One Wire App</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node" style="border-color:rgba(52,211,153,.3);color:var(--green);">SAG <span style="font-size:11px;font-weight:400;color:var(--muted);">routes</span></div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node" style="border-color:rgba(245,158,11,.35);color:var(--swift);">SAA ECS <span style="font-size:11px;font-weight:400;color:var(--muted);">gateway</span></div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node" style="border-color:rgba(212,23,30,.3);color:#e8464b;">Oracle DB <span style="font-size:11px;font-weight:400;color:var(--muted);">writes record</span></div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node" style="border-color:rgba(99,179,237,.3);color:var(--blue);">SNL <span style="font-size:11px;font-weight:400;color:var(--muted);">network</span></div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node" style="border-color:rgba(183,148,244,.3);color:var(--purp);">🌐 SWIFT</div>
+        <span class="flow-arrow">→</span>
+        <div class="flow-node">🏦 Recipient Bank</div>
       </div>
     </div>
   </div>
@@ -374,70 +343,70 @@ footer a:hover { text-decoration: underline; }
 
 <hr class="div">
 
-<!-- THE CHALLENGE: PASSWORD ROTATION -->
+<!-- SECTION 03: THE DB PASSWORD PROBLEM -->
 <section class="s">
   <div class="slbl">03 — The Problem</div>
-  <h2 class="sh2">The Password Rotation Challenge</h2>
-  <p class="sp">SAA — the primary SWIFT gateway — requires regular credential rotation as part of SWIFT's Customer Security Programme (CSP) compliance. This sounds simple. It wasn't.</p>
+  <h2 class="sh2">Why SAA's Database Password Needs Rotation</h2>
+  <p class="sp">SAA is an ECS service. It doesn't have a "login password" — what it has is a <strong style="color:var(--text);">database password</strong> it uses to connect to its Oracle DB. Every wire message, audit trail entry, and transaction record gets written there. SWIFT CSP compliance requires this DB credential to be rotated on schedule.</p>
 
-  <div class="warnbox">
-    <div class="warnbox-title">⚠️ Why This Was High-Stakes</div>
-    <p>SAA doesn't just accept a new password in isolation. It's connected to multiple <strong>Gateway LTs</strong> (Logical Terminals) — the channel endpoints that downstream applications use to send wire messages. If you change the SAA password while any Gateway LT is still active and connected, those connections break mid-transaction. In a live banking environment, this means wires can fail, get stuck, or generate compliance exceptions. Every Gateway LT had to be safely shut down first.</p>
+  <div class="db-focus">
+    <div class="db-focus-title">// why this db credential is compliance-critical</div>
+    <div class="db-row">
+      <div class="db-icon">📋</div>
+      <div class="db-text">
+        <strong>SWIFT CSP Requirement</strong>
+        <span>SWIFT audits Capital One annually. Rotating privileged DB credentials on gateway systems is a mandatory control. Failing it risks losing SWIFT network access — which means no international wires.</span>
+      </div>
+    </div>
+    <div class="db-row">
+      <div class="db-icon">🗄️</div>
+      <div class="db-text">
+        <strong>SAA Writes Everything to This DB</strong>
+        <span>Wire messages, MT103/MT202 records, audit trails, settlement confirmations — all written to the Oracle DB via the SAA ECS service. This credential is the key to that entire audit record.</span>
+      </div>
+    </div>
+    <div class="db-row" style="margin-bottom:0;">
+      <div class="db-icon">⏱️</div>
+      <div class="db-text">
+        <strong>Credential Age = Security Risk</strong>
+        <span>A DB password that hasn't changed in months may have been seen in a config backup, an old deployment artifact, or an engineer who has since left. Regular rotation limits the exposure window.</span>
+      </div>
+    </div>
   </div>
 
-  <p class="sp" style="margin-top:1.5rem;">Before I built the automation, this was a manual process — an engineer would have to:</p>
-
-  <div class="mgrid">
-    <div class="mcard before">
-      <div class="mlbl">😓 Before — Manual Process</div>
-      <ul class="mlist">
-        <li>🔴 &nbsp; Manually log into each Gateway LT</li>
-        <li>🔴 &nbsp; Shut each one down individually, in order</li>
-        <li>🔴 &nbsp; Verify each was cleanly disconnected</li>
-        <li>🔴 &nbsp; Then change the SAA password manually</li>
-        <li>🔴 &nbsp; Bring each Gateway LT back up one by one</li>
-        <li>🔴 &nbsp; Human error risk at every step — during production hours</li>
-      </ul>
-    </div>
-    <div class="mcard after">
-      <div class="mlbl">✅ After — Ansible Automation</div>
-      <ul class="mlist">
-        <li>🟢 &nbsp; Ansible playbook executes the full sequence</li>
-        <li>🟢 &nbsp; All Gateway LTs shut down in correct order</li>
-        <li>🟢 &nbsp; Connection state verified before proceeding</li>
-        <li>🟢 &nbsp; Password rotated via CyberArk / HashiCorp Vault</li>
-        <li>🟢 &nbsp; Gateway LTs brought back up and verified</li>
-        <li>🟢 &nbsp; Zero human error — same script every time</li>
-      </ul>
-    </div>
+  <div class="warnbox">
+    <div class="warnbox-title">⚠️ Why You Can't Just Rotate Mid-Flight</div>
+    <p>SAA's ECS service is <strong>actively using that DB connection</strong> — constantly writing wire messages through connected Gateway LTs (Logical Terminals). If you rotate the Oracle DB password while SAA is mid-write, SAA's connection pool breaks. Active wire transactions fail. In a live banking system, a dropped wire record is a compliance exception and a potential financial loss. <strong>The DB password can only be safely rotated when SAA has no active DB writes in-flight</strong> — which means all Gateway LTs must be stopped first.</p>
   </div>
 </section>
 
 <hr class="div">
 
-<!-- THE ANSIBLE SOLUTION -->
+<!-- SECTION 04: THE CORRECT SEQUENCE -->
 <section class="s">
   <div class="slbl">04 — The Ansible Playbook</div>
-  <h2 class="sh2">How I Automated It</h2>
-  <p class="sp">I designed and built an Ansible playbook that automated the entire SAA password rotation sequence — including the pre-rotation Gateway LT shutdown and post-rotation verification. The key principle: <em>nothing happens unless the previous step was clean.</em></p>
+  <h2 class="sh2">The Correct Rotation Sequence</h2>
+  <p class="sp">I built an Ansible playbook that executes the complete DB password rotation in the right order. The key principle: <em>SAA must have zero active DB writes before the password changes.</em> That means draining the Gateway LTs first.</p>
 
   <div class="shutdown-seq">
+
     <div class="seq-item">
       <div class="seq-circle sc-amber">📋</div>
       <div class="seq-body">
-        <div class="seq-title">Step 1 — Inventory &amp; Pre-flight Check</div>
-        <div class="seq-desc">The playbook starts by loading the list of all Gateway LTs (Logical Terminals) connected to the SAA instance — the active channels through which downstream systems are sending wire messages. It checks their current state before proceeding. If any are mid-transaction, the playbook can be configured to wait or abort.</div>
-        <span class="seq-note">Ansible inventory · pre-flight validation</span>
+        <div class="seq-title">Step 1 — Pre-flight: Verify SAA ECS Task is Healthy</div>
+        <div class="seq-desc">The playbook first confirms the SAA ECS service is running and in a stable state. It checks the Oracle DB connection is active and that SAA is not mid-task (e.g., processing a large batch of wire messages). If anything is unexpected, the playbook aborts before touching anything.</div>
+        <span class="seq-note">ECS task status check · DB connection health · pre-flight gate</span>
       </div>
     </div>
+
     <div class="seq-item">
       <div class="seq-circle sc-red">🔴</div>
       <div class="seq-body">
         <div class="seq-title">Step 2 — Shut Down All Gateway LTs (In Order)</div>
-        <div class="seq-desc">This is the most critical step. The playbook shuts down each Gateway LT in a defined sequence — not all at once, but in the correct dependency order. Each LT disconnect is confirmed before moving to the next. This ensures no open connections remain to SAA before the password changes. Rushing this step is what breaks wires.</div>
-        <span class="seq-critical">⚠️ Critical — must complete before password change</span>
+        <div class="seq-desc">Gateway LTs (Logical Terminals) are the channel endpoints through which Capital One's downstream wire systems push messages into SAA. While any LT is active, SAA is potentially writing to the Oracle DB. The playbook shuts each LT down in a defined sequence — dependency order, with a verified disconnect between each. Once all LTs are down, SAA goes idle. No more active DB writes.</div>
+        <span class="seq-critical">⚠️ Critical gate — SAA must be idle before DB password changes</span>
         <div style="margin-top:.85rem;background:rgba(212,23,30,.05);border:1px solid rgba(212,23,30,.2);border-radius:8px;padding:1rem 1.25rem;">
-          <div style="font-family:var(--fm);font-size:10px;color:#e8464b;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.65rem;">Gateway LTs disconnected per run</div>
+          <div style="font-family:var(--fm);font-size:10px;color:#e8464b;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.65rem;">Gateway LTs stopped per rotation run</div>
           <div style="display:flex;flex-wrap:wrap;gap:.5rem;">
             <span style="font-family:var(--fm);font-size:11px;padding:.25rem .65rem;border-radius:4px;background:rgba(245,158,11,.1);color:var(--swift);border:1px solid rgba(245,158,11,.25);">LT-WIRE-01</span>
             <span style="font-family:var(--fm);font-size:11px;padding:.25rem .65rem;border-radius:4px;background:rgba(245,158,11,.1);color:var(--swift);border:1px solid rgba(245,158,11,.25);">LT-WIRE-02</span>
@@ -448,222 +417,286 @@ footer a:hover { text-decoration: underline; }
         </div>
       </div>
     </div>
+
     <div class="seq-item">
       <div class="seq-circle sc-blue">🔑</div>
       <div class="seq-body">
-        <div class="seq-title">Step 3 — Rotate the SAA Password via CyberArk / Vault</div>
-        <div class="seq-desc">With all Gateway LTs cleanly disconnected, the playbook triggers the credential rotation. The new password is generated and stored in CyberArk (or HashiCorp Vault, depending on environment). The SAA instance is updated with the new credential. At no point does the password exist in plain text in the script — it's always fetched from and written to the secret store.</div>
-        <span class="seq-note">CyberArk · HashiCorp Vault · zero plaintext credentials</span>
+        <div class="seq-title">Step 3 — Rotate the Oracle DB Password via CyberArk / Vault</div>
+        <div class="seq-desc">With all Gateway LTs stopped and SAA idle, the playbook triggers the Oracle DB password rotation. A new password is generated and stored in CyberArk or HashiCorp Vault. The Oracle DB user account for SAA is updated with the new credential. At no point is the password written to logs or stored in plain text in the script — it's always fetched directly from and written to the secret store.</div>
+        <span class="seq-note">CyberArk · HashiCorp Vault · Oracle DB user update · zero plaintext</span>
       </div>
     </div>
+
+    <div class="seq-item">
+      <div class="seq-circle sc-amber">🔄</div>
+      <div class="seq-body">
+        <div class="seq-title">Step 4 — Update SAA ECS Task with New DB Credential</div>
+        <div class="seq-desc">The ECS task definition for SAA is updated to reference the new DB credential — either via an updated Secrets Manager reference or a direct environment variable change. The ECS service is then forced to redeploy, pulling the updated task definition. This ensures the running SAA container picks up the new Oracle password before any LTs reconnect.</div>
+        <span class="seq-note">ECS task definition update · forced redeployment · new credential injected</span>
+      </div>
+    </div>
+
     <div class="seq-item">
       <div class="seq-circle sc-green">✅</div>
       <div class="seq-body">
-        <div class="seq-title">Step 4 — Verify SAA is Healthy with New Credential</div>
-        <div class="seq-desc">Before bringing any Gateway LTs back, the playbook verifies that SAA accepted the new password and is in a healthy state. A failed rotation here would be caught before reconnecting terminals — preventing LTs from coming up with mismatched credentials.</div>
-        <span class="seq-note">Health check · connection validation</span>
+        <div class="seq-title">Step 5 — Verify SAA ECS is Healthy with New DB Connection</div>
+        <div class="seq-desc">Before any Gateway LT is brought back online, the playbook verifies that the redeployed SAA ECS task has successfully connected to Oracle with the new password. It checks that the DB connection pool is established and the service is in a healthy state. A failed DB connection here is caught before any LT tries to push wire messages — avoiding a scenario where LTs are up but SAA can't write.</div>
+        <span class="seq-note">ECS health check · Oracle DB connection verified · retry logic</span>
       </div>
     </div>
+
     <div class="seq-item">
       <div class="seq-circle sc-purple">🔁</div>
       <div class="seq-body">
-        <div class="seq-title">Step 5 — Bring Gateway LTs Back Up</div>
-        <div class="seq-desc">The playbook restores each Gateway LT in the correct order — the reverse of how they were shut down — verifying connectivity at each step. Once all LTs are back and reporting healthy, the rotation is complete. Downstream wire systems are automatically reconnected without any manual intervention.</div>
-        <span class="seq-note">Ordered restart · connectivity verification</span>
+        <div class="seq-title">Step 6 — Restart Gateway LTs in Reverse Order</div>
+        <div class="seq-desc">With SAA healthy and connected to the updated Oracle DB, the playbook brings each Gateway LT back online in the reverse of the shutdown sequence. Each LT's connection is verified before the next one starts. Once all LTs are running and connected, wire processing resumes automatically — downstream systems reconnect without any manual intervention.</div>
+        <span class="seq-note">Ordered restart · reverse shutdown sequence · connectivity verified per LT</span>
       </div>
     </div>
+
     <div class="seq-item">
       <div class="seq-circle sc-navy">📊</div>
       <div class="seq-body">
-        <div class="seq-title">Step 6 — Audit Log &amp; Notification</div>
-        <div class="seq-desc">The playbook generates an audit trail of the rotation event — timestamps, which LTs were cycled, the rotation outcome, and the new credential reference in Vault/CyberArk. This log is critical for SWIFT CSP compliance reporting.</div>
-        <span class="seq-note">Audit trail · compliance log · SWIFT CSP</span>
+        <div class="seq-title">Step 7 — Write Audit Log for SWIFT CSP Compliance</div>
+        <div class="seq-desc">The playbook writes a timestamped audit record: which LTs were cycled, the rotation timestamp, the Vault/CyberArk reference for the new credential, and the ECS redeployment confirmation. This log is the compliance evidence for SWIFT CSP — auto-generated, consistent, and stored every time the rotation runs.</div>
+        <span class="seq-note">SWIFT CSP audit trail · auto-generated · timestamped</span>
       </div>
     </div>
+
   </div>
 
   <!-- ANSIBLE CODE SAMPLE -->
   <div class="code-wrap">
     <div class="code-header">
-      <span class="code-filename">rotate_saa_password.yml</span>
-      <span class="code-lang">Ansible Playbook (simplified)</span>
+      <span class="code-filename">rotate_saa_db_password.yml</span>
+      <span class="code-lang">Ansible Playbook — SAA Oracle DB Rotation (simplified)</span>
     </div>
     <div class="code-body">
 <pre><span class="cmt">---
-# SWIFT SAA Password Rotation Playbook
+# SAA Oracle DB Password Rotation Playbook
 # Capital One — SWIFT Infrastructure Team
-# Requires: all Gateway LTs cleanly shut down before password change</span>
+# SAA runs as ECS service — DB password rotated via CyberArk/Vault
+# Gateway LTs must be STOPPED before any DB credential change</span>
 
-<span class="kw">- name:</span> <span class="str">SWIFT SAA Password Rotation</span>
-  <span class="kw">hosts:</span> <span class="var">swift_saa_servers</span>
-  <span class="kw">gather_facts:</span> <span class="bool">yes</span>
+<span class="kw">- name:</span> <span class="str">SAA Oracle DB Password Rotation</span>
+  <span class="kw">hosts:</span> <span class="var">swift_management_host</span>
+  <span class="kw">gather_facts:</span> <span class="bl">yes</span>
   <span class="kw">vars:</span>
-    <span class="var">vault_path:</span> <span class="str">"secret/swift/saa"</span>
-    <span class="var">cyberark_account:</span> <span class="str">"SWIFT_SAA_PROD"</span>
-    <span class="var">rotation_window:</span> <span class="str">"maintenance"</span>
+    <span class="var">vault_path:</span>        <span class="str">"secret/swift/saa/oracle_db"</span>
+    <span class="var">ecs_cluster:</span>       <span class="str">"capital-one-swift-cluster"</span>
+    <span class="var">ecs_service:</span>       <span class="str">"swift-saa-service"</span>
+    <span class="var">oracle_db_user:</span>    <span class="str">"SAA_APP_USER"</span>
+    <span class="var">oracle_db_host:</span>    <span class="str">"{{ lookup('env', 'ORACLE_HOST') }}"</span>
 
   <span class="kw">tasks:</span>
 
-    <span class="cmt"># PHASE 1: PRE-FLIGHT VALIDATION</span>
-    <span class="kw">- name:</span> <span class="str">Verify SAA service is running</span>
-      <span class="fn">ansible.builtin.service_facts:</span>
-      <span class="kw">register:</span> <span class="var">service_state</span>
+    <span class="cmt"># ── PHASE 1: PRE-FLIGHT ────────────────────────────────────</span>
+    <span class="kw">- name:</span> <span class="str">Confirm SAA ECS service is stable before touching anything</span>
+      <span class="fn">community.aws.ecs_service_info:</span>
+        <span class="kw">cluster:</span> <span class="str">"{{ ecs_cluster }}"</span>
+        <span class="kw">service:</span> <span class="str">"{{ ecs_service }}"</span>
+      <span class="kw">register:</span> <span class="var">ecs_info</span>
 
-    <span class="kw">- name:</span> <span class="str">Fail if SAA is not in expected state</span>
+    <span class="kw">- name:</span> <span class="str">Abort if SAA is not in steady state</span>
       <span class="fn">ansible.builtin.fail:</span>
-        <span class="kw">msg:</span> <span class="str">"SAA not in running state — aborting rotation"</span>
-      <span class="kw">when:</span> <span class="var">service_state.ansible_facts.services['saa'].state != 'running'</span>
+        <span class="kw">msg:</span> <span class="str">"SAA ECS not in STEADY_STATE — aborting rotation"</span>
+      <span class="kw">when:</span> <span class="var">ecs_info.services[0].deployments[0].rolloutState != 'COMPLETED'</span>
 
-    <span class="cmt"># PHASE 2: SHUT DOWN ALL GATEWAY LTs (in order)</span>
-    <span class="kw">- name:</span> <span class="str">Shut down Gateway LTs — ordered sequence</span>
+    <span class="cmt"># ── PHASE 2: STOP ALL GATEWAY LTs ──────────────────────────</span>
+    <span class="kw">- name:</span> <span class="str">Stop Gateway LTs — ordered, verified per LT</span>
       <span class="fn">ansible.builtin.command:</span>
         <span class="kw">cmd:</span> <span class="str">"/opt/swift/saa/bin/ltctl stop {{ item }}"</span>
       <span class="kw">loop:</span> <span class="str">"{{ gateway_lts }}"</span>
       <span class="kw">loop_control:</span>
-        <span class="var">pause:</span> <span class="bool">5</span>  <span class="cmt"># wait 5s between each shutdown</span>
-      <span class="kw">register:</span> <span class="var">lt_shutdown_results</span>
+        <span class="var">pause:</span> <span class="bl">5</span>   <span class="cmt"># 5s gap between each shutdown</span>
 
-    <span class="kw">- name:</span> <span class="str">Verify all LTs are disconnected</span>
+    <span class="kw">- name:</span> <span class="str">Verify every LT is disconnected before proceeding</span>
       <span class="fn">ansible.builtin.command:</span>
         <span class="kw">cmd:</span> <span class="str">"/opt/swift/saa/bin/ltctl status {{ item }}"</span>
       <span class="kw">loop:</span> <span class="str">"{{ gateway_lts }}"</span>
-      <span class="kw">register:</span> <span class="var">lt_status</span>
-      <span class="kw">failed_when:</span> <span class="str">"'CONNECTED' in lt_status.stdout"</span>  <span class="cmt"># abort if any still connected</span>
+      <span class="kw">failed_when:</span> <span class="str">"'CONNECTED' in item_result.stdout"</span>
 
-    <span class="cmt"># PHASE 3: ROTATE PASSWORD VIA CYBERARK/VAULT</span>
-    <span class="kw">- name:</span> <span class="str">Generate new password and store in CyberArk</span>
+    <span class="cmt"># ── PHASE 3: ROTATE ORACLE DB PASSWORD ─────────────────────</span>
+    <span class="kw">- name:</span> <span class="str">Generate new DB password and store in Vault</span>
       <span class="fn">community.hashi_vault.vault_write:</span>
         <span class="kw">path:</span> <span class="str">"{{ vault_path }}"</span>
         <span class="kw">data:</span>
-          <span class="var">password:</span> <span class="str">"{{ lookup('password', '/dev/null length=24 chars=ascii_letters,digits') }}"</span>
-          <span class="var">rotated_at:</span> <span class="str">"{{ ansible_date_time.iso8601 }}"</span>
-      <span class="kw">register:</span> <span class="var">vault_write_result</span>
-      <span class="kw">no_log:</span> <span class="bool">true</span>  <span class="cmt"># never log credentials</span>
+          <span class="var">password:</span>    <span class="str">"{{ lookup('password', '/dev/null length=32') }}"</span>
+          <span class="var">rotated_at:</span>  <span class="str">"{{ ansible_date_time.iso8601 }}"</span>
+          <span class="var">rotated_by:</span>  <span class="str">"ansible-automation"</span>
+      <span class="kw">no_log:</span> <span class="bl">true</span>   <span class="cmt"># never log credentials</span>
 
-    <span class="kw">- name:</span> <span class="str">Update SAA with new credential</span>
-      <span class="fn">ansible.builtin.command:</span>
-        <span class="kw">cmd:</span> <span class="str">"/opt/swift/saa/bin/saapasswd -u saa_admin -p '{{ new_password }}'"</span>
-      <span class="kw">no_log:</span> <span class="bool">true</span>  <span class="cmt"># credential never written to logs</span>
+    <span class="kw">- name:</span> <span class="str">Update Oracle DB user password</span>
+      <span class="fn">community.oracle.oracle_sql:</span>
+        <span class="kw">hostname:</span>   <span class="str">"{{ oracle_db_host }}"</span>
+        <span class="kw">sql:</span>        <span class="str">"ALTER USER {{ oracle_db_user }} IDENTIFIED BY '{{ new_db_password }}'"</span>
+      <span class="kw">no_log:</span> <span class="bl">true</span>
 
-    <span class="cmt"># PHASE 4: VERIFY &amp; RESTART GATEWAY LTs</span>
-    <span class="kw">- name:</span> <span class="str">Verify SAA health with new password</span>
-      <span class="fn">ansible.builtin.uri:</span>
-        <span class="kw">url:</span> <span class="str">"https://{{ saa_host }}:8443/api/health"</span>
-        <span class="kw">status_code:</span> <span class="bool">200</span>
-      <span class="kw">retries:</span> <span class="bool">3</span>
-      <span class="kw">delay:</span> <span class="bool">10</span>
+    <span class="cmt"># ── PHASE 4: REDEPLOY SAA ECS WITH NEW CREDENTIAL ──────────</span>
+    <span class="kw">- name:</span> <span class="str">Force new ECS deployment — picks up updated DB secret</span>
+      <span class="fn">community.aws.ecs_service:</span>
+        <span class="kw">cluster:</span>       <span class="str">"{{ ecs_cluster }}"</span>
+        <span class="kw">name:</span>          <span class="str">"{{ ecs_service }}"</span>
+        <span class="kw">force_new_deployment:</span> <span class="bl">true</span>
+        <span class="kw">state:</span>         <span class="str">"present"</span>
 
-    <span class="kw">- name:</span> <span class="str">Restart Gateway LTs in reverse order</span>
+    <span class="kw">- name:</span> <span class="str">Wait for ECS redeployment to reach STEADY_STATE</span>
+      <span class="fn">community.aws.ecs_service_info:</span>
+        <span class="kw">cluster:</span> <span class="str">"{{ ecs_cluster }}"</span>
+        <span class="kw">service:</span> <span class="str">"{{ ecs_service }}"</span>
+      <span class="kw">register:</span> <span class="var">ecs_post</span>
+      <span class="kw">until:</span>   <span class="str">"ecs_post.services[0].deployments[0].rolloutState == 'COMPLETED'"</span>
+      <span class="kw">retries:</span> <span class="bl">12</span>
+      <span class="kw">delay:</span>   <span class="bl">15</span>   <span class="cmt"># check every 15s, up to 3 minutes</span>
+
+    <span class="cmt"># ── PHASE 5: RESTART GATEWAY LTs ───────────────────────────</span>
+    <span class="kw">- name:</span> <span class="str">Restart Gateway LTs — reverse order</span>
       <span class="fn">ansible.builtin.command:</span>
         <span class="kw">cmd:</span> <span class="str">"/opt/swift/saa/bin/ltctl start {{ item }}"</span>
       <span class="kw">loop:</span> <span class="str">"{{ gateway_lts | reverse | list }}"</span>
       <span class="kw">loop_control:</span>
-        <span class="var">pause:</span> <span class="bool">5</span>
+        <span class="var">pause:</span> <span class="bl">5</span>
 
-    <span class="cmt"># PHASE 5: AUDIT LOG</span>
-    <span class="kw">- name:</span> <span class="str">Write rotation audit log</span>
+    <span class="cmt"># ── PHASE 6: AUDIT LOG ─────────────────────────────────────</span>
+    <span class="kw">- name:</span> <span class="str">Write SWIFT CSP compliance audit log</span>
       <span class="fn">ansible.builtin.lineinfile:</span>
-        <span class="kw">path:</span> <span class="str">"/var/log/swift/rotation_audit.log"</span>
-        <span class="kw">line:</span> <span class="str">"{{ ansible_date_time.iso8601 }} | ROTATION_COMPLETE | LTs={{ gateway_lts | length }} | Vault={{ vault_path }}"</span></pre>
+        <span class="kw">path:</span>  <span class="str">"/var/log/swift/db_rotation_audit.log"</span>
+        <span class="kw">line:</span>  <span class="str">"{{ ansible_date_time.iso8601 }} | DB_ROTATION_COMPLETE | user={{ oracle_db_user }} | lts_cycled={{ gateway_lts|length }} | vault={{ vault_path }}"</span></pre>
     </div>
   </div>
 </section>
 
 <hr class="div">
 
-<!-- AWS MIGRATION -->
+<!-- SECTION 05: BEFORE / AFTER -->
 <section class="s">
-  <div class="slbl">05 — AWS Migration</div>
-  <h2 class="sh2">Migrating SWIFT Components to AWS</h2>
-  <p class="sp">In addition to the password rotation work, I contributed to the migration of SWIFT components onto AWS — moving from legacy on-premise infrastructure to a cloud-native, more resilient deployment model while maintaining zero downtime on the live wire pipeline.</p>
+  <div class="slbl">05 — Before vs After</div>
+  <h2 class="sh2">What the Automation Changed</h2>
 
-  <div class="aws-badge">☁️ &nbsp; Migration target: AWS EC2 · Linux ARM64 · Oracle Instant Client</div>
+  <div class="mgrid">
+    <div class="mcard before">
+      <div class="mlbl">😓 Before — Manual &amp; Risky</div>
+      <ul class="mlist">
+        <li>🔴 &nbsp; Engineer manually stops each Gateway LT one by one</li>
+        <li>🔴 &nbsp; Manually verifies each LT is cleanly disconnected</li>
+        <li>🔴 &nbsp; Manually updates Oracle DB user password via SQL</li>
+        <li>🔴 &nbsp; Manually triggers ECS redeployment for SAA</li>
+        <li>🔴 &nbsp; Manually verifies SAA reconnected to DB successfully</li>
+        <li>🔴 &nbsp; Manually restarts each Gateway LT in correct order</li>
+        <li>🔴 &nbsp; Human error at any step = broken wires in production</li>
+      </ul>
+    </div>
+    <div class="mcard after">
+      <div class="mlbl">✅ After — Ansible Automation</div>
+      <ul class="mlist">
+        <li>🟢 &nbsp; Playbook stops all LTs in correct order, verified per LT</li>
+        <li>🟢 &nbsp; Oracle DB password rotated via CyberArk / Vault — zero plaintext</li>
+        <li>🟢 &nbsp; ECS redeployment triggered automatically — SAA picks up new creds</li>
+        <li>🟢 &nbsp; ECS health verified before any LT comes back online</li>
+        <li>🟢 &nbsp; LTs restarted in reverse order, each connection confirmed</li>
+        <li>🟢 &nbsp; SWIFT CSP audit log written automatically — compliance covered</li>
+        <li>🟢 &nbsp; Same sequence every time — zero human error</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- SECTION 06: AWS MIGRATION -->
+<section class="s">
+  <div class="slbl">06 — AWS Migration</div>
+  <h2 class="sh2">Migrating SWIFT Components to AWS</h2>
+  <p class="sp">Alongside the password rotation work, I contributed to migrating SWIFT infrastructure from legacy on-premise environments to AWS — maintaining zero downtime on the live wire pipeline throughout.</p>
+
+  <div class="aws-badge">☁️ &nbsp; Migration target: AWS ECS · EC2 Linux ARM64 · Oracle Instant Client · Java 17</div>
 
   <div class="tl">
     <div class="tli">
       <div class="tldot"></div>
-      <div class="tlph">AWS Environment Setup</div>
-      <div class="tlt">EC2 Instance Provisioning &amp; Oracle Instant Client</div>
-      <p class="tld">Worked on provisioning EC2 instances for the SWIFT components, including installing and configuring the Oracle Instant Client for Linux ARM64 on EC2 — required for the SWIFT components to connect to Oracle databases. ARM64 has architecture-specific library requirements that differ from x86, requiring careful configuration.</p>
+      <div class="tlph">EC2 + Oracle Setup</div>
+      <div class="tlt">EC2 Instance Provisioning &amp; Oracle Instant Client on ARM64</div>
+      <p class="tld">Provisioned EC2 instances for SWIFT components and installed the Oracle Instant Client on Linux ARM64 — required for the SAA ECS tasks to connect to Oracle databases. ARM64 has architecture-specific library paths that differ from x86, requiring careful configuration and testing before SWIFT components could successfully open DB connections.</p>
     </div>
     <div class="tli">
       <div class="tldot"></div>
-      <div class="tlph">S3 &amp; IAM Configuration</div>
-      <div class="tlt">Multi-Region S3 Buckets with Replication Rules</div>
-      <p class="tld">Set up S3 buckets for different regions — dev and QA environments — configuring replication rules, notification rules, and attaching IAM roles. Cross-region replication ensures SWIFT logs and config files are backed up and available even if a regional outage occurs.</p>
+      <div class="tlph">S3 &amp; IAM</div>
+      <div class="tlt">Multi-Region S3 Buckets, Replication Rules &amp; IAM Roles</div>
+      <p class="tld">Set up S3 buckets across dev and QA regions with replication rules and notification configurations — used for SWIFT config files and audit logs. Attached IAM roles with least-privilege policies to each component, ensuring SWIFT services access only what they need and nothing more.</p>
     </div>
     <div class="tli">
       <div class="tldot"></div>
-      <div class="tlph">Terraform &amp; Security Groups</div>
+      <div class="tlph">Terraform</div>
       <div class="tlt">Lambda Security Groups Written in Terraform</div>
-      <p class="tld">Created and managed Lambda Security Groups using Terraform — defining inbound/outbound rules that control what the SWIFT-connected Lambdas can communicate with. In a financial infrastructure context, security groups act as the firewall layer ensuring SWIFT traffic is isolated and controlled.</p>
+      <p class="tld">Created and managed security groups for SWIFT-adjacent Lambda functions using Terraform — defining exactly which services the Lambdas can talk to. In financial infrastructure, security groups are the hard network boundary that ensures SWIFT traffic stays isolated from unrelated workloads.</p>
     </div>
     <div class="tli">
       <div class="tldot"></div>
-      <div class="tlph">Java Version Migration</div>
-      <div class="tlt">AWS Config File Updates &amp; Java 17 Upgrade</div>
-      <p class="tld">Updated AWS configuration files and migrated the application runtime from an older Java version to Java 17 — a non-trivial change in an infrastructure where components are tightly version-coupled. Involved testing compatibility with SWIFT's own libraries and dependencies before promoting to production environments.</p>
+      <div class="tlph">Java 17 Migration</div>
+      <div class="tlt">AWS Config File Updates &amp; Runtime Upgrade</div>
+      <p class="tld">Updated AWS configuration files and migrated SAA's application runtime to Java 17. In a tightly version-coupled environment like SWIFT, a Java upgrade requires careful compatibility testing against SWIFT's own libraries before being promoted to production.</p>
     </div>
     <div class="tli">
       <div class="tldot"></div>
-      <div class="tlph">Production Support</div>
-      <div class="tlt">On-call Production Support for SWIFT Pipeline</div>
-      <p class="tld">Participated in on-call production support rotations for the live SWIFT wire pipeline — monitoring CloudWatch for anomalies, responding to alerts, and diagnosing issues in the wire flow. When wires are real money, production support is not optional.</p>
+      <div class="tlph">Production On-Call</div>
+      <div class="tlt">On-call Production Support for the Live SWIFT Pipeline</div>
+      <p class="tld">Participated in on-call rotations for the live SWIFT wire pipeline — monitoring CloudWatch for anomalies, responding to alerts, and diagnosing issues in the wire flow. When wires involve real money, production support is not optional.</p>
     </div>
   </div>
 
   <div class="igrid2">
-    <div class="icard2"><div class="iicon2">🖥️</div><h4>EC2 (Linux ARM64)</h4><p>SWIFT components deployed on ARM64 instances — cost-effective, high-performance compute for the gateway workloads.</p><span class="itag2">aws ec2</span></div>
-    <div class="icard2"><div class="iicon2">🪣</div><h4>S3 (Multi-Region)</h4><p>Configuration files, logs, and SWIFT message archives across dev and QA environments with cross-region replication.</p><span class="itag2">aws s3</span></div>
-    <div class="icard2"><div class="iicon2">🛡️</div><h4>IAM Roles</h4><p>Least-privilege IAM roles attached to each component — ensuring SWIFT services access only what they need.</p><span class="itag2">aws iam</span></div>
-    <div class="icard2"><div class="iicon2">📦</div><h4>Lambda + SGs</h4><p>Security groups for Lambda functions managing SWIFT workflows — written and managed in Terraform.</p><span class="itag2">terraform</span></div>
-    <div class="icard2"><div class="iicon2">👁️</div><h4>CloudWatch</h4><p>Monitoring and alerting for the live SWIFT pipeline — used in production on-call rotations.</p><span class="itag2">aws cloudwatch</span></div>
-    <div class="icard2"><div class="iicon2">🔐</div><h4>CyberArk + Vault</h4><p>SAA credentials and rotation records managed in CyberArk and HashiCorp Vault — zero plaintext passwords.</p><span class="itag2">secrets mgmt</span></div>
+    <div class="icard2"><div class="iicon2">🐳</div><h4>AWS ECS</h4><p>SAA runs as a containerized ECS service — cloud-native, auto-redeployed during credential rotation.</p><span class="itag2">aws ecs</span></div>
+    <div class="icard2"><div class="iicon2">🖥️</div><h4>EC2 ARM64</h4><p>Underlying compute for SWIFT workloads — ARM64 instances with Oracle Instant Client configured.</p><span class="itag2">aws ec2</span></div>
+    <div class="icard2"><div class="iicon2">🗄️</div><h4>Oracle DB</h4><p>SAA's backing database — stores all wire messages, audit trails, and transaction records.</p><span class="itag2">oracle db</span></div>
+    <div class="icard2"><div class="iicon2">🔐</div><h4>CyberArk + Vault</h4><p>DB credentials generated, stored, and rotated here — zero plaintext anywhere in the pipeline.</p><span class="itag2">secrets mgmt</span></div>
+    <div class="icard2"><div class="iicon2">🪣</div><h4>S3 Multi-Region</h4><p>Config files, audit logs, and SWIFT archives across dev and QA with replication.</p><span class="itag2">aws s3</span></div>
+    <div class="icard2"><div class="iicon2">👁️</div><h4>CloudWatch</h4><p>Production monitoring for the SWIFT pipeline — used in on-call rotations.</p><span class="itag2">aws cloudwatch</span></div>
   </div>
 </section>
 
 <hr class="div">
 
-<!-- TECH STACK -->
+<!-- SECTION 07: TECH TABLE -->
 <section class="s">
-  <div class="slbl">06 — Technology Stack</div>
+  <div class="slbl">07 — Technology Stack</div>
   <h2 class="sh2">Tools &amp; Technologies</h2>
   <table class="tt">
     <thead><tr><th>Tool / Service</th><th>Role in SWIFT Infrastructure</th><th>Layer</th></tr></thead>
     <tbody>
-      <tr><td>Ansible</td><td>Automated playbook for SAA password rotation — Gateway LT shutdown, credential rotation, restart sequence</td><td><span class="pill ps" style="font-size:10px;">Automation</span></td></tr>
-      <tr><td>SWIFT SAA</td><td>Primary SWIFT Alliance Access gateway — all wire messages flow through this component</td><td><span class="pill ps" style="font-size:10px;">SWIFT Core</span></td></tr>
+      <tr><td>Ansible</td><td>Orchestrates the full DB rotation sequence — LT shutdown, Oracle password change, ECS redeploy, LT restart, audit log</td><td><span class="pill ps" style="font-size:10px;">Automation</span></td></tr>
+      <tr><td>AWS ECS</td><td>Runs the SAA service as a containerized task — force-redeployed during rotation to pick up new DB credentials</td><td><span class="pill pn" style="font-size:10px;">Compute</span></td></tr>
+      <tr><td>Oracle DB</td><td>SAA's backing database — stores wire messages, audit trails, transaction records. The DB user password is what gets rotated.</td><td><span class="pill pr" style="font-size:10px;">Database</span></td></tr>
+      <tr><td>CyberArk</td><td>Enterprise privileged access management — SAA DB credential stored and tracked here</td><td><span class="pill pr" style="font-size:10px;">Secrets</span></td></tr>
+      <tr><td>HashiCorp Vault</td><td>Secret storage — new Oracle DB password written here after rotation, referenced by ECS task definition</td><td><span class="pill pr" style="font-size:10px;">Secrets</span></td></tr>
+      <tr><td>SWIFT SAA</td><td>SWIFT Alliance Access — the primary gateway ECS service that connects Capital One to the SWIFT network</td><td><span class="pill ps" style="font-size:10px;">SWIFT Core</span></td></tr>
       <tr><td>SWIFT SNL</td><td>SWIFT Net Link — secure network tunnel between Capital One and the SWIFT network</td><td><span class="pill ps" style="font-size:10px;">SWIFT Core</span></td></tr>
-      <tr><td>SWIFT SAG</td><td>SWIFT Alliance Gateway — traffic router and load balancer between internal systems and SAA</td><td><span class="pill ps" style="font-size:10px;">SWIFT Core</span></td></tr>
-      <tr><td>CyberArk</td><td>Enterprise privileged access management — SAA credential storage and rotation tracking</td><td><span class="pill pr" style="font-size:10px;">Secrets</span></td></tr>
-      <tr><td>HashiCorp Vault</td><td>Secret storage for rotation — new credentials written and referenced here, never in plaintext</td><td><span class="pill pr" style="font-size:10px;">Secrets</span></td></tr>
-      <tr><td>Terraform</td><td>Infrastructure as Code for Lambda security groups and AWS resource management</td><td><span class="pill pt" style="font-size:10px;">IaC</span></td></tr>
-      <tr><td>AWS EC2 (ARM64)</td><td>Cloud compute for SWIFT component hosting post-migration</td><td><span class="pill pn" style="font-size:10px;">Infrastructure</span></td></tr>
-      <tr><td>AWS S3</td><td>Multi-region storage for SWIFT configs, logs, and archives</td><td><span class="pill pn" style="font-size:10px;">Infrastructure</span></td></tr>
-      <tr><td>AWS IAM</td><td>Least-privilege roles for all SWIFT-adjacent services and components</td><td><span class="pill pn" style="font-size:10px;">Infrastructure</span></td></tr>
-      <tr><td>CloudWatch</td><td>Monitoring and alerting for the live SWIFT production pipeline</td><td><span class="pill pt" style="font-size:10px;">Observability</span></td></tr>
-      <tr><td>Oracle Instant Client</td><td>Database connectivity for SWIFT components — installed on EC2 Linux ARM64</td><td><span class="pill pg" style="font-size:10px;">Data Layer</span></td></tr>
-      <tr><td>Java 17</td><td>Application runtime — migrated from legacy version as part of the AWS component upgrade</td><td><span class="pill pg" style="font-size:10px;">Runtime</span></td></tr>
+      <tr><td>SWIFT SAG</td><td>SWIFT Alliance Gateway — traffic router between internal Capital One systems and SAA</td><td><span class="pill ps" style="font-size:10px;">SWIFT Core</span></td></tr>
+      <tr><td>Gateway LTs</td><td>Logical Terminals — channel endpoints that push wire messages into SAA. Must all be stopped before DB rotation.</td><td><span class="pill ps" style="font-size:10px;">SWIFT Core</span></td></tr>
+      <tr><td>Terraform</td><td>IaC for Lambda security groups and AWS resource management</td><td><span class="pill pt" style="font-size:10px;">IaC</span></td></tr>
+      <tr><td>AWS EC2 (ARM64)</td><td>Underlying compute — Oracle Instant Client installed for ARM64 architecture</td><td><span class="pill pn" style="font-size:10px;">Infrastructure</span></td></tr>
+      <tr><td>AWS S3</td><td>Multi-region config file and audit log storage with replication rules</td><td><span class="pill pn" style="font-size:10px;">Infrastructure</span></td></tr>
+      <tr><td>CloudWatch</td><td>Production monitoring — used in on-call support rotations for the live SWIFT pipeline</td><td><span class="pill pt" style="font-size:10px;">Observability</span></td></tr>
+      <tr><td>Java 17</td><td>Runtime upgrade for SWIFT ECS tasks — migrated as part of the AWS component modernization</td><td><span class="pill pg" style="font-size:10px;">Runtime</span></td></tr>
     </tbody>
   </table>
 </section>
 
 <hr class="div">
 
-<!-- CLOSING -->
+<!-- SECTION 08: CLOSING -->
 <section class="s">
-  <div class="slbl">07 — Impact</div>
+  <div class="slbl">08 — Impact</div>
   <h2 class="sh2">Why This Work Mattered</h2>
-  <p class="sp">SWIFT infrastructure work doesn't get the same visibility as building a shiny new product — but when your job is making sure billions of dollars flow reliably and securely between banks, reliability <em>is</em> the product. The password rotation automation I built removed one of the most fragile manual processes from the team's production workflow.</p>
+  <p class="sp">SWIFT infrastructure work is invisible when it works — and catastrophic when it doesn't. The DB password rotation automation removed the most fragile manual process from the team's compliance workflow: a multi-step sequence, performed under pressure, on a live wire system, where a single mistake could break active transactions.</p>
 
   <div class="csq">
-    <p>"International wire transfers are <span>real money moving in real time</span>. Every step in the SWIFT pipeline — every Gateway LT, every credential rotation, every config file — is a potential point of failure in a system where failure has <span>regulatory, financial, and reputational consequences</span>. Automating the SAA password rotation meant the team could rotate credentials on schedule, safely, every time — without a senior engineer babysitting the process at midnight."</p>
+    <p>"SAA is an ECS service writing real wire transactions to an Oracle database in real time. <span>Rotating that DB password safely meant stopping every Gateway LT first</span>, rotating the credential via Vault, redeploying the ECS service, verifying the DB connection was healthy, then bringing everything back. I automated that entire sequence — <span>so it runs the same way every time, without an engineer babysitting it at midnight.</span>"</p>
   </div>
 </section>
 
 <footer>
-  <div>Capital One · SWIFT Infrastructure &amp; Password Rotation &nbsp;·&nbsp; <a href="capitalone-detail.html">← Capital One Overview</a> &nbsp;·&nbsp; <a href="index.html">Portfolio</a></div>
-  <div style="margin-top:.35rem;opacity:.6;">SWIFT · SAA · SNL · SAG · Ansible · CyberArk · HashiCorp Vault · Terraform · AWS EC2 · S3 · IAM · CloudWatch · Java 17</div>
+  <div>Capital One · SWIFT Infrastructure &amp; SAA DB Password Rotation &nbsp;·&nbsp; <a href="index.html">← Portfolio</a></div>
+  <div style="margin-top:.35rem;opacity:.6;">SWIFT · SAA (ECS) · SNL · SAG · Oracle DB · Ansible · CyberArk · HashiCorp Vault · AWS ECS · EC2 · S3 · Terraform · CloudWatch · Java 17</div>
 </footer>
 </body>
 </html>

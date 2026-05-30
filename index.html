@@ -243,10 +243,10 @@
         <div class="section-line"></div>
       </div>
       <p class="case-studies-intro reveal">
-        Detailed technical breakdowns of the systems I built at each client — architecture diagrams, workflow pipelines, tech decisions, and measurable outcomes. Click either card to explore the full story.
+        Detailed technical breakdowns of the systems I built at each client — architecture diagrams, workflow pipelines, tech decisions, and measurable outcomes. Three projects, three different engineering domains.
       </p>
 
-      <div class="case-studies-grid">
+      <div class="case-studies-grid case-studies-grid--three">
 
         <!-- ── FORD CARD ── -->
         <a href="ford-detail.html" class="case-study-card case-study-card--ford reveal-left" target="_blank" rel="noopener">
@@ -299,7 +299,58 @@
           </div>
         </a>
 
-        <!-- ── CAPITAL ONE CARD ── -->
+        <!-- ── CAPITAL ONE SWIFT CARD ── -->
+        <a href="swift-detail.html" class="case-study-card case-study-card--swift reveal" target="_blank" rel="noopener">
+          <div class="cs-card-glow"></div>
+
+          <div class="cs-card-top">
+            <div class="cs-logo-pill cs-logo-pill--dark">
+              <img src="logo-capitalone.svg" alt="Capital One" />
+            </div>
+            <span class="cs-badge cs-badge--swift">Jun 2024 – Mar 2025</span>
+          </div>
+
+          <div class="cs-card-body">
+            <div class="cs-role">DevOps &amp; Infrastructure Engineer</div>
+            <h3 class="cs-title">SWIFT International<br>Wire Infrastructure</h3>
+            <p class="cs-desc">
+              Managed Capital One's SWIFT gateway components (SAA, SNL, SAG) handling international wire flows. Built Ansible automation for safe credential rotation — shutting down Gateway LTs before rotating the SAA password, then migrating the stack to AWS.
+            </p>
+
+            <div class="cs-impact-row">
+              <div class="cs-impact-cell">
+                <span class="cs-impact-num cs-impact-num--swift">SAA</span>
+                <span class="cs-impact-lbl">Gateway Automated</span>
+              </div>
+              <div class="cs-impact-divider"></div>
+              <div class="cs-impact-cell">
+                <span class="cs-impact-num cs-impact-num--swift">0</span>
+                <span class="cs-impact-lbl">Manual Rotations</span>
+              </div>
+              <div class="cs-impact-divider"></div>
+              <div class="cs-impact-cell">
+                <span class="cs-impact-num cs-impact-num--swift">AWS</span>
+                <span class="cs-impact-lbl">Migrated</span>
+              </div>
+            </div>
+
+            <div class="cs-tags">
+              <span class="cs-tag">SWIFT SAA/SNL/SAG</span>
+              <span class="cs-tag">Ansible</span>
+              <span class="cs-tag">CyberArk</span>
+              <span class="cs-tag">Vault</span>
+              <span class="cs-tag">Terraform</span>
+              <span class="cs-tag">AWS EC2</span>
+            </div>
+          </div>
+
+          <div class="cs-cta">
+            <span>View Full Case Study</span>
+            <span class="cs-arrow">→</span>
+          </div>
+        </a>
+
+        <!-- ── CAPITAL ONE AUTOMATION CARD ── -->
         <a href="capitalone-detail.html" class="case-study-card case-study-card--c1 reveal-right" target="_blank" rel="noopener">
           <div class="cs-card-glow"></div>
 
@@ -307,22 +358,17 @@
             <div class="cs-logo-pill cs-logo-pill--dark">
               <img src="logo-capitalone.svg" alt="Capital One" />
             </div>
-            <span class="cs-badge cs-badge--c1">Apr 2024 – Present</span>
+            <span class="cs-badge cs-badge--c1">Apr 2025 – Present</span>
           </div>
 
           <div class="cs-card-body">
             <div class="cs-role">DevOps &amp; Automation Engineer</div>
-            <h3 class="cs-title">SWIFT Infrastructure<br>&amp; Wire Test Automation</h3>
+            <h3 class="cs-title">Wire Payment<br>Test Automation Framework</h3>
             <p class="cs-desc">
-              Two phases: SWIFT international wire gateway infrastructure (SAA/SNL/SAG, Ansible password rotation, AWS migration) — then building an end-to-end test automation framework that cut 2 weeks of manual testing to an overnight run.
+              Built an end-to-end automated testing pipeline at Capital One — wire initiation, DB validation, and team notifications — cutting 2 weeks of manual testing to a fully automated overnight run.
             </p>
 
             <div class="cs-impact-row">
-              <div class="cs-impact-cell">
-                <span class="cs-impact-num cs-impact-num--c1">SWIFT</span>
-                <span class="cs-impact-lbl">Gateway Automation</span>
-              </div>
-              <div class="cs-impact-divider"></div>
               <div class="cs-impact-cell">
                 <span class="cs-impact-num cs-impact-num--c1">2 wks</span>
                 <span class="cs-impact-lbl">Testing → Overnight</span>
@@ -332,15 +378,20 @@
                 <span class="cs-impact-num cs-impact-num--c1">0</span>
                 <span class="cs-impact-lbl">Manual Steps</span>
               </div>
+              <div class="cs-impact-divider"></div>
+              <div class="cs-impact-cell">
+                <span class="cs-impact-num cs-impact-num--c1">7PM</span>
+                <span class="cs-impact-lbl">Nightly Jenkins Run</span>
+              </div>
             </div>
 
             <div class="cs-tags">
-              <span class="cs-tag">SWIFT SAA/SNL/SAG</span>
-              <span class="cs-tag">Ansible</span>
+              <span class="cs-tag">Selenium</span>
+              <span class="cs-tag">PRAPI</span>
               <span class="cs-tag">Jenkins</span>
               <span class="cs-tag">AWS S3</span>
-              <span class="cs-tag">CyberArk</span>
-              <span class="cs-tag">Selenium</span>
+              <span class="cs-tag">SNS</span>
+              <span class="cs-tag">Secrets Mgr</span>
             </div>
           </div>
 
