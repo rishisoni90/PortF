@@ -75,13 +75,27 @@ const DATA = {
     {
       employer: "Cognizant",
       employerLogo: "logo-cognizant.svg",
+      client: "NextEra Energy",
+      clientLogo: "nextera.png",
+      role: "Software Engineer",
+      period: "Jul 2026 – Present",
+      startDate: "2026-07",
+      endDate: null,
+      current: true,
+      bullets: [],
+      aiNotes: [],
+      tech: []
+    },
+    {
+      employer: "Cognizant",
+      employerLogo: "logo-cognizant.svg",
       client: "Capital One",
       clientLogo: "logo-capitalone.svg",
       role: "DevOps & Automation Engineer",
-      period: "Apr 2025 – Present",
+      period: "Apr 2025 – Jun 2026",
       startDate: "2025-04",
-      endDate: null,
-      current: true,
+      endDate: "2026-06",
+      current: false,
       bullets: [
         "Engineered scalable data validation and reconciliation frameworks to process high-volume transactional datasets, improving data integrity across financial systems.",
         "Designed and implemented BDD-based automation frameworks using Cucumber/Gherkin — slashed end-to-end test execution from 1 week to 1 day, enabling same-day feedback across dev, QA, and business teams.",
@@ -501,7 +515,7 @@ function renderExperience() {
           <img src="${job.employerLogo}" alt="${job.employer}" class="badge-logo badge-logo--employer" />
           <span class="client-arrow">›</span>
           <span class="client-label">Client:</span>
-          <img src="${job.clientLogo}" alt="${job.client}" class="badge-logo badge-logo--client" />
+          <img src="${job.clientLogo}" alt="${job.client}" class="badge-logo badge-logo--client${job.clientLogo === 'nextera.png' ? ' badge-logo--nextera' : ''}" />
           ${job.current ? '<span class="current-badge">● NOW</span>' : ""}
         </div>
         <ul class="timeline-bullets">
@@ -519,9 +533,10 @@ function renderExperience() {
       <div class="timeline-meta ${i % 2 === 0 ? "reveal-left" : "reveal-right"}">
         <div class="timeline-period">${job.period}</div>
         <div class="timeline-duration">${duration}</div>
+        <div class="timeline-client-name">${job.client}</div>
         <div class="timeline-meta-logos">
           <img src="${job.employerLogo}" alt="${job.employer}" class="meta-logo meta-logo--employer" />
-          <img src="${job.clientLogo}" alt="${job.client}" class="meta-logo meta-logo--client" />
+          <img src="${job.clientLogo}" alt="${job.client}" class="meta-logo meta-logo--client${job.clientLogo === 'nextera.png' ? ' meta-logo--nextera' : ''}" />
         </div>
       </div>
     `;
@@ -642,6 +657,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Set Cognizant total tenure dynamically
   const tenureEl = document.getElementById("cognizant-tenure");
   if (tenureEl) {
-    tenureEl.textContent = `Aug 2021 – Present · ${calcDuration("2021-08", null)}`;
+    tenureEl.textContent = `Apr 2021 – Present · ${calcDuration("2021-04", null)}`;
   }
 });

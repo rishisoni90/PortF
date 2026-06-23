@@ -884,6 +884,14 @@ section {
   letter-spacing: 0.3px;
 }
 
+.timeline-client-name {
+  font-size: 0.78rem;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.6rem;
+}
+
 .timeline-meta-logos {
   display: flex;
   flex-direction: column;
@@ -984,6 +992,16 @@ section {
 [data-theme="light"] .badge-logo--client {
   filter: none;
   opacity: 1;
+}
+
+.badge-logo--nextera {
+  height: 30px;
+  max-width: 110px;
+}
+
+.meta-logo--nextera {
+  height: 32px;
+  max-width: 110px;
 }
 
 .client-label {
