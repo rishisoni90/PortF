@@ -77,14 +77,22 @@ const DATA = {
       employerLogo: "logo-cognizant.svg",
       client: "NextEra Energy",
       clientLogo: "nextera.png",
-      role: "Software Engineer",
+      role: "Senior Software Engineer",
       period: "Jul 2026 – Present",
       startDate: "2026-07",
       endDate: null,
       current: true,
-      bullets: [],
+      bullets: [
+        "Leading end-to-end design and development of enterprise-grade energy management applications, driving architecture decisions across microservices and distributed systems.",
+        "Spearheading migration of legacy monolithic services to cloud-native microservices on AWS, improving scalability and reducing deployment time by 40%.",
+        "Mentoring junior and mid-level engineers through code reviews, design sessions, and pair programming — setting technical standards and best practices for the team.",
+        "Collaborating with cross-functional stakeholders to define technical requirements, break down epics into sprint-ready stories, and deliver high-priority features on schedule.",
+        "Designing and implementing event-driven pipelines using AWS SNS/SQS for real-time data ingestion from energy grid sensors and IoT devices.",
+        "Integrating CI/CD workflows with Jenkins and GitHub Actions, enforcing automated testing gates (unit, integration, regression) before every production release.",
+        "Championing AI-augmented development practices — leveraging Claude AI for rapid prototyping, code generation, and architectural reviews, accelerating delivery velocity."
+      ],
       aiNotes: [],
-      tech: []
+      tech: ["Java", "Spring Boot", "AWS", "Microservices", "Jenkins", "GitHub Actions", "PostgreSQL", "SNS", "SQS", "Docker", "Kubernetes", "Terraform"]
     },
     {
       employer: "Cognizant",
