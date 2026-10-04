@@ -618,8 +618,8 @@ function initBackTop() {
 // ── DOWNLOAD RESUME ────────────────────────────────────
 function downloadResume() {
   const link = document.createElement("a");
-  link.href = "RISHI_KUMAR_SONI_Resume_v3.docx";
-  link.download = "Rishi_Kumar_Soni_Resume.docx";
+  link.href = "file:///d:/Downloads/Rishi_Kumar_Soni_CV.pdf";
+  link.download = "Rishi_Kumar_Soni_CV.pdf";
   link.click();
 }
 
